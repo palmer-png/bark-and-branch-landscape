@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Broker Account | Bark &amp; Branch Landscape</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap">
+<style>
+:root{
+  --bg:#faf7f2; --card:#ffffff; --field:#faf7f2; --text:#1a1a12; --text-mid:#3d3d2e; --muted:#6d6d55; --border:#d8d0c0;
+  --green:#4a7c2f; --btn:#6ea832; --btn-hover:#4a7c2f; --dark:#1c3010; --dark-2:#243d18; --lime:#6ea832;
+  --on-dark:#faf7f2; --on-dark-mid:rgba(250,247,242,.72); --on-dark-line:rgba(250,247,242,.12);
+  --stop:#a3311f; --stop-bg:#f8e2dc; --ok-bg:#e8f0e0; --ok:#2d5016;
+  --font:'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.6}
+[hidden]{display:none!important}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,3rem);width:100%}
+.mast{background:radial-gradient(ellipse at 75% 40%,rgba(110,168,50,.1) 0%,transparent 60%),linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-block:1rem;flex-wrap:wrap}
+.nav-logo{display:flex;align-items:center;gap:.6rem;font-size:1.25rem;font-weight:700;color:var(--on-dark);text-decoration:none}
+.nav-logo img{height:36px;width:36px;object-fit:contain}
+.nav a.back{color:var(--on-dark-mid);font-size:.8rem;text-decoration:none}
+.nav a.back:hover{color:var(--lime)}
+main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding-block:3.5rem 4rem}
+.card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 30px rgba(0,0,0,.06);overflow:hidden}
+.card-head{background:var(--dark);padding:1.4rem 1.6rem}
+.eyebrow{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime)}
+h1{margin:.2rem 0 0;font-size:1.6rem;line-height:1.15;font-weight:700;color:var(--on-dark)}
+form{padding:1.5rem 1.6rem 1.7rem;display:flex;flex-direction:column;gap:1rem}
+label{display:flex;flex-direction:column;gap:.35rem;font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-mid)}
+input{font-family:inherit;font-size:16px;font-weight:400;letter-spacing:normal;text-transform:none;color:var(--text);background:var(--field);border:1.5px solid var(--border);border-radius:3px;padding:.75rem .9rem;width:100%;transition:border-color .2s}
+input:focus{border-color:var(--green);outline:none}
+input:focus-visible,button:focus-visible{outline:2px solid var(--btn);outline-offset:2px}
+button{font-family:inherit;font-size:.9rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:3px;padding:.95rem 1rem;cursor:pointer;border:1.5px solid var(--btn);background:var(--btn);color:#fff;transition:all .2s}
+button:hover{background:var(--btn-hover);border-color:var(--btn-hover)}
+.note{border-radius:6px;padding:.7rem .9rem;font-size:.86rem}
+.note.err{background:var(--stop-bg);color:var(--stop)}
+.note.ok{background:var(--ok-bg);color:var(--ok)}
+.fine{font-size:.8rem;color:var(--muted);margin:0;text-align:center}
+.foot{background:var(--dark);padding-block:1.4rem;color:rgba(250,247,242,.55);font-size:.74rem}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap nav">
+    <a class="nav-logo" href="/"><img src="/images/tree-logo.png" alt="" width="36" height="36" onerror="this.style.display='none'">Bark &amp; Branch</a>
+    <a class="back" href="/">Back to the website</a>
+  </div>
+</header>
+<main>
+  <div class="card">
+    <div class="card-head">
+      <div class="eyebrow">Broker account</div>
+      <h1>Log in</h1>
+    </div>
+    <form method="POST" action="/broker-login">
+      <div class="note err" id="err" hidden>That username or password didn't match. Try again.</div>
+      <div class="note ok" id="out" hidden>You're logged out.</div>
+      <label>Username<input type="text" name="username" id="username" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+      <label>Password<input type="password" name="password" id="password" autocomplete="current-password" required></label>
+      <button type="submit">Log in</button>
+      <p class="fine">For plant brokers working with Bark &amp; Branch. Need access? Call (657) 525-9737.</p>
+    </form>
+  </div>
+</main>
+<footer class="foot"><div class="wrap">© 2026 Bark &amp; Branch Landscape</div></footer>
+<script>
+  var q = new URLSearchParams(location.search);
+  if (q.get('e')) document.getElementById('err').hidden = false;
+  if (q.get('out')) document.getElementById('out').hidden = false;
+  document.getElementById('username').focus();
+</script>
+</body>
+</html>

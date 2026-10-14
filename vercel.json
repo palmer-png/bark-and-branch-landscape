@@ -1,6 +1,7 @@
 {
   "rewrites": [
-    { "source": "/brokerestimatebuilder", "destination": "/brokerestimatebuilder.html" }
+    { "source": "/brokerestimatebuilder", "destination": "/brokerestimatebuilder.html" },
+    { "source": "/broker-login", "destination": "/broker-login.html" }
   ],
   "redirects": [
     { "source": "/brokerestimatebuilder/", "destination": "/brokerestimatebuilder", "permanent": true },
@@ -8,7 +9,7 @@
   ],
   "headers": [
     {
-      "source": "/(brokerestimatebuilder.*|planting-quotes.*)",
+      "source": "/(brokerestimatebuilder.*|planting-quotes.*|broker-login.*)",
       "headers": [{ "key": "Cache-Control", "value": "private, no-store" }]
     }
   ]
