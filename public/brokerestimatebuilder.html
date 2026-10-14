@@ -331,7 +331,7 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
 
       <div class="step">
         <h2><span class="n">04</span>Box trees</h2>
-        <p class="hint">Price per tree drops at 11 and at 21 trees of the same size. 24" box and 30 gallon are the same price, so enter them together. 48" box trees must be under 2,500 lb for an instant price. Every tree gets the standard install: pit dug, tree set, Agriform tablets and Gro-Power Plus, Moon Juice for transplant shock, watered in, box lumber hauled off.</p>
+        <p class="hint">Price per tree drops at 11 and at 21 trees of the same size. 24" box and 30 gallon are the same price, so enter them together. <b>24" box trees are hand carried, no charge up to 36 ft. 30" box and bigger need the crane ($700 with operator).</b> 48" box trees must be under 2,500 lb for an instant price. Every tree gets the standard install: pit dug, tree set, Agriform tablets and Gro-Power Plus, Moon Juice for transplant shock, watered in, box lumber hauled off.</p>
         <div class="tablebox"><table class="qty" id="treeTable">
           <thead><tr><th>Size</th><th class="r">Qty</th><th class="r">Each</th><th class="r">Line</th></tr></thead>
           <tbody></tbody>
@@ -411,7 +411,7 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
         </div>
         <div id="distNote"></div>
 
-        <label class="chk" style="margin-top:8px"><input type="checkbox" id="crane"><span><span class="t">Crane needed</span><br><span class="d">Crane with operator to lift the tree in. Required for 48" and 60" box trees. A crane job needs the site map so we can check where the crane sets up.</span></span><span class="p" id="cranePrice"></span></label>
+        <label class="chk" style="margin-top:8px"><input type="checkbox" id="crane"><span><span class="t">Crane needed</span><br><span class="d">Crane with operator to lift the tree in. Required for 30" box and bigger (24" box trees are hand carried). A crane job needs the site map so we can check where the crane sets up.</span></span><span class="p" id="cranePrice"></span></label>
 
         <div class="mapbox" id="mapBox">
           <div>
@@ -484,6 +484,7 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
       <div class="term"><h3>48" box weight</h3><p>Instant prices cover 48" box trees under 2,500 lb. Heavier trees are quoted.</p></div>
       <div class="term"><h3>Single large tree</h3><p>One 48" box tree is $4,900 and one 60" box tree is $8,500 to cover mobilization, unless the rest of the job comes to $1,500 or more. Then the regular price applies.</p></div>
       <div class="term"><h3>Job minimum</h3><p>Every job is at least $2,000. Smaller jobs show a minimum job charge to make up the difference.</p></div>
+      <div class="term"><h3>Hand carry &amp; crane</h3><p>24" box trees are hand carried at no charge up to 36 ft from the street. 30" box and bigger go in by crane: $700 with operator.</p></div>
       <div class="term"><h3>Farther than 36 feet</h3><p>No problem. Send it with the site map: we get crane pricing from the crane company (or price the hand carry) and come back with the number.</p></div>
     </div>
   </div>
@@ -503,8 +504,8 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
 const PRICE = {
   trees: [ // per tree; tiers: 1-10, 11-20, 21+ of the same size
     {id:'b24', label:'24" box / 30 gal', tiers:[497,455,425], wt:[150,800], exp:0.75, bf:0.50},
-    {id:'b30', label:'30" box', tiers:[945,870,815], wt:[800,1500], exp:1.00, bf:0.75},
-    {id:'b36', label:'36" box', tiers:[1465,1350,1260], wt:[1500,2500], exp:1.50, bf:1.00},
+    {id:'b30', label:'30" box', tiers:[945,870,815], wt:[800,1500], exp:1.00, bf:0.75, crane:true},
+    {id:'b36', label:'36" box', tiers:[1465,1350,1260], wt:[1500,2500], exp:1.50, bf:1.00, crane:true},
     {id:'b48', label:'48" box', tiers:[4515,4155,3885], wt:[3000,6500], exp:3.25, bf:1.75, crane:true},
     {id:'b60', label:'60" box', tiers:[7675,7060,6600], wt:[6500,10000], exp:5.75, bf:3.25, crane:true},
   ],
@@ -516,7 +517,7 @@ const PRICE = {
   ],
   crane: 700, minJob: 2000, single:{b48:4900, b60:8500}, singleOtherMin:1500, w48Limit: 2500,
   origin:null, originZip:'92705', originName:'Santa Ana 92705', roadFactor:1.2,  // straight-line miles × 1.2 ≈ driving miles
-  freeCarryFt: 25, carryPerFt: 3.90, maxInstantFt: 36,
+  freeCarryFt: 36, carryPerFt: 3.90, maxInstantFt: 36,   // 24" box is hand carried free to 36 ft; 30" and up go by crane
   drain: 390, exportYd: 265, backfillYd: 380, arborist: 450, arborist6: 650, oversight: 1500, oversightAdd: 250,
   minYd: 0.25,
 };
@@ -680,7 +681,7 @@ function render(){
     ($('address').value.trim() ? `<div class="note warn">Add the ZIP code to the address, or enter the miles, so we can figure the gas surcharge.</div>` : '');
   let dn='';
   if(Q.far) dn=`<div class="note warn"><b>${d} ft: we'll get crane pricing for this one.</b> Send it with the site map. We call the crane company for the reach${Q.crane?'':' (or price the hand carry)'} and come back with your price.</div>`;
-  else if(d>PRICE.freeCarryFt && Q.boxTrees && !Q.crane) dn=`<div class="note warn">First 25 ft of hand carry is included. The next ${r2(d-25)} ft adds ${m2(PRICE.carryPerFt)} per foot per tree.</div>`;
+  else if(Q.boxTrees && !Q.crane) dn=`<div class="note ok"><b>Hand carry: no charge up to 36 ft.</b> 24" box trees are carried in by hand; 30" box and bigger need the crane.</div>`;
   else if(Q.crane && Q.boxTrees) dn=`<div class="note ok"><b>Crane with operator: ${money(PRICE.crane)}</b>, already in the price. Up to 36 ft the crane does the carrying, so there is no carry charge on top.</div>`;
   else if(d>0) dn=`<div class="note ok">Within reach. No carry charge.</div>`;
   if(Q.crane && Q.boxTrees) dn += `<div class="note ${Q.far?'warn':'ok'}"><b>Crane pick:</b> heaviest tree ${esc(Q.maxWtLabel)} up to about ${Q.maxWt.toLocaleString()} lb, ${multi?'furthest tree':'set'} ${d||0} ft from the street.${multi?' With more than one tree, give the distance to the one furthest from the street.':''}</div>`;
