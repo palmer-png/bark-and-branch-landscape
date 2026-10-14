@@ -80,6 +80,10 @@ table.qty .stepper input::-webkit-outer-spin-button,table.qty .stepper input::-w
 .chk{display:flex;column-gap:.75rem;row-gap:.2rem;align-items:flex-start;padding:.85rem 0;border-top:1px solid var(--border);cursor:pointer}
 .chk:first-of-type{border-top:none}
 .chk > span:not(.p){flex:1;min-width:0}
+#extras.locked .chk{opacity:.45;cursor:not-allowed}
+#exLock{margin:0 0 .8rem}
+#exLock.flash{animation:exflash .6s ease 2}
+@keyframes exflash{50%{box-shadow:0 0 0 4px color-mix(in srgb,var(--warn) 35%,transparent)}}
 .chk.premium{background:var(--green-pale);border:1px solid color-mix(in srgb,var(--green) 18%,transparent);border-radius:6px;padding:.85rem 1rem;margin-bottom:.3rem}
 .chk.premium + .chk{border-top:none}
 .chk input{margin-top:.2rem;width:18px;height:18px;flex-shrink:0;accent-color:var(--green)}
@@ -236,9 +240,9 @@ input[type=range].dist::-webkit-slider-runnable-track{height:10px;border-radius:
 input[type=range].dist::-moz-range-track{height:10px;border-radius:5px;border:1px solid var(--border);background:linear-gradient(90deg,var(--green-pale) 0 var(--lim),var(--warn-bg) var(--lim) 100%)}
 input[type=range].dist::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;margin-top:-8px;border-radius:50%;background:var(--btn);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35)}
 input[type=range].dist::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--btn);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35)}
-.over input[type=range].dist::-webkit-slider-thumb{background:var(--stop)}
-.over input[type=range].dist::-moz-range-thumb{background:var(--stop)}
-.over input[type=range].dist::-webkit-slider-runnable-track{background:linear-gradient(90deg,var(--green-pale) 0 var(--lim),var(--stop-bg) var(--lim) 100%)}
+.over input[type=range].dist::-webkit-slider-thumb{background:var(--warn)}
+.over input[type=range].dist::-moz-range-thumb{background:var(--warn)}
+.over input[type=range].dist::-webkit-slider-runnable-track{background:linear-gradient(90deg,var(--green-pale) 0 var(--lim),var(--warn-bg) var(--lim) 100%)}
 .dticks{position:relative;height:1.1rem;margin:-4px 12px 0;font-size:.7rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .dticks span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
 .dticks span.lim{color:var(--warn);font-weight:700}
@@ -280,7 +284,7 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
     <div class="hero">
       <div class="hero-badge"><span class="blink"></span>Broker planting quotes</div>
       <h1>Price a <em>planting job.</em></h1>
-      <p class="hero-sub">Enter the trees and containers the client is supplying. Up to 36 feet from the street you get a firm price right here. Past 36 feet, send it to us with the map and we come back with the crane cost. Have a plant list? Add a photo of it and the quote fills itself in.</p>
+      <p class="hero-sub">Enter the trees and containers the client is supplying. Up to 36 feet from the street you get a firm price right here. Farther than that is no problem: send it with the map, we call the crane company and come back with your price. Have a plant list? Add a photo of it and the quote fills itself in.</p>
     </div>
   </div>
 </header>
@@ -387,7 +391,7 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
             <path d="M371 170 h38 l-3 16 h-32 z" fill="#4f3520"/>
             <line x1="150" y1="204" x2="150" y2="226" stroke="#1a1a12" stroke-width="1.4"/>
             <line x1="510" y1="204" x2="510" y2="226" stroke="#8a5200" stroke-width="1.2" stroke-dasharray="3 3"/>
-            <text x="510" y="238" text-anchor="middle" font-size="10" font-weight="700" fill="#8a5200">36 ft limit</text>
+            <text x="500" y="238" text-anchor="middle" font-size="9.5" font-weight="700" fill="#8a5200">instant price to 36 ft</text>
             <text x="150" y="238" text-anchor="middle" font-size="10" font-weight="700" fill="#1a1a12">curb</text>
             <g id="cvDim" opacity="0">
               <line id="cvDimLine" x1="152" y1="215" x2="152" y2="215" stroke="#1a1a12" stroke-width="1.6"/>
@@ -399,7 +403,7 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
             </g>
             <g id="cvDone" opacity="0"><rect x="330" y="20" width="120" height="24" rx="12" fill="#4a7c2f"/><text x="390" y="36" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">Planting spot</text></g>
           </svg>
-          <figcaption>Measure along the ground from the <b>curb</b> where the crane truck parks to the <b>spot the tree goes in</b>. Up to 36 ft gets a price right here. Farther than that, send it to us and we'll get you the crane cost.</figcaption>
+          <figcaption>Measure along the ground from the <b>curb</b> where the crane truck parks to the <b>spot the tree goes in</b>. Up to 36 ft prices right here. Farther is no problem: send it over and we get the price from the crane company.</figcaption>
         </figure>
         <div class="f" style="margin-top:1rem">
           <span class="flabel" id="distLabel">Distance from street (feet)</span>
@@ -486,7 +490,7 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
       <div class="term"><h3>48" box weight</h3><p>Instant prices cover 48" box trees under 2,500 lb. Heavier trees are quoted.</p></div>
       <div class="term"><h3>Single large tree</h3><p>One 48" box tree is $4,900 and one 60" box tree is $8,500 to cover mobilization, unless the rest of the job comes to $1,500 or more. Then the regular price applies.</p></div>
       <div class="term"><h3>Job minimum</h3><p>Every job is at least $2,000. Smaller jobs show a minimum job charge to make up the difference.</p></div>
-      <div class="term"><h3>Over 36 feet</h3><p>Hand carry and crane reach past 36 feet from the street are priced by Bark &amp; Branch from the site map. We get the crane cost and come back with the number.</p></div>
+      <div class="term"><h3>Farther than 36 feet</h3><p>No problem. Send it with the site map: we get crane pricing from the crane company (or price the hand carry) and come back with the number.</p></div>
     </div>
   </div>
 </section>
@@ -542,7 +546,7 @@ const money = (v, cents) => '$' + Number(v).toLocaleString('en-US',{minimumFract
 const m2 = v => '$' + Number(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
 const r2 = v => Math.round(v*100)/100;
 const unitPrice = (item,n) => item.tiers[tierIdx(n)];
-const customReason = Q => [Q.far?'over 36 ft':'', Q.heavy?(Q.w48pending?'48" weight not confirmed':'48" box 2,500 lb or more'):''].filter(Boolean).join(' · ');
+const customReason = Q => [Q.far?`${Q.dist} ft, we get crane pricing`:'', Q.heavy?(Q.w48pending?'48" weight not confirmed':'48" box 2,500 lb or more'):''].filter(Boolean).join(' · ');
 
 /* Pure pricing: state -> quote */
 function priceQuote(s){
@@ -634,7 +638,7 @@ function buildRows(){
     ['arborist','Arborist inspection at 90 days','Written report on pests and disease.','$450 for 1–5 trees · $650 for 6+'],
     ['oversight','Yearly tree oversight','Quarterly inspections through the first year.','$1,500 first tree + $250 each additional'],
   ];
-  $('extras').innerHTML = `<label class="chk premium"><input type="checkbox" id="x_all"><span><span class="t">Add all premium extras</span><br><span class="d">Checks every extra below. The final price updates to include them.</span></span></label>` + X.map(([k,t,d,p])=>`<label class="chk"><input type="checkbox" id="x_${k}" data-x="${k}"><span><span class="t">${t}</span><br><span class="d">${d}</span></span><span class="p">${p}</span></label>`).join('')
+  $('extras').innerHTML = `<div class="note warn" id="exLock" hidden><b>Add a box tree first</b> (step 04, or a plant list in step 03). Extras are priced per box tree, so they switch on once there is one.</div><label class="chk premium"><input type="checkbox" id="x_all"><span><span class="t">Add all premium extras</span><br><span class="d">Checks every extra below. The final price updates to include them.</span></span></label>` + X.map(([k,t,d,p])=>`<label class="chk"><input type="checkbox" id="x_${k}" data-x="${k}"><span><span class="t">${t}</span><br><span class="d">${d}</span></span><span class="p">${p}</span></label>`).join('')
     + `<div class="hint" id="exHint" style="margin-top:8px">Extras apply to box trees. For container beds, soil export and amended soil are priced per yard on site.</div>`;
 }
 
@@ -681,12 +685,12 @@ function render(){
   $('mileNote').innerHTML = mi ? `<div class="note ok"><b>About ${mi.mi} mile${mi.mi===1?'':'s'} one way (${mi.mi*2} round trip) from Santa Ana 92705</b>${mi.src==='zip'?` to ${esc(mi.city)} ${mi.zip}`:' (entered)'}. Gas surcharge for the trip is added on the final invoice.</div>` :
     ($('address').value.trim() ? `<div class="note warn">Add the ZIP code to the address, or enter the miles, so we can figure the gas surcharge.</div>` : '');
   let dn='';
-  if(Q.far) dn=`<div class="note stop"><b>${d} ft is past our 36 ft instant-price limit.</b> Send it to us with the site map and we'll get you the crane cost${Q.crane?'':' (or price the hand carry)'}.</div>`;
+  if(Q.far) dn=`<div class="note warn"><b>${d} ft: we'll get crane pricing for this one.</b> Send it with the site map. We call the crane company for the reach${Q.crane?'':' (or price the hand carry)'} and come back with your price.</div>`;
   else if(d>PRICE.freeCarryFt && Q.boxTrees && !Q.crane) dn=`<div class="note warn">First 25 ft of hand carry is included. The next ${r2(d-25)} ft adds ${m2(PRICE.carryPerFt)} per foot per tree.</div>`;
   else if(d>0) dn=`<div class="note ok">Within reach. No carry charge.</div>`;
-  if(Q.crane && Q.boxTrees) dn += `<div class="note ${Q.far?'stop':'ok'}"><b>Crane pick:</b> heaviest tree ${esc(Q.maxWtLabel)} up to about ${Q.maxWt.toLocaleString()} lb, ${multi?'furthest tree':'set'} ${d||0} ft from the street.${multi?' With more than one tree, give the distance to the one furthest from the street.':''}</div>`;
+  if(Q.crane && Q.boxTrees) dn += `<div class="note ${Q.far?'warn':'ok'}"><b>Crane pick:</b> heaviest tree ${esc(Q.maxWtLabel)} up to about ${Q.maxWt.toLocaleString()} lb, ${multi?'furthest tree':'set'} ${d||0} ft from the street.${multi?' With more than one tree, give the distance to the one furthest from the street.':''}</div>`;
   $('distNote').innerHTML=dn;
-  $('mapReq').innerHTML = Q.mapRequired ? `<span class="req">Map required</span> for ${Q.far?'jobs past 36 ft':'crane jobs'}.` : 'Optional, but it helps us plan the day.';
+  $('mapReq').innerHTML = Q.mapRequired ? `<span class="req">Map required</span> ${Q.far?'so we can get the crane pricing':'for crane jobs'}.` : 'Optional, but it helps us plan the day.';
   // extras availability
   ['drain','export','backfill','arborist','oversight'].forEach(k=>{ if(!Q.boxTrees){$('x_'+k).disabled=true;} else if(k!=='export'){$('x_'+k).disabled=false;} });
   if(Q.boxTrees && !state.extras.backfill) $('x_export').disabled=false;
@@ -694,7 +698,7 @@ function render(){
   $('tAddr').textContent = $('address').value.trim() || 'New planting job';
   let st='';
   if(Q.status==='instant') st = Q.mapRequired && !state.map ? `<span class="status warn">Priced · add the site map before sending</span>` : `<span class="status ok">Instant price</span>`;
-  if(Q.status==='custom') st=`<span class="status stop">Custom quote · ${customReason(Q)}</span>`;
+  if(Q.status==='custom') st=`<span class="status ${Q.heavy?'stop':'warn'}">We'll price this one · ${customReason(Q)}</span>`;
   $('tStatus').innerHTML=st;
   const L=[];
   if(!Q.lines.length) L.push(`<li class="x"><span>Add trees or containers to see the price.</span></li>`);
@@ -711,9 +715,9 @@ function render(){
   if(Q.over){ $('tStd').textContent='To quote'; $('tExt').textContent='To quote'; }
   else { $('tStd').textContent=m2(Q.standard); $('tExt').textContent=m2(Q.withExtras); }
   $('tExtK').textContent = Q.extras.length ? 'Final price with extras' : 'Final price';
-  const all=['drain','export','backfill','arborist','oversight'].every(k=>$('x_'+k).checked); $('x_all').checked=all; $('x_all').disabled=!Q.boxTrees;
+  const all=['drain','export','backfill','arborist','oversight'].every(k=>$('x_'+k).checked); $('x_all').checked=all; $('x_all').disabled=!Q.boxTrees; $('extras').classList.toggle('locked',!Q.boxTrees); $('exLock').hidden=!!Q.boxTrees;
   $('tDeposit').textContent = (Q.status==='instant') ? `Deposit on approval: ${m2(Q.deposit)} (10% or $1,000, whichever is less).` : '';
-  $('send').textContent = Q.over ? 'Request a custom quote' : 'Send to Bark & Branch';
+  $('send').textContent = Q.over ? (Q.heavy ? 'Request a custom quote' : 'Send for crane pricing') : 'Send to Bark & Branch';
   $('pdf').disabled = !Q.lines.length;
 }
 const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -722,6 +726,7 @@ buildRows();
 $('form').addEventListener('input', render);
 $('form').addEventListener('change', render);
 $('form').addEventListener('submit', e=>e.preventDefault());
+$('extras').addEventListener('click', e=>{ if(!$('extras').classList.contains('locked') || !e.target.closest('.chk')) return; const n=$('exLock'); n.classList.remove('flash'); void n.offsetWidth; n.classList.add('flash'); });
 document.addEventListener('click', e=>{ if(e.target.id!=='x_all') return; const on=e.target.checked; delete $('x_export').dataset.auto; ['drain','export','backfill','arborist','oversight'].forEach(k=>{$('x_'+k).checked=on;}); render(); }, true);
 document.addEventListener('click', e=>{
   const b=e.target.closest('button[data-step]'); if(!b) return;
@@ -808,7 +813,7 @@ $('send').addEventListener('click', async()=>{
   if(!Q.lines.length){ setMsg('Add at least one tree or container first.','err'); return; }
   if(!$('address').value.trim()){ setMsg('Add the job address so we know where it is.','err'); $('address').focus(); return; }
   if(Q.has48 && !state.w48){ setMsg('Choose the 48" box tree weight first.','err'); $('w48').focus(); return; }
-  if(Q.mapRequired && !state.map){ setMsg(Q.far ? 'Add the site map. Jobs past 36 ft need it for pricing.' : 'Add the site map. Crane jobs need it to check the crane setup.','err'); drop.focus(); return; }
+  if(Q.mapRequired && !state.map){ setMsg(Q.far ? 'Add the site map. We need it to get the crane pricing.' : 'Add the site map. Crane jobs need it to check the crane setup.','err'); drop.focus(); return; }
   if(!SEND_READY){ setMsg(`Sending is not switched on yet. Download the quote PDF and email it to ${FALLBACK_EMAIL}.`,'err'); return; }
   if(!(window.crypto && crypto.subtle)){ setMsg(`This browser cannot send the quote. Download the PDF and email it to ${FALLBACK_EMAIL}.`,'err'); return; }
   const sig=JSON.stringify([$('address').value.trim(), state.trees, state.cont, state.distance, state.extras, !!state.map]);
@@ -835,7 +840,7 @@ $('send').addEventListener('click', async()=>{
     const r=await fetch(FORMSPREE_ENDPOINT, {method:'POST', body:fd, headers:{'Accept':'application/json'}});
     if(r.ok){
       lastSent={sig, ref};
-      setMsg(Q.over ? `Request ${ref} sent. We will price it from the map and get back to you.` : `Quote ${ref} sent. We will confirm the planting date.`,'good');
+      setMsg(Q.over ? `Request ${ref} sent. We'll get the pricing ${Q.far?'from the crane company ':''}and get back to you.` : `Quote ${ref} sent. We will confirm the planting date.`,'good');
     } else if(r.status===429){
       setMsg('Too many sends in the last minute. Wait a minute and press Send again.','err');
     } else {
@@ -873,7 +878,7 @@ $('pdf').addEventListener('click', async()=>{
   if(Q.crane||Q.over){ row('Planting subtotal',m2(Q.subtotal),true); if(Q.crane) row('Equipment – crane with operator', Q.over?'To be quoted':m2(Q.equip)); }
   if(Q.minAdj) row('Minimum job charge ($2,000 minimum)', m2(Q.minAdj));
   doc.setFontSize(Q.extras.length?10:12); row(Q.extras.length?'Standard planting':'Final price', Q.over?'To be quoted':m2(Q.standard), true); doc.setFontSize(10);
-  if(Q.over){ doc.setTextColor(163,49,31); const why=[Q.far?`The planting spot is ${state.distance} ft from the street, past the 36 ft instant-price limit.`:'', Q.heavy?'A 48" box tree is 2,500 lb or more (or not confirmed).':''].filter(Boolean).join(' '); const t=doc.splitTextToSize(why+' Bark & Branch will price it from the site map and tree details.',W-2*M); doc.text(t,M,y); y+=13*t.length+4; doc.setTextColor(20); }
+  if(Q.over){ doc.setTextColor(163,49,31); const why=[Q.far?`The planting spot is ${state.distance} ft from the street; Bark & Branch gets crane pricing for the reach.`:'', Q.heavy?'A 48" box tree is 2,500 lb or more (or not confirmed).':''].filter(Boolean).join(' '); const t=doc.splitTextToSize(why+' Bark & Branch will confirm the price from the site map and tree details.',W-2*M); doc.text(t,M,y); y+=13*t.length+4; doc.setTextColor(20); }
   else { doc.setTextColor(90); doc.text(`Deposit on approval: ${m2(Q.deposit)} (10% of the contract price or $1,000, whichever is less). Balance due on completion, 5-day terms.`,M,y,{maxWidth:W-2*M}); y+=26; doc.setTextColor(20); }
   if(Q.extras.length){ y+=6; doc.setFont('helvetica','bold'); doc.text('Premium extras included',M,y); y+=16; Q.extras.forEach(l=>row(l.label,m2(l.amt))); if(!Q.over){ doc.setFontSize(12); row('Final price with extras',m2(Q.withExtras),true); doc.setFontSize(10);} doc.setFontSize(8.5); doc.setTextColor(100); doc.text('Soil yards are typical for the box size; actual yards depend on soil type and are confirmed on site.',M,y); y+=14; doc.setFontSize(10); doc.setTextColor(20); }
   y+=6; doc.setFontSize(8.5); doc.setTextColor(90);
