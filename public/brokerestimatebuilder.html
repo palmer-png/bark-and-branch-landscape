@@ -211,6 +211,60 @@ section.band.warm{background:var(--band)}
   .qrow .rt{text-align:left}
   section.band{padding-block:2.6rem}
 }
+/* ALIGNMENT: same column widths in both quantity tables, controls the same height, checkboxes in one column */
+table.qty{table-layout:fixed}
+table.qty th:nth-child(2),table.qty td:nth-child(2){width:140px;text-align:center}
+table.qty th:nth-child(3),table.qty td:nth-child(3){width:104px}
+table.qty th:nth-child(4),table.qty td:nth-child(4){width:104px}
+.stepper{vertical-align:middle}
+.stepper button{display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0;line-height:1}
+table.qty .stepper input{height:38px;padding:0 .5rem;line-height:normal}
+.chk input{margin:.2rem 0 0}
+#extras .chk{padding-left:1rem;padding-right:1rem}
+@media (max-width:560px){
+  table.qty th:nth-child(2),table.qty td:nth-child(2){width:120px}
+  table.qty th:nth-child(4),table.qty td:nth-child(4){width:84px}
+  .stepper button{width:28px}
+  table.qty .stepper input{width:50px;padding:0 .3rem}
+}
+/* DISTANCE SLIDER: first half of the track is 0-40 ft, second half 40-250 ft */
+.distrow{display:grid;grid-template-columns:minmax(0,1fr) 96px;gap:1rem;align-items:start;margin-top:.35rem}
+.distrow input[type=number]{text-align:right}
+.flabel{display:block;font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;line-height:1.45;color:var(--text-mid)}
+input[type=range].dist{-webkit-appearance:none;appearance:none;display:block;width:100%;height:40px;margin:0;padding:0;border:0;background:transparent;cursor:pointer;--lim:45%}
+input[type=range].dist::-webkit-slider-runnable-track{height:10px;border-radius:5px;border:1px solid var(--border);background:linear-gradient(90deg,var(--green-pale) 0 var(--lim),var(--warn-bg) var(--lim) 100%)}
+input[type=range].dist::-moz-range-track{height:10px;border-radius:5px;border:1px solid var(--border);background:linear-gradient(90deg,var(--green-pale) 0 var(--lim),var(--warn-bg) var(--lim) 100%)}
+input[type=range].dist::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:24px;height:24px;margin-top:-8px;border-radius:50%;background:var(--btn);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35)}
+input[type=range].dist::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--btn);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.35)}
+.over input[type=range].dist::-webkit-slider-thumb{background:var(--stop)}
+.over input[type=range].dist::-moz-range-thumb{background:var(--stop)}
+.over input[type=range].dist::-webkit-slider-runnable-track{background:linear-gradient(90deg,var(--green-pale) 0 var(--lim),var(--stop-bg) var(--lim) 100%)}
+.dticks{position:relative;height:1.1rem;margin:-4px 12px 0;font-size:.7rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.dticks span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.dticks span.lim{color:var(--warn);font-weight:700}
+/* CRANE DRAWING (replaces the satellite example) */
+.craneviz{margin:.9rem 0 0;border:1px solid var(--border);border-radius:6px;background:linear-gradient(180deg,#f3f7ee 0%,#fbfaf6 70%);padding:.5rem .5rem .55rem}
+.craneviz svg{display:block;width:100%;height:auto}
+.craneviz figcaption{font-size:.78rem;color:var(--muted);line-height:1.55;margin:.35rem .3rem 0}
+.mapbox{grid-template-columns:minmax(0,1fr)}
+/* PLANT LIST READER */
+.plist .two-up{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;align-items:stretch;margin-top:.2rem}
+.plist .drop{display:flex;align-items:center;justify-content:center;min-height:120px}
+.plist .drop.busy{border-style:solid;border-color:var(--green);color:var(--green-ink)}
+.plist textarea{min-height:120px;height:100%}
+.plbtns{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
+button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
+.ptable{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:.9rem}
+.ptable th{font-size:.64rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-mid);text-align:left;padding:.35rem .4rem;border-bottom:1.5px solid var(--border)}
+.ptable td{padding:.42rem .4rem;border-bottom:1px solid var(--border);vertical-align:top}
+.ptable .n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ptable tr.bad td{color:var(--stop)}
+.ptable tr.ptot td{font-weight:700;border-bottom:none}
+@media (max-width:560px){
+  .plist .two-up{grid-template-columns:minmax(0,1fr)}
+  .distrow{grid-template-columns:minmax(0,1fr) 78px;gap:.7rem}
+  .ptable .sz{display:none}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -226,7 +280,7 @@ section.band.warm{background:var(--band)}
     <div class="hero">
       <div class="hero-badge"><span class="blink"></span>Broker planting quotes</div>
       <h1>Price a <em>planting job.</em></h1>
-      <p class="hero-sub">Enter the trees and containers the client is supplying. Up to 36 feet from the street you get a firm price right here. Past 36 feet, or anything that needs a crane placement check, send it to us with the map and we come back with the number.</p>
+      <p class="hero-sub">Enter the trees and containers the client is supplying. Up to 36 feet from the street you get a firm price right here. Past 36 feet, send it to us with the map and we come back with the crane cost. Have a plant list? Add a photo of it and the quote fills itself in.</p>
     </div>
   </div>
 </header>
@@ -258,8 +312,25 @@ section.band.warm{background:var(--band)}
         <div id="mileNote"></div>
       </div>
 
+      <div class="step plist" id="listStep">
+        <h2><span class="n">03</span>Plant list</h2>
+        <p class="hint">Got the list as a photo, screenshot or text? Add it here and the quantities below fill in by size, with the price. Check the counts it read, then answer the 48" weight and distance questions.</p>
+        <div class="two-up">
+          <div class="drop" id="listDrop" tabindex="0" role="button" aria-label="Add a photo of the plant list">
+            <div id="listDropInner"><b>Add a photo of the list</b><br>Screenshot or photo. Drop it here or tap to choose.</div>
+          </div>
+          <label class="f">Or paste the list<textarea id="listText" placeholder="Westringia 'Blue Gem' - 15 gal - 6&#10;Olive - 48 in box - 1&#10;Senecio - 4 in - 32"></textarea></label>
+        </div>
+        <input type="file" id="listFile" accept="image/*" hidden>
+        <div class="plbtns">
+          <button class="btn small" type="button" id="listRead">Fill the quote from this list</button>
+          <button class="btn ghost small" type="button" id="listUndo" hidden>Undo</button>
+        </div>
+        <div id="listOut" aria-live="polite"></div>
+      </div>
+
       <div class="step">
-        <h2><span class="n">03</span>Box trees</h2>
+        <h2><span class="n">04</span>Box trees</h2>
         <p class="hint">Price per tree drops at 11 and at 21 trees of the same size. 24" box and 30 gallon are the same price, so enter them together. 48" box trees must be under 2,500 lb for an instant price. Every tree gets the standard install: pit dug, tree set, Agriform tablets and Gro-Power Plus, Moon Juice for transplant shock, watered in, box lumber hauled off.</p>
         <div class="tablebox"><table class="qty" id="treeTable">
           <thead><tr><th>Size</th><th class="r">Qty</th><th class="r">Each</th><th class="r">Line</th></tr></thead>
@@ -273,7 +344,7 @@ section.band.warm{background:var(--band)}
       </div>
 
       <div class="step">
-        <h2><span class="n">04</span>Container plants</h2>
+        <h2><span class="n">05</span>Container plants</h2>
         <p class="hint">Mud flats are 16 four-inch plants. Plants sold as 10/15 gallon go in the 15 gallon row. Each price includes the planting area, tablets and Gro-Power, Moon Juice, and pot haul-off.</p>
         <div class="tablebox"><table class="qty" id="contTable">
           <thead><tr><th>Size</th><th class="r">Qty</th><th class="r">Each</th><th class="r">Line</th></tr></thead>
@@ -284,13 +355,62 @@ section.band.warm{background:var(--band)}
       </div>
 
       <div class="step" id="siteStep">
-        <h2><span class="n">05</span>Distance from the street &amp; crane</h2>
-        <p class="hint">Measure from the curb where the truck parks to where the tree goes. On Google Maps: right-click the curb, choose <b>Measure distance</b>, then click the planting spot.</p>
-        <div class="fields">
-          <label class="f"><span id="distLabel">Distance from street (feet)</span><input type="number" id="distance" min="0" step="0.5" value="0"></label>
+        <h2><span class="n">06</span>Distance from the street &amp; crane</h2>
+        <p class="hint">On Google Maps: right-click the curb where the truck parks, choose <b>Measure distance</b>, then click the planting spot. Slide or type the feet below.</p>
+<figure class="craneviz" id="craneViz">
+          <svg viewBox="0 0 560 244" role="img" aria-labelledby="cvT">
+            <title id="cvT">A crane truck parked at the curb lifts a box tree over a garden wall and sets it in the planting hole. The distance is measured along the ground from the curb to the hole: 24 feet.</title>
+            <polygon points="452,100 508,64 564,100" fill="#d9cfbd"/><rect x="458" y="100" width="102" height="70" fill="#ece5d8"/><rect x="476" y="118" width="22" height="18" fill="#c9d6dc"/><rect x="520" y="128" width="20" height="42" fill="#cfc4b0"/>
+            <rect x="300" y="138" width="8" height="32" fill="#b9ad97"/><rect x="296" y="134" width="16" height="5" fill="#a89c85"/>
+            <g id="cvTruck">
+              <rect x="16" y="138" width="34" height="26" rx="4" fill="#1c3010"/><rect x="21" y="143" width="16" height="10" rx="2" fill="#c9d6dc"/>
+              <rect x="50" y="148" width="92" height="16" rx="2" fill="#243d18"/>
+              <rect x="132" y="160" width="20" height="4" fill="#3d3d2e"/><rect x="149" y="160" width="3" height="14" fill="#3d3d2e"/><rect x="144" y="172" width="13" height="4" rx="1" fill="#3d3d2e"/>
+              <rect x="114" y="136" width="26" height="13" rx="3" fill="#e0a526"/>
+              <circle cx="36" cy="168" r="8" fill="#2a2a22"/><circle cx="80" cy="168" r="8" fill="#2a2a22"/><circle cx="118" cy="168" r="8" fill="#2a2a22"/>
+              <circle cx="36" cy="168" r="3" fill="#888"/><circle cx="80" cy="168" r="3" fill="#888"/><circle cx="118" cy="168" r="3" fill="#888"/>
+            </g>
+            <line id="cvCable" x1="0" y1="0" x2="0" y2="0" stroke="#3d3d2e" stroke-width="1.6"/>
+            <line id="cvBoom1" x1="127" y1="140" x2="127" y2="140" stroke="#e0a526" stroke-width="10" stroke-linecap="round"/>
+            <line id="cvBoom2" x1="127" y1="140" x2="127" y2="140" stroke="#c98d12" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="127" cy="140" r="5" fill="#8a5d00"/>
+            <g id="cvTree">
+              <line x1="0" y1="-80" x2="-14" y2="-22" stroke="#3d3d2e" stroke-width="1.2"/><line x1="0" y1="-80" x2="14" y2="-22" stroke="#3d3d2e" stroke-width="1.2"/>
+              <rect x="-2.5" y="-52" width="5" height="32" fill="#6b4a2b"/>
+              <circle cx="0" cy="-62" r="17" fill="#4a7c2f"/><circle cx="-13" cy="-53" r="11" fill="#5c8f37"/><circle cx="13" cy="-53" r="11" fill="#5c8f37"/>
+              <rect x="-15" y="-22" width="30" height="22" fill="#a7774a"/><line x1="-15" y1="-11" x2="15" y2="-11" stroke="#8a5f38" stroke-width="1.2"/><line x1="-5" y1="-22" x2="-5" y2="0" stroke="#8a5f38"/><line x1="5" y1="-22" x2="5" y2="0" stroke="#8a5f38"/>
+              <path d="M0 -84 v6 a3 3 0 1 0 3 3" fill="none" stroke="#3d3d2e" stroke-width="1.8"/>
+            </g>
+            <rect x="0" y="176" width="150" height="26" fill="#56564b"/><rect x="18" y="188" width="22" height="2" fill="#e8e2d0"/><rect x="66" y="188" width="22" height="2" fill="#e8e2d0"/><rect x="114" y="188" width="22" height="2" fill="#e8e2d0"/>
+            <rect x="150" y="170" width="410" height="32" fill="#8f6a45"/><rect x="150" y="170" width="410" height="5" fill="#8db866"/>
+            <rect x="146" y="170" width="7" height="32" fill="#c8c2b4"/>
+            <path d="M371 170 h38 l-3 16 h-32 z" fill="#4f3520"/>
+            <line x1="150" y1="204" x2="150" y2="226" stroke="#1a1a12" stroke-width="1.4"/>
+            <line x1="510" y1="204" x2="510" y2="226" stroke="#8a5200" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <text x="510" y="238" text-anchor="middle" font-size="10" font-weight="700" fill="#8a5200">36 ft limit</text>
+            <text x="150" y="238" text-anchor="middle" font-size="10" font-weight="700" fill="#1a1a12">curb</text>
+            <g id="cvDim" opacity="0">
+              <line id="cvDimLine" x1="152" y1="215" x2="152" y2="215" stroke="#1a1a12" stroke-width="1.6"/>
+              <path d="M152 215 l7 -4 v8 z" fill="#1a1a12"/>
+              <path id="cvDimHead" d="M0 0 l-7 -4 v8 z" fill="#1a1a12"/>
+              <line id="cvDimEnd" x1="0" y1="204" x2="0" y2="226" stroke="#1a1a12" stroke-width="1.4"/>
+              <rect id="cvLblBg" x="0" y="205" width="52" height="20" rx="10" fill="#fff" stroke="#1a1a12" stroke-width="1.2"/>
+              <text id="cvLbl" x="0" y="219" text-anchor="middle" font-size="12" font-weight="800" fill="#1a1a12">0 ft</text>
+            </g>
+            <g id="cvDone" opacity="0"><rect x="330" y="20" width="120" height="24" rx="12" fill="#4a7c2f"/><text x="390" y="36" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">Planting spot</text></g>
+          </svg>
+          <figcaption>Measure along the ground from the <b>curb</b> where the crane truck parks to the <b>spot the tree goes in</b>. Up to 36 ft gets a price right here. Farther than that, send it to us and we'll get you the crane cost.</figcaption>
+        </figure>
+        <div class="f" style="margin-top:1rem">
+          <span class="flabel" id="distLabel">Distance from street (feet)</span>
+          <div class="distrow">
+            <div>
+              <input type="range" class="dist" id="distRange" min="0" max="1000" step="1" value="0" aria-label="Distance from the street, slider from 0 to 250 feet">
+              <div class="dticks" aria-hidden="true"><span style="left:0%">0</span><span style="left:12.5%">10</span><span style="left:25%">20</span><span class="lim" style="left:45%">36 ft</span><span style="left:64.29%">100</span><span style="left:100%">250 ft</span></div>
+            </div>
+            <input type="number" id="distance" min="0" max="250" step="0.5" value="0" aria-label="Distance from the street in feet">
+          </div>
         </div>
-        <div class="gauge" aria-hidden="true"><div class="bar"><div class="pin" id="pin" style="left:0%"></div></div>
-          <div class="ticks"><span>0 ft</span><span>36 ft · instant price limit</span><span>64 ft</span></div></div>
         <div id="distNote"></div>
 
         <label class="chk" style="margin-top:8px"><input type="checkbox" id="crane"><span><span class="t">Crane needed</span><br><span class="d">Crane with operator to lift the tree in. Required for 48" and 60" box trees. A crane job needs the site map so we can check where the crane sets up.</span></span><span class="p" id="cranePrice"></span></label>
@@ -303,16 +423,12 @@ section.band.warm{background:var(--band)}
             <input type="file" id="mapFile" accept="image/*" hidden>
             <div id="mapReq" class="hint" style="margin-top:6px"></div>
           </div>
-          <figure class="example" style="margin:0">
-            <img src="planting-quotes/map-example.jpg" alt="Example: Google Maps satellite view with a measured line from the curb to the planting spot" width="180" height="203">
-            <figcaption>Example: measured line from the curb to the planting spot.</figcaption>
-          </figure>
         </div>
         <label class="f" style="margin-top:12px">Site notes (gate width, slope, stairs, where the truck can park)<textarea id="notes"></textarea></label>
       </div>
 
       <div class="step">
-        <h2><span class="n">06</span>Planting extras</h2>
+        <h2><span class="n">07</span>Planting extras</h2>
         <p class="hint">This is what separates our install from a nursery drop-off. Soil yards are typical for the box size; the real number depends on the soil and is confirmed on site.</p>
         <div id="extras"></div>
       </div>
@@ -370,7 +486,7 @@ section.band.warm{background:var(--band)}
       <div class="term"><h3>48" box weight</h3><p>Instant prices cover 48" box trees under 2,500 lb. Heavier trees are quoted.</p></div>
       <div class="term"><h3>Single large tree</h3><p>One 48" box tree is $4,900 and one 60" box tree is $8,500 to cover mobilization, unless the rest of the job comes to $1,500 or more. Then the regular price applies.</p></div>
       <div class="term"><h3>Job minimum</h3><p>Every job is at least $2,000. Smaller jobs show a minimum job charge to make up the difference.</p></div>
-      <div class="term"><h3>Over 36 feet</h3><p>Hand carry and crane reach past 36 feet from the street are priced by Bark &amp; Branch from the site map.</p></div>
+      <div class="term"><h3>Over 36 feet</h3><p>Hand carry and crane reach past 36 feet from the street are priced by Bark &amp; Branch from the site map. We get the crane cost and come back with the number.</p></div>
     </div>
   </div>
 </section>
@@ -534,21 +650,26 @@ function readInputs(){
 let Q=null;
 function render(){
   readInputs();
-  // backfill requires export
-  if(state.extras.backfill && !$('x_export').checked){ $('x_export').checked=true; state.extras.export=true; }
-  $('x_export').disabled = state.extras.backfill;
+  // 48"/60" box trees tick the crane; it un-ticks itself when they go, unless the broker ticked it first
+  const cr=$('crane'), forced=PRICE.trees.some(t=>t.crane && state.trees[t.id]>0);
+  if(forced){ if(!cr.checked){ cr.checked=true; cr.dataset.auto='1'; } }
+  else if(cr.dataset.auto){ cr.checked=false; delete cr.dataset.auto; }
+  cr.disabled=forced; state.crane=cr.checked;
+  // backfill brings soil export with it, the same way
+  const xe=$('x_export');
+  if(state.extras.backfill){ if(!xe.checked){ xe.checked=true; xe.dataset.auto='1'; } }
+  else if(xe.dataset.auto){ xe.checked=false; delete xe.dataset.auto; }
+  state.extras.export=xe.checked; xe.disabled=state.extras.backfill;
   Q=priceQuote(state);
   for(const t of PRICE.trees){const n=state.trees[t.id], ln=Q.lines.find(l=>l.id===t.id), e=ln?ln.each:unitPrice(t,n); $('e_'+t.id).textContent=m2(e); $('l_'+t.id).textContent=n?m2(n*e):'–';}
   for(const c of PRICE.containers){const n=state.cont[c.id], e=unitPrice(c,n); $('e_'+c.id).textContent=m2(e); $('l_'+c.id).textContent=n?m2(n*e):'–';}
   // crane
-  const cr=$('crane');
-  if(Q.forcedCrane){cr.checked=true;cr.disabled=true;} else cr.disabled=false;
   $('cranePrice').textContent = Q.boxTrees ? (Q.over ? 'Quoted' : money(PRICE.crane)) : '';
   const multi = Q.crane && Q.boxTrees>1;
   $('distLabel').textContent = multi ? 'Distance from the street to the FURTHEST tree (feet)' : 'Distance from street (feet)';
-  // distance gauge
-  const d=state.distance, pct=Math.min(100,d/64*100);
-  $('pin').style.left=pct+'%';
+  // distance slider follows the number box
+  const d=state.distance;
+  if(document.activeElement!==$('distRange')) $('distRange').value=ftToPos(d);
   $('siteStep').classList.toggle('over',Q.far);
   // 48" weight
   $('w48Box').hidden = !Q.has48;
@@ -560,7 +681,7 @@ function render(){
   $('mileNote').innerHTML = mi ? `<div class="note ok"><b>About ${mi.mi} mile${mi.mi===1?'':'s'} one way (${mi.mi*2} round trip) from Santa Ana 92705</b>${mi.src==='zip'?` to ${esc(mi.city)} ${mi.zip}`:' (entered)'}. Gas surcharge for the trip is added on the final invoice.</div>` :
     ($('address').value.trim() ? `<div class="note warn">Add the ZIP code to the address, or enter the miles, so we can figure the gas surcharge.</div>` : '');
   let dn='';
-  if(Q.far) dn=`<div class="note stop"><b>${d} ft is past our 36 ft instant-price limit.</b> Send it to us with the site map and we will price the carry or crane reach.</div>`;
+  if(Q.far) dn=`<div class="note stop"><b>${d} ft is past our 36 ft instant-price limit.</b> Send it to us with the site map and we'll get you the crane cost${Q.crane?'':' (or price the hand carry)'}.</div>`;
   else if(d>PRICE.freeCarryFt && Q.boxTrees && !Q.crane) dn=`<div class="note warn">First 25 ft of hand carry is included. The next ${r2(d-25)} ft adds ${m2(PRICE.carryPerFt)} per foot per tree.</div>`;
   else if(d>0) dn=`<div class="note ok">Within reach. No carry charge.</div>`;
   if(Q.crane && Q.boxTrees) dn += `<div class="note ${Q.far?'stop':'ok'}"><b>Crane pick:</b> heaviest tree ${esc(Q.maxWtLabel)} up to about ${Q.maxWt.toLocaleString()} lb, ${multi?'furthest tree':'set'} ${d||0} ft from the street.${multi?' With more than one tree, give the distance to the one furthest from the street.':''}</div>`;
@@ -601,7 +722,7 @@ buildRows();
 $('form').addEventListener('input', render);
 $('form').addEventListener('change', render);
 $('form').addEventListener('submit', e=>e.preventDefault());
-document.addEventListener('click', e=>{ if(e.target.id!=='x_all') return; const on=e.target.checked; ['drain','export','backfill','arborist','oversight'].forEach(k=>{$('x_'+k).checked=on;}); render(); }, true);
+document.addEventListener('click', e=>{ if(e.target.id!=='x_all') return; const on=e.target.checked; delete $('x_export').dataset.auto; ['drain','export','backfill','arborist','oversight'].forEach(k=>{$('x_'+k).checked=on;}); render(); }, true);
 document.addEventListener('click', e=>{
   const b=e.target.closest('button[data-step]'); if(!b) return;
   const inp=$('q_'+b.dataset.id); inp.value=Math.max(0,(+inp.value||0)+(+b.dataset.step)); render();
@@ -615,7 +736,7 @@ drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('has'
 drop.addEventListener('dragleave',()=>{ if(!state.map) drop.classList.remove('has');});
 drop.addEventListener('drop',e=>{e.preventDefault(); const f=e.dataTransfer.files[0]; if(f) takeImage(f);});
 file.addEventListener('change',()=>{ if(file.files[0]) takeImage(file.files[0]); });
-document.addEventListener('paste',e=>{ const it=[...(e.clipboardData?.items||[])].find(i=>i.type.startsWith('image/')); if(it) takeImage(it.getAsFile()); });
+document.addEventListener('paste',e=>{ if(e.target && e.target.id==='listText') return; const it=[...(e.clipboardData?.items||[])].find(i=>i.type.startsWith('image/')); if(it) takeImage(it.getAsFile()); });
 
 async function takeImage(f){
   if(!f.type.startsWith('image/')){ setMsg('That file is not an image. Use a screenshot (PNG or JPG).','err'); return; }
@@ -707,6 +828,7 @@ $('send').addEventListener('click', async()=>{
     fd.append('Phone', $('brokerPhone').value.trim());
     fd.append('Price lines', readableLines());
     fd.append('Site notes', $('notes').value.trim());
+    if(listSummary) fd.append('Plant list (as read)', listSummary.slice(0,4000));
     fd.append('payload', await packBlock('BBQ1', b64url(new TextEncoder().encode(JSON.stringify(snapshotQuote(ref))))));
     if(state.map) fd.append('site_map', await packBlock('BBMAP1', state.map.data.split(',')[1].replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')));
     fd.append('_gotcha', $('hp').value);
@@ -763,6 +885,141 @@ $('pdf').addEventListener('click', async()=>{
   const base=($('address').value.trim()||'Planting job').replace(/[^\w\s.-]/g,'').slice(0,60);
   doc.save(`${base} - Planting ${Q.over?'Quote Request':'Quote'}.pdf`);
 });
+
+/* ---------- Distance slider: 0-500 = 0-40 ft (half-foot steps), 500-1000 = 40-250 ft ---------- */
+function posToFt(p){ p=+p||0; return p<=500 ? Math.round(p/500*40*2)/2 : Math.round(40+(p-500)/500*210); }
+function ftToPos(ft){ ft=Math.max(0,+ft||0); return Math.round(ft<=40 ? ft/40*500 : Math.min(1000, 500+(ft-40)/210*500)); }
+$('distRange').addEventListener('input', ()=>{ $('distance').value=posToFt($('distRange').value); });
+
+/* ---------- Crane drawing: lift, swing over the wall, set in the hole; the tape follows the tree ---------- */
+(function(){
+  const svg=$('craneViz').querySelector('svg'), g=id=>svg.getElementById?svg.getElementById(id):document.getElementById(id);
+  const tree=g('cvTree'), cable=g('cvCable'), b1=g('cvBoom1'), b2=g('cvBoom2'), dim=g('cvDim'), dl=g('cvDimLine'), dh=g('cvDimHead'), de=g('cvDimEnd'), lbl=g('cvLbl'), lb=g('cvLblBg'), done=g('cvDone');
+  const P=[127,140], CURB=150, PX=10, START=[88,148], HIGH=110, PIT=390, DOWN=184, T=10000;
+  const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2, seg=(t,a,b)=>Math.min(1,Math.max(0,(t-a)/(b-a)));
+  function frame(ms){
+    const t=ms%T/1000, lift=ease(seg(t,.8,2)), move=ease(seg(t,2,5.2)), low=ease(seg(t,5.2,6.6));
+    const x=START[0]+(PIT-START[0])*move, y=low>0 ? HIGH+(DOWN-HIGH)*low : START[1]+(HIGH-START[1])*lift;
+    const hook=[x,y-84], tip=[x, low>0 ? HIGH-84-20 : y-84-20];
+    tree.setAttribute('transform',`translate(${x} ${y})`);
+    cable.setAttribute('x1',tip[0]); cable.setAttribute('y1',tip[1]); cable.setAttribute('x2',hook[0]); cable.setAttribute('y2',hook[1]);
+    const dx=tip[0]-P[0], dy=tip[1]-P[1], L=Math.hypot(dx,dy), base=Math.min(L,118);
+    b1.setAttribute('x2',P[0]+dx/L*base); b1.setAttribute('y2',P[1]+dy/L*base);
+    b2.setAttribute('x1',P[0]+dx/L*Math.max(0,base-6)); b2.setAttribute('y1',P[1]+dy/L*Math.max(0,base-6)); b2.setAttribute('x2',tip[0]); b2.setAttribute('y2',tip[1]);
+    const end=Math.max(CURB+14,x), ft=Math.max(0,Math.round((x-CURB)/PX));
+    dim.setAttribute('opacity', x>CURB+4 ? 1 : 0);
+    dl.setAttribute('x2',end); dh.setAttribute('transform',`translate(${end} 215)`); de.setAttribute('x1',end); de.setAttribute('x2',end);
+    const mid=(CURB+end)/2; lbl.setAttribute('x',mid); lbl.textContent=ft+' ft'; lb.setAttribute('x',mid-26);
+    done.setAttribute('opacity', low>=1 ? 1 : 0);
+    svg.style.opacity = t>9.3 ? Math.max(0,1-(t-9.3)/.5) : (t<.3 ? t/.3 : 1);
+  }
+  const still=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(still){ frame(7500); return; }
+  let on=true, t0=performance.now();
+  if('IntersectionObserver' in window) new IntersectionObserver(es=>{ on=es[0].isIntersecting; if(on) requestAnimationFrame(loop); }).observe(svg);
+  function loop(now){ frame(now-t0); if(on) requestAnimationFrame(loop); }
+  frame(7500); requestAnimationFrame(loop);
+  window.craneFrame=frame;
+})();
+
+/* ---------- Plant list -> quantities (photo is read in the browser with Tesseract; nothing is uploaded) ---------- */
+const SIZE_ROW = {b24:'b24', b30:'b30', b36:'b36', b48:'b48', b60:'b60', g1:'g1', g5:'g5', g15:'g15'};
+function readPlantLine(raw){
+  let s=String(raw).replace(/[“”″]/g,'"').replace(/[‘’′]/g,"'").replace(/\s[—–-]+\s|[—–]/g,' - ').replace(/\s+/g,' ').trim();
+  s=s.replace(/^[•*·]\s*/,'').replace(/^\d{1,3}\s*[.)]\s+/,'');
+  const low=s.toLowerCase(); let id=null, sizeText='', m;
+  if((m=low.match(/\b(\d{2})\s*-?\s*(?:"|''|in(?:ch(?:es)?)?\.?)?\s*-?\s*box\b/))){ sizeText=m[0]; id={24:'b24',30:'b30',36:'b36',48:'b48',60:'b60'}[m[1]]||('?'+m[1]+'" box'); }
+  else if((m=low.match(/#\s*(\d{1,2})\b|\b(\d{1,2})(?:\s*\/\s*(\d{1,2}))?\s*-?\s*(?:gal(?:lon)?s?\b\.?|g\b)/))){ sizeText=m[0]; const n=+(m[3]||m[1]||m[2]); id={1:'g1',5:'g5',10:'g15',15:'g15',30:'b24'}[n]||('?'+n+' gallon'); }
+  else if((m=low.match(/\b4\s*-?\s*(?:"|''|in(?:ch(?:es)?)?\b)/))){ sizeText=m[0]; id='four'; }
+  else if((m=low.match(/\bflats?\b/))){ sizeText=m[0]; id='flat'; }
+  const rest=sizeText ? low.replace(sizeText,' ') : low;
+  const nums=[...rest.matchAll(/(?<![\d\/.,$])(\d{1,4})(?![\d\/.,])/g)].map(x=>+x[1]).filter(n=>n>0);
+  const qty=nums.length ? nums[nums.length-1] : null;
+  let name=s.split(' - ')[0].replace(/[,\s-]+$/,'').trim();
+  if(name.toLowerCase().includes(sizeText.trim()) && sizeText) name=s.slice(0, low.indexOf(sizeText)).replace(/[,\s-]+$/,'').trim() || s;
+  return {name, size:sizeText.trim(), id, qty};
+}
+function readPlantList(text){
+  const rows=[]; let listTotal=null;
+  for(const raw of String(text).split(/\r?\n/)){
+    const line=raw.trim(); if(!line) continue;
+    const t=line.match(/^\s*total\D{0,20}(\d{1,5})/i); if(t){ listTotal=+t[1]; continue; }
+    if(!/\d/.test(line)) continue;                       // headings like "Plant List"
+    rows.push(Object.assign({line}, readPlantLine(line)));
+  }
+  const q={trees:{}, cont:{}}; let four=0, plants=0;
+  for(const r of rows){
+    r.ok = !!(r.id && r.id[0]!=='?' && r.qty);
+    r.why = !r.id ? 'size not found' : r.id[0]==='?' ? 'no price for '+r.id.slice(1) : !r.qty ? 'no quantity' : '';
+    if(!r.ok) continue;
+    plants+=r.qty;
+    if(r.id==='four') four+=r.qty;
+    else if(r.id==='flat') q.cont.flat=(q.cont.flat||0)+r.qty;
+    else if(r.id[0]==='b') q.trees[r.id]=(q.trees[r.id]||0)+r.qty;
+    else q.cont[r.id]=(q.cont[r.id]||0)+r.qty;
+  }
+  if(four) q.cont.flat=(q.cont.flat||0)+Math.ceil(four/16);
+  return {rows, q, four, plants, listTotal};
+}
+const ROW_LABEL = id => id==='four' ? 'Mud flats (4")' : id==='flat' ? 'Mud flats' : ((PRICE.trees.find(t=>t.id===id)||PRICE.containers.find(c=>c.id===id)||{}).label||'');
+let listUndo=null, listSummary='';
+function fillFromList(fromPhoto){
+  const text=$('listText').value; if(!text.trim()){ $('listOut').innerHTML='<div class="note warn">Add a photo of the list or paste it first.</div>'; return; }
+  const R=readPlantList(text);
+  if(!R.rows.some(r=>r.ok)){ $('listOut').innerHTML=`<div class="note stop"><b>Could not find sizes and quantities in that list.</b> ${fromPhoto?'Fix the text the photo gave (in the box above) and press Fill again, or':'Write one plant per line with its size and count, or'} enter the quantities below.</div>`; return; }
+  listUndo={trees:{...state.trees}, cont:{...state.cont}};
+  for(const t of PRICE.trees) $('q_'+t.id).value=R.q.trees[t.id]||0;
+  for(const c of PRICE.containers) $('q_'+c.id).value=R.q.cont[c.id]||0;
+  render();
+  const bad=R.rows.filter(r=>!r.ok);
+  const tr=R.rows.map(r=>`<tr class="${r.ok?'':'bad'}"><td>${esc(r.name||r.line)}</td><td class="sz">${esc(r.size||'?')}</td><td>${r.ok?esc(ROW_LABEL(r.id)):esc(r.why)}</td><td class="n">${r.qty??'?'}</td></tr>`).join('');
+  let notes='';
+  if(R.listTotal!=null) notes += R.listTotal===R.plants ? `<div class="note ok"><b>All ${R.plants} plants read.</b> Matches the list's total of ${R.listTotal}.</div>` :
+    `<div class="note warn"><b>The list says ${R.listTotal} plants, ${R.plants} were read.</b> Check the rows${bad.length?' marked in red':''} and fix the text above, then press Fill again.</div>`;
+  else notes += `<div class="note ok"><b>${R.plants} plant${R.plants===1?'':'s'} read.</b> Check the counts against the list.</div>`;
+  if(R.four) notes += `<div class="note ok">${R.four} four-inch plants = ${Math.ceil(R.four/16)} mud flat${Math.ceil(R.four/16)===1?'':'s'} (16 to a flat${R.four%16?', rounded up':''}).</div>`;
+  if(bad.length) notes += `<div class="note stop"><b>${bad.length} line${bad.length===1?' was':'s were'} not added</b> (in red). Add ${bad.length===1?'it':'them'} by hand below, or fix the text and press Fill again.</div>`;
+  if((R.q.trees.b48||0)>0) notes += `<div class="note warn">There is a 48" box tree: choose its weight under Box trees.</div>`;
+  $('listOut').innerHTML = `<table class="ptable"><thead><tr><th>Plant</th><th class="sz">Size read</th><th>Goes in</th><th class="n">Qty</th></tr></thead><tbody>${tr}<tr class="ptot"><td colspan="2">Plants read</td><td class="sz"></td><td class="n">${R.plants}</td></tr></tbody></table>` + notes;
+  $('listUndo').hidden=false;
+  listSummary=R.rows.map(r=>`${r.ok?'':'NOT ADDED ('+r.why+'): '}${r.line}`).join('\n');
+}
+$('listRead').addEventListener('click', ()=>fillFromList(false));
+$('listUndo').addEventListener('click', ()=>{ if(!listUndo) return;
+  for(const t of PRICE.trees) $('q_'+t.id).value=listUndo.trees[t.id]||0;
+  for(const c of PRICE.containers) $('q_'+c.id).value=listUndo.cont[c.id]||0;
+  listUndo=null; listSummary=''; $('listUndo').hidden=true; $('listOut').innerHTML='<div class="note ok">Quantities put back the way they were.</div>'; render(); });
+let tessLoad=null;
+function loadTesseract(){
+  if(window.Tesseract) return Promise.resolve();
+  return tessLoad || (tessLoad=new Promise((res,rej)=>{ const sc=document.createElement('script'); sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';
+    sc.onload=res; sc.onerror=()=>{ tessLoad=null; rej(new Error('Tesseract did not load')); }; document.head.appendChild(sc); }));
+}
+function listBusy(t){ const d=$('listDrop'); d.classList.toggle('busy',!!t); $('listDropInner').innerHTML = t ? `<b>${esc(t)}</b>` : '<b>Add a photo of the list</b><br>Screenshot or photo. Drop it here or tap to choose.'; $('listRead').disabled=!!t; }
+async function readListPhoto(f){
+  if(!f) return;
+  if(!f.type.startsWith('image/')){ $('listOut').innerHTML='<div class="note stop">That file is not a picture. Use a photo or screenshot of the list, or paste the text.</div>'; return; }
+  listBusy('Reading the list…');
+  try{
+    await loadTesseract();
+    const url=URL.createObjectURL(f);
+    const img=await new Promise((res,rej)=>{const i=new Image(); i.onload=()=>res(i); i.onerror=rej; i.src=url;});
+    const sc=Math.min(3, Math.max(1, 1800/img.width)), c=document.createElement('canvas');   // small screenshots read better enlarged
+    c.width=Math.round(img.width*sc); c.height=Math.round(img.height*sc);
+    const x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(img,0,0,c.width,c.height); URL.revokeObjectURL(url);
+    const worker=await Tesseract.createWorker('eng', 1, {logger:m=>{ if(m.status==='recognizing text') listBusy(`Reading the list… ${Math.round(m.progress*100)}%`); }});
+    const {data}=await worker.recognize(c); await worker.terminate();
+    $('listText').value=data.text.replace(/\n{2,}/g,'\n').trim();
+    listBusy(''); fillFromList(true);
+  }catch(e){ listBusy(''); $('listOut').innerHTML='<div class="note stop"><b>Could not read that photo.</b> Paste the list as text instead, or enter the quantities below.</div>'; }
+}
+const listDrop=$('listDrop'), listFile=$('listFile');
+listDrop.addEventListener('click',()=>{ if(!listDrop.classList.contains('busy')) listFile.click(); });
+listDrop.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); listFile.click(); } });
+listDrop.addEventListener('dragover',e=>{ e.preventDefault(); listDrop.classList.add('has'); });
+listDrop.addEventListener('dragleave',()=>listDrop.classList.remove('has'));
+listDrop.addEventListener('drop',e=>{ e.preventDefault(); e.stopPropagation(); listDrop.classList.remove('has'); readListPhoto(e.dataTransfer.files[0]); });
+listFile.addEventListener('change',()=>{ readListPhoto(listFile.files[0]); listFile.value=''; });
 
 render();
 </script>
