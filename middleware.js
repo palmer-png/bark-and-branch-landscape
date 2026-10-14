@@ -41,7 +41,7 @@ export default function middleware(request) {
   if (!userOk || !passOk) {
     // private Vercel log only; never the values themselves
     console.log('quote gate: login refused', JSON.stringify({ userOk, passOk, setUserLen: user.length, setPassLen: pass.length,
-      setPassTrimmedLen: pass.trim().length, givenPassLen: i > 0 ? decoded.length - i - 1 : -1 }));
+      onlyCapitalsDiffer: i > 0 && decoded.slice(i + 1).toLowerCase() === pass.toLowerCase(), givenPassLen: i > 0 ? decoded.length - i - 1 : -1 }));
     return locked('bad-login');
   }
   // returning nothing lets Vercel serve the page
