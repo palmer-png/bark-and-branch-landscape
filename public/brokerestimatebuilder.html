@@ -80,10 +80,6 @@ table.qty .stepper input::-webkit-outer-spin-button,table.qty .stepper input::-w
 .chk{display:flex;column-gap:.75rem;row-gap:.2rem;align-items:flex-start;padding:.85rem 0;border-top:1px solid var(--border);cursor:pointer}
 .chk:first-of-type{border-top:none}
 .chk > span:not(.p){flex:1;min-width:0}
-#extras.locked .chk{opacity:.45;cursor:not-allowed}
-#exLock{margin:0 0 .8rem}
-#exLock.flash{animation:exflash .6s ease 2}
-@keyframes exflash{50%{box-shadow:0 0 0 4px color-mix(in srgb,var(--warn) 35%,transparent)}}
 .chk.premium{background:var(--green-pale);border:1px solid color-mix(in srgb,var(--green) 18%,transparent);border-radius:6px;padding:.85rem 1rem;margin-bottom:.3rem}
 .chk.premium + .chk{border-top:none}
 .chk input{margin-top:.2rem;width:18px;height:18px;flex-shrink:0;accent-color:var(--green)}
@@ -638,7 +634,7 @@ function buildRows(){
     ['arborist','Arborist inspection at 90 days','Written report on pests and disease.','$450 for 1–5 trees · $650 for 6+'],
     ['oversight','Yearly tree oversight','Quarterly inspections through the first year.','$1,500 first tree + $250 each additional'],
   ];
-  $('extras').innerHTML = `<div class="note warn" id="exLock" hidden><b>Add a box tree first</b> (step 04, or a plant list in step 03). Extras are priced per box tree, so they switch on once there is one.</div><label class="chk premium"><input type="checkbox" id="x_all"><span><span class="t">Add all premium extras</span><br><span class="d">Checks every extra below. The final price updates to include them.</span></span></label>` + X.map(([k,t,d,p])=>`<label class="chk"><input type="checkbox" id="x_${k}" data-x="${k}"><span><span class="t">${t}</span><br><span class="d">${d}</span></span><span class="p">${p}</span></label>`).join('')
+  $('extras').innerHTML = `<label class="chk premium"><input type="checkbox" id="x_all"><span><span class="t">Add all premium extras</span><br><span class="d">Checks every extra below. The final price updates to include them.</span></span></label>` + X.map(([k,t,d,p])=>`<label class="chk"><input type="checkbox" id="x_${k}" data-x="${k}"><span><span class="t">${t}</span><br><span class="d">${d}</span></span><span class="p">${p}</span></label>`).join('')
     + `<div class="hint" id="exHint" style="margin-top:8px">Extras apply to box trees. For container beds, soil export and amended soil are priced per yard on site.</div>`;
 }
 
@@ -692,8 +688,8 @@ function render(){
   $('distNote').innerHTML=dn;
   $('mapReq').innerHTML = Q.mapRequired ? `<span class="req">Map required</span> ${Q.far?'so we can get the crane pricing':'for crane jobs'}.` : 'Optional, but it helps us plan the day.';
   // extras availability
-  ['drain','export','backfill','arborist','oversight'].forEach(k=>{ if(!Q.boxTrees){$('x_'+k).disabled=true;} else if(k!=='export'){$('x_'+k).disabled=false;} });
-  if(Q.boxTrees && !state.extras.backfill) $('x_export').disabled=false;
+  ['drain','backfill','arborist','oversight'].forEach(k=>{ $('x_'+k).disabled=false; });
+  if(!state.extras.backfill) $('x_export').disabled=false;
   // ticket
   $('tAddr').textContent = $('address').value.trim() || 'New planting job';
   let st='';
@@ -710,12 +706,13 @@ function render(){
   }
   if(Q.minAdj) L.push(`<li><span>Minimum job charge ($2,000 minimum)</span><span>${m2(Q.minAdj)}</span></li>`);
   if(Q.lines.length && state.miles) L.push(`<li class="x"><span>Gas surcharge: ${state.miles.mi} mi each way from Santa Ana 92705, added on the final invoice</span><span></span></li>`);
+  if(Q.lines.length && !Q.boxTrees && Object.values(state.extras).some(Boolean)) L.push(`<li class="x"><span>Extras selected: priced per box tree, so they add once there is a box tree on the quote</span><span></span></li>`);
   if(Q.extras.length){ L.push(`<li class="x"><span><b>Extras selected</b></span><span></span></li>`); Q.extras.forEach(l=>L.push(`<li class="x"><span>${esc(l.label)}</span><span>${m2(l.amt)}</span></li>`)); }
   $('tLines').innerHTML=L.join('');
   if(Q.over){ $('tStd').textContent='To quote'; $('tExt').textContent='To quote'; }
   else { $('tStd').textContent=m2(Q.standard); $('tExt').textContent=m2(Q.withExtras); }
   $('tExtK').textContent = Q.extras.length ? 'Final price with extras' : 'Final price';
-  const all=['drain','export','backfill','arborist','oversight'].every(k=>$('x_'+k).checked); $('x_all').checked=all; $('x_all').disabled=!Q.boxTrees; $('extras').classList.toggle('locked',!Q.boxTrees); $('exLock').hidden=!!Q.boxTrees;
+  const all=['drain','export','backfill','arborist','oversight'].every(k=>$('x_'+k).checked); $('x_all').checked=all; $('x_all').disabled=false;
   $('tDeposit').textContent = (Q.status==='instant') ? `Deposit on approval: ${m2(Q.deposit)} (10% or $1,000, whichever is less).` : '';
   $('send').textContent = Q.over ? (Q.heavy ? 'Request a custom quote' : 'Send for crane pricing') : 'Send to Bark & Branch';
   $('pdf').disabled = !Q.lines.length;
@@ -726,7 +723,6 @@ buildRows();
 $('form').addEventListener('input', render);
 $('form').addEventListener('change', render);
 $('form').addEventListener('submit', e=>e.preventDefault());
-$('extras').addEventListener('click', e=>{ if(!$('extras').classList.contains('locked') || !e.target.closest('.chk')) return; const n=$('exLock'); n.classList.remove('flash'); void n.offsetWidth; n.classList.add('flash'); });
 document.addEventListener('click', e=>{ if(e.target.id!=='x_all') return; const on=e.target.checked; delete $('x_export').dataset.auto; ['drain','export','backfill','arborist','oversight'].forEach(k=>{$('x_'+k).checked=on;}); render(); }, true);
 document.addEventListener('click', e=>{
   const b=e.target.closest('button[data-step]'); if(!b) return;
