@@ -1,18 +1,19 @@
-// Login for the broker planting-quote page (HTTP Basic Auth). Vercel runs this before
-// serving /planting-quotes.html and everything under /planting-quotes/.
+// Login for the broker estimate builder (HTTP Basic Auth). Vercel runs this before serving
+// /brokerestimatebuilder, the old /planting-quotes.html address, and everything under /planting-quotes/.
 // The username and password are the QUOTES_USER and QUOTES_PASSWORD environment
 // variables of this Vercel project, so they never sit in this public repo.
 // Until both are set, the page stays locked for everyone.
 
 export const config = {
-  matcher: ['/planting-quotes.html', '/planting-quotes', '/planting-quotes/:path*'],
+  matcher: ['/brokerestimatebuilder', '/brokerestimatebuilder/', '/brokerestimatebuilder.html',
+            '/planting-quotes.html', '/planting-quotes', '/planting-quotes/:path*'],
 };
 
 function locked() {
-  return new Response('Log in to use the Bark & Branch planting quote page.', {
+  return new Response('Log in to use the Bark & Branch broker estimate builder.', {
     status: 401,
     headers: {
-      'WWW-Authenticate': 'Basic realm="Bark & Branch planting quotes", charset="UTF-8"',
+      'WWW-Authenticate': 'Basic realm="Bark & Branch broker estimate builder", charset="UTF-8"',
       'Cache-Control': 'no-store',
     },
   });
