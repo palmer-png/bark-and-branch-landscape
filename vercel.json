@@ -1,0 +1,8 @@
+{
+  "headers": [
+    {
+      "source": "/planting-quotes(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "private, no-store" }]
+    }
+  ]
+}

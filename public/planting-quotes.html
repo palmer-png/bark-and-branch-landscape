@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Planting installation quotes for plant brokers working with Bark &amp; Branch Landscape.">
+<title>Bark &amp; Branch Planting Quotes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&display=swap">
+<style>
+/* Layout: the website's banding. Dark green masthead, cream work area (form left, sticky quote box right), warm and cream bands below, dark green footer. */
+:root{
+  --bg:#faf7f2; --band:#f2ede4; --card:#ffffff; --field:#faf7f2;
+  --text:#1a1a12; --text-mid:#3d3d2e; --muted:#6d6d55; --border:#d8d0c0;
+  --green:#4a7c2f; --green-ink:#2d5016; --green-pale:#e8f0e0;
+  --btn:#6ea832; --btn-hover:#4a7c2f; --btn-text:#ffffff;
+  --dark:#1c3010; --dark-2:#243d18; --lime:#6ea832;
+  --on-dark:#faf7f2; --on-dark-mid:rgba(250,247,242,.72); --on-dark-dim:rgba(250,247,242,.55); --on-dark-line:rgba(250,247,242,.12);
+  --warn:#8a5200; --warn-bg:#fbefd9; --stop:#a3311f; --stop-bg:#f8e2dc;
+  --shadow:0 4px 30px rgba(0,0,0,.06);
+  --font:'Plus Jakarta Sans','Segoe UI',system-ui,-apple-system,Arial,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+img{max-width:100%}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:15px;line-height:1.6}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,3rem)}
+
+/* MASTHEAD */
+.mast{background:radial-gradient(ellipse at 75% 40%,color-mix(in srgb,var(--lime) 10%,transparent) 0%,transparent 60%),linear-gradient(135deg,var(--dark) 0%,var(--dark-2) 100%);color:var(--on-dark)}
+.nav{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.6rem 2rem;padding-block:1rem;border-bottom:1px solid var(--on-dark-line)}
+.nav-logo{text-decoration:none;display:flex;align-items:center;gap:.6rem;font-size:1.25rem;font-weight:700;letter-spacing:.01em;color:var(--on-dark)}
+.nav-logo img{height:36px;width:36px;object-fit:contain}
+.nav-contact{font-size:.78rem;color:var(--on-dark-mid);text-align:right;line-height:1.6}
+.hero{padding-block:2.6rem 3rem;max-width:720px}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:color-mix(in srgb,var(--lime) 15%,transparent);border:1px solid color-mix(in srgb,var(--lime) 30%,transparent);color:var(--lime);padding:.38rem 1rem;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.4rem}
+.hero-badge .blink{width:6px;height:6px;background:var(--lime);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+h1{font-size:clamp(2.1rem,4.6vw,3.4rem);line-height:1.05;font-weight:700;color:var(--on-dark);margin:0 0 1.1rem;text-wrap:balance}
+h1 em{font-style:italic;color:var(--lime)}
+.hero-sub{font-size:1rem;color:var(--on-dark-mid);line-height:1.72;max-width:62ch;margin:0}
+
+/* WORK AREA */
+.work{padding-block:2.4rem 3.5rem}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:1.8rem;align-items:start}
+#form{display:flex;flex-direction:column;gap:1.1rem;min-width:0}
+.step{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.6rem 1.5rem 1.7rem}
+.step h2{font-size:1.2rem;font-weight:700;line-height:1.25;margin:0 0 .35rem;color:var(--text)}
+.step h2 .n{display:block;font-size:.68rem;font-weight:700;letter-spacing:.1em;color:var(--green);margin-bottom:.55rem}
+.hint{font-size:.83rem;color:var(--muted);line-height:1.65;margin:0 0 1rem}
+.hint b{color:var(--text-mid)}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem}
+.fields.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+label.f{display:flex;flex-direction:column;justify-content:flex-end;gap:.35rem;font-size:.68rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;line-height:1.45;color:var(--text-mid)}
+input[type=text],input[type=number],input[type=tel],input[type=email],textarea,label.f select{font-family:inherit;font-size:.9rem;font-weight:400;letter-spacing:normal;text-transform:none;color:var(--text);background:var(--field);border:1.5px solid var(--border);border-radius:3px;padding:.7rem .9rem;width:100%;transition:border-color .2s}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.75}
+input:focus,textarea:focus,select:focus{border-color:var(--green);outline:none}
+input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible,.drop:focus-visible,summary:focus-visible,.deck a:focus-visible{outline:2px solid var(--btn);outline-offset:2px}
+textarea{min-height:84px;resize:vertical}
+
+.tablebox{overflow-x:auto}
+table.qty{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+table.qty th{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);text-align:left;padding:.4rem .5rem;border-bottom:1px solid var(--border)}
+table.qty td{padding:.75rem .5rem;border-bottom:1px solid var(--border);vertical-align:middle;font-size:.9rem}
+table.qty tr:last-child td{border-bottom:none}
+table.qty td.r,table.qty th.r{text-align:right}
+.size{font-weight:700;font-size:.95rem}
+.tier{font-size:.76rem;color:var(--muted)}
+.stepper{display:inline-flex;align-items:center;gap:4px}
+.stepper button{width:32px;height:38px;border:1.5px solid var(--border);background:var(--card);color:var(--text-mid);border-radius:3px;font-family:inherit;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s}
+.stepper button:hover{border-color:var(--green);color:var(--green);background:var(--green-pale)}
+table.qty .stepper input{width:58px;text-align:right;padding:.5rem .5rem;-moz-appearance:textfield;appearance:textfield}
+table.qty .stepper input::-webkit-outer-spin-button,table.qty .stepper input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+
+.chk{display:flex;column-gap:.75rem;row-gap:.2rem;align-items:flex-start;padding:.85rem 0;border-top:1px solid var(--border);cursor:pointer}
+.chk:first-of-type{border-top:none}
+.chk > span:not(.p){flex:1;min-width:0}
+.chk.premium{background:var(--green-pale);border:1px solid color-mix(in srgb,var(--green) 18%,transparent);border-radius:6px;padding:.85rem 1rem;margin-bottom:.3rem}
+.chk.premium + .chk{border-top:none}
+.chk input{margin-top:.2rem;width:18px;height:18px;flex-shrink:0;accent-color:var(--green)}
+.chk .t{font-weight:700;font-size:.92rem}
+.chk .d{font-size:.8rem;color:var(--muted);line-height:1.6}
+.chk .p{margin-left:auto;font-weight:700;font-size:.84rem;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--green-ink)}
+.chk .p:empty{display:none}
+.incl summary{cursor:pointer;font-weight:700;color:var(--green);font-size:.85rem}
+
+.note{border:1px solid transparent;border-radius:6px;padding:.75rem 1rem;font-size:.84rem;line-height:1.6;margin-top:.8rem}
+.note.ok{background:var(--green-pale);color:var(--green-ink);border-color:color-mix(in srgb,var(--green) 18%,transparent)}
+.note.warn{background:var(--warn-bg);color:var(--warn);border-color:color-mix(in srgb,var(--warn) 18%,transparent)}
+.note.stop{background:var(--stop-bg);color:var(--stop);border-color:color-mix(in srgb,var(--stop) 18%,transparent)}
+
+.gauge{margin:1rem 0 .3rem}
+.gauge .bar{position:relative;height:12px;border-radius:6px;background:linear-gradient(90deg,var(--green-pale) 0 56.25%,var(--warn-bg) 56.25% 100%);border:1px solid var(--border)}
+.gauge .pin{position:absolute;top:-5px;width:4px;height:20px;border-radius:2px;background:var(--text);transform:translateX(-2px);transition:left .2s}
+.gauge .ticks{position:relative;display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);margin-top:.35rem;font-variant-numeric:tabular-nums}
+.gauge .ticks span:nth-child(2){position:absolute;left:56.25%;transform:translateX(-50%);white-space:nowrap}
+.over .gauge .bar{background:var(--stop-bg)}
+
+.mapbox{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:1rem;margin-top:.9rem}
+.drop{border:1.5px dashed var(--border);border-radius:6px;padding:1rem;text-align:center;font-size:.82rem;line-height:1.6;color:var(--muted);cursor:pointer;background:var(--field);transition:border-color .2s}
+.drop:hover{border-color:var(--green)}
+.drop b{color:var(--text)}
+.drop.has{border-style:solid;border-color:var(--green)}
+.drop img{max-width:100%;max-height:260px;border-radius:4px;display:block;margin:0 auto .6rem}
+.example img{display:block;border-radius:6px;border:1px solid var(--border)}
+.example figcaption{font-size:.74rem;color:var(--muted);margin-top:.35rem}
+.req{color:var(--stop);font-weight:700}
+
+/* QUOTE BOX */
+.ticket{position:sticky;top:calc(env(safe-area-inset-top,0px) + 14px);max-height:calc(100dvh - 28px);overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow)}
+.ticket .head{background:var(--dark);padding:1rem 1.4rem;border-radius:7px 7px 0 0}
+.ticket .head .k{font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--lime)}
+.ticket .head .v{font-size:1.02rem;font-weight:600;color:var(--on-dark);overflow-wrap:anywhere}
+.ticket .body{padding:1.2rem 1.4rem 1.4rem}
+.status{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.03em;line-height:1.4;border-radius:2px;padding:.28rem .7rem;margin-bottom:.5rem}
+.status.ok{background:var(--green-pale);color:var(--green-ink)}
+.status.warn{background:var(--warn-bg);color:var(--warn)}
+.status.stop{background:var(--stop-bg);color:var(--stop)}
+.lines{list-style:none;margin:0;padding:0;font-variant-numeric:tabular-nums}
+.lines li{display:flex;gap:.8rem;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border);font-size:.84rem;line-height:1.5}
+.lines li span:first-child{min-width:0}
+.lines li span + span{white-space:nowrap;font-weight:600}
+.lines li.sub{font-weight:700;border-bottom-color:var(--text-mid)}
+.lines li.x{color:var(--muted)}
+.totals{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:1.1rem 0 .5rem}
+.tot{display:flex;flex-direction:column;justify-content:space-between;gap:.3rem;background:var(--card);padding:.85rem .9rem;min-width:0}
+.tot .k{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.4;color:var(--muted)}
+.tot .v{font-size:1.3rem;font-weight:700;line-height:1.2;font-variant-numeric:tabular-nums;color:var(--green);overflow-wrap:anywhere}
+.tot.alt{background:var(--green-pale)}
+.tot.alt .k{color:var(--green-ink)}
+.actions{display:flex;flex-direction:column;gap:.6rem;margin-top:1rem}
+button.btn{font-family:inherit;font-size:.86rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:3px;padding:.95rem 1rem;cursor:pointer;border:1.5px solid var(--btn);background:var(--btn);color:var(--btn-text);transition:all .2s}
+button.btn:hover:not(:disabled){background:var(--btn-hover);border-color:var(--btn-hover);transform:translateY(-1px)}
+button.btn.ghost{background:transparent;color:var(--text-mid);border-color:var(--border);font-weight:600;letter-spacing:0;text-transform:none}
+button.btn.ghost:hover:not(:disabled){background:var(--green-pale);border-color:var(--green);color:var(--green);transform:none}
+button.btn:disabled{opacity:.45;cursor:not-allowed}
+.msg{font-size:.8rem;line-height:1.5;min-height:1.2em}
+.msg.err{color:var(--stop)} .msg.good{color:var(--green)}
+.fine{font-size:.74rem;color:var(--muted);line-height:1.55;margin:.7rem 0 0}
+.fine:empty{display:none}
+
+/* BANDS */
+section.band{padding-block:3.5rem;border-top:1px solid var(--border)}
+section.band.warm{background:var(--band)}
+.sec-eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:.6rem}
+.sec-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;line-height:1.15;color:var(--text);margin:0 0 .7rem;text-wrap:balance}
+.lede{font-size:.95rem;color:var(--muted);line-height:1.72;max-width:60ch;margin:0}
+.band .msg{margin-top:.8rem}
+
+.decks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1.2rem;margin-top:2rem}
+.deck{display:grid;grid-template-columns:112px minmax(0,1fr);gap:1.3rem;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.2rem}
+.deck img{display:block;width:112px;height:140px;object-fit:cover;border-radius:4px}
+.deck h3{font-size:1.05rem;font-weight:700;line-height:1.3;margin:0 0 .3rem}
+.deck p{font-size:.83rem;color:var(--muted);line-height:1.65;margin:0 0 .9rem}
+.deck .row{display:flex;gap:.5rem;flex-wrap:wrap}
+.deck button,.deck a{font-family:inherit;font-size:.78rem;font-weight:600;line-height:1.4;padding:.45rem 1rem;border-radius:3px;border:1.5px solid var(--border);color:var(--text-mid);background:transparent;cursor:pointer;text-decoration:none;transition:all .2s}
+.deck button:hover,.deck a:hover{background:var(--dark);border-color:var(--dark);color:var(--on-dark)}
+
+.list{display:flex;flex-direction:column;gap:.6rem;margin-top:1.8rem;max-width:860px}
+.list .empty{background:var(--card);border:1.5px dashed var(--border);border-radius:4px;padding:1.2rem 1.4rem;font-size:.86rem;color:var(--muted)}
+.qrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:1rem 1.2rem}
+.qrow .a{font-weight:700;font-size:.95rem}
+.qrow .m{font-size:.78rem;color:var(--muted);line-height:1.55}
+.qrow .rt{text-align:right;font-variant-numeric:tabular-nums}
+.qrow .rt .status{margin-bottom:0}
+.qrow select{font-family:inherit;font-size:.76rem;margin-top:.35rem;padding:.25rem .4rem;background:var(--field);color:var(--text);border:1.5px solid var(--border);border-radius:3px}
+.qrow .thumb{display:inline-block;margin-top:.3rem;padding:0;font-family:inherit;font-size:.78rem;font-weight:600;color:var(--green);cursor:pointer;text-decoration:underline;background:none;border:none}
+
+.terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-top:2rem}
+.term{background:var(--card);padding:1.3rem 1.5rem}
+.term h3{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin:0 0 .4rem}
+.term p{font-size:.86rem;color:var(--text-mid);line-height:1.68;margin:0}
+
+/* FOOTER */
+.foot{background:var(--dark);padding-block:2rem}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.8rem 2rem}
+.f-logo{display:flex;align-items:center;gap:.6rem;font-size:1.05rem;font-weight:700;color:var(--on-dark)}
+.f-logo img{height:28px;width:28px;object-fit:contain}
+.foot small{font-size:.74rem;color:var(--on-dark-dim)}
+
+.viewer{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:20px;z-index:5;cursor:zoom-out}
+.viewer img{max-width:100%;max-height:90vh;border-radius:6px}
+
+/* RESPONSIVE */
+@media (max-width:1020px){
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .ticket{position:static;max-height:none;overflow:visible}
+}
+@media (max-width:700px){
+  .terms{grid-template-columns:minmax(0,1fr)}
+  .nav-contact{text-align:left}
+}
+@media (max-width:560px){
+  .step{padding:1.3rem 1.1rem 1.4rem}
+  .fields.two,.mapbox{grid-template-columns:minmax(0,1fr)}
+  input[type=text],input[type=number],input[type=tel],input[type=email],textarea,label.f select{font-size:16px}
+  table.qty th:nth-child(3),table.qty td:nth-child(3){display:none}
+  table.qty th,table.qty td{padding-inline:.3rem}
+  table.qty .stepper input{width:46px}
+  .stepper button{width:30px}
+  .chk{flex-wrap:wrap}
+  .chk .p{flex-basis:100%;margin-left:calc(18px + .75rem);white-space:normal}
+  .deck{grid-template-columns:84px minmax(0,1fr);gap:1rem}
+  .deck img{width:84px;height:108px}
+  .qrow{grid-template-columns:minmax(0,1fr)}
+  .qrow .rt{text-align:left}
+  section.band{padding-block:2.6rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="mast">
+  <div class="wrap">
+    <div class="nav">
+      <a class="nav-logo" href="/"><img src="planting-quotes/tree-logo.png" alt="" width="36" height="36">Bark &amp; Branch</a>
+      <div class="nav-contact">(657) 525-9737 · CA Lic. #1119893<br>1253 E Imperial Hwy, Placentia, CA 92870</div>
+    </div>
+    <div class="hero">
+      <div class="hero-badge"><span class="blink"></span>Broker planting quotes</div>
+      <h1>Price a <em>planting job.</em></h1>
+      <p class="hero-sub">Enter the trees and containers the client is supplying. Up to 36 feet from the street you get a firm price right here. Past 36 feet, or anything that needs a crane placement check, send it to us with the map and we come back with the number.</p>
+    </div>
+  </div>
+</header>
+
+<main class="work">
+  <div class="wrap">
+  <div class="grid">
+    <form id="form" autocomplete="off">
+      <input type="text" name="_gotcha" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+      <div class="step">
+        <h2><span class="n">01</span>Your company</h2>
+        <p class="hint">The company providing this estimate. It prints on the quote.</p>
+        <div class="fields two">
+          <label class="f">Company name<input type="text" id="broker" placeholder="Company providing the estimate"></label>
+          <label class="f">Contact name<input type="text" id="brokerContact" placeholder="Who to call"></label>
+          <label class="f">Company phone<input type="tel" id="brokerPhone" placeholder="Best number"></label>
+          <label class="f">Company email<input type="email" id="brokerEmail" placeholder="name@company.com"></label>
+        </div>
+      </div>
+
+      <div class="step">
+        <h2><span class="n">02</span>Job</h2>
+        <p class="hint">Who the planting is for and where. Include the ZIP code so we can figure the mileage from Santa Ana 92705.</p>
+        <div class="fields">
+          <label class="f">Client name<input type="text" id="client" placeholder="Homeowner or company"></label>
+          <label class="f">Job address<input type="text" id="address" placeholder="Street, city, ZIP"></label>
+          <label class="f">Miles from Santa Ana 92705 (one way)<input type="number" id="milesOverride" min="0" step="1" placeholder="Figured from the ZIP"></label>
+        </div>
+        <div id="mileNote"></div>
+      </div>
+
+      <div class="step">
+        <h2><span class="n">03</span>Box trees</h2>
+        <p class="hint">Price per tree drops at 11 and at 21 trees of the same size. 24" box and 30 gallon are the same price, so enter them together. 48" box trees must be under 2,500 lb for an instant price. Every tree gets the standard install: pit dug, tree set, Agriform tablets and Gro-Power Plus, Moon Juice for transplant shock, watered in, box lumber hauled off.</p>
+        <div class="tablebox"><table class="qty" id="treeTable">
+          <thead><tr><th>Size</th><th class="r">Qty</th><th class="r">Each</th><th class="r">Line</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+        <div class="fields" id="w48Box" style="margin-top:12px" hidden>
+          <label class="f">48" box tree weight (from the nursery tag)
+            <select id="w48"><option value="">Choose…</option><option value="under">Under 2,500 lb</option><option value="over">2,500 lb or more</option><option value="unknown">Not sure</option></select></label>
+        </div>
+        <div id="w48Note"></div>
+      </div>
+
+      <div class="step">
+        <h2><span class="n">04</span>Container plants</h2>
+        <p class="hint">Mud flats are 16 four-inch plants. Plants sold as 10/15 gallon go in the 15 gallon row. Each price includes the planting area, tablets and Gro-Power, Moon Juice, and pot haul-off.</p>
+        <div class="tablebox"><table class="qty" id="contTable">
+          <thead><tr><th>Size</th><th class="r">Qty</th><th class="r">Each</th><th class="r">Line</th></tr></thead>
+          <tbody></tbody>
+        </table></div>
+        <details class="incl" style="margin-top:12px"><summary>What's in each price</summary>
+          <p class="hint" style="margin:8px 0 0">Every tree and container price includes: preparing the planting area, Agriform planting tablets and Gro-Power Plus sized to the container, Moon Juice root stimulator to fight transplant shock, watering in, and haul-off of the box or pot.</p></details>
+      </div>
+
+      <div class="step" id="siteStep">
+        <h2><span class="n">05</span>Distance from the street &amp; crane</h2>
+        <p class="hint">Measure from the curb where the truck parks to where the tree goes. On Google Maps: right-click the curb, choose <b>Measure distance</b>, then click the planting spot.</p>
+        <div class="fields">
+          <label class="f"><span id="distLabel">Distance from street (feet)</span><input type="number" id="distance" min="0" step="0.5" value="0"></label>
+        </div>
+        <div class="gauge" aria-hidden="true"><div class="bar"><div class="pin" id="pin" style="left:0%"></div></div>
+          <div class="ticks"><span>0 ft</span><span>36 ft · instant price limit</span><span>64 ft</span></div></div>
+        <div id="distNote"></div>
+
+        <label class="chk" style="margin-top:8px"><input type="checkbox" id="crane"><span><span class="t">Crane needed</span><br><span class="d">Crane with operator to lift the tree in. Required for 48" and 60" box trees. A crane job needs the site map so we can check where the crane sets up.</span></span><span class="p" id="cranePrice"></span></label>
+
+        <div class="mapbox" id="mapBox">
+          <div>
+            <div class="drop" id="drop" tabindex="0" role="button" aria-label="Add the site map image">
+              <div id="dropInner"><b>Add the site map</b><br>Screenshot of Google Maps with the measured line. Drop it here or tap to choose.</div>
+            </div>
+            <input type="file" id="mapFile" accept="image/*" hidden>
+            <div id="mapReq" class="hint" style="margin-top:6px"></div>
+          </div>
+          <figure class="example" style="margin:0">
+            <img src="planting-quotes/map-example.jpg" alt="Example: Google Maps satellite view with a 40.43 ft line drawn from the curb to the front planter" width="180">
+            <figcaption>Example: 40.43 ft, curb to front planter.</figcaption>
+          </figure>
+        </div>
+        <label class="f" style="margin-top:12px">Site notes (gate width, slope, stairs, where the truck can park)<textarea id="notes"></textarea></label>
+      </div>
+
+      <div class="step">
+        <h2><span class="n">06</span>Planting extras</h2>
+        <p class="hint">This is what separates our install from a nursery drop-off. Soil yards are typical for the box size; the real number depends on the soil and is confirmed on site.</p>
+        <div id="extras"></div>
+      </div>
+    </form>
+
+    <aside class="ticket" aria-live="polite">
+      <div class="head"><div class="k">Quote</div><div class="v" id="tAddr">New planting job</div></div>
+      <div class="body">
+        <div id="tStatus"></div>
+        <ul class="lines" id="tLines"></ul>
+        <div class="totals">
+          <div class="tot"><div class="k">Standard planting</div><div class="v" id="tStd">$0</div></div>
+          <div class="tot alt"><div class="k" id="tExtK">Final price</div><div class="v" id="tExt">$0</div></div>
+        </div>
+        <div class="fine" id="tDeposit"></div>
+        <div class="actions">
+          <button class="btn" type="button" id="send">Send to Bark &amp; Branch</button>
+          <button class="btn ghost" type="button" id="pdf">Download quote PDF</button>
+          <div class="msg" id="msg"></div>
+        </div>
+        <p class="fine">Client supplies the plants. Prices are installation only.</p>
+      </div>
+    </aside>
+  </div>
+  </div>
+</main>
+
+<section class="band warm">
+  <div class="wrap">
+    <div class="sec-eyebrow">For your client</div>
+    <h2 class="sec-title">Service decks</h2>
+    <p class="lede">Show the client what the standard install includes, and what the extras add. Download as PDF and send them along with the quote.</p>
+    <div class="decks">
+      <div class="deck"><img src="planting-quotes/img/deck-standard.jpg" alt="Newly planted specimen tree in a courtyard planter">
+        <div><h3>Standard Tree Planting</h3><p>8 pages. The eight-step install, delivery and crane, feeding, terms.</p>
+          <div class="row"><a href="planting-quotes/decks/Bark-and-Branch-Standard-Tree-Planting.pdf" download>Download PDF</a><a href="planting-quotes/decks/Bark-and-Branch-Standard-Tree-Planting.pdf" target="_blank" rel="noopener">Open</a></div></div></div>
+      <div class="deck"><img src="planting-quotes/img/deck-extras.jpg" alt="Crew cutting a planting pit">
+        <div><h3>Planting Extras &amp; Tree Protection</h3><p>13 pages. Nursery install vs ours, drainage, soil, first-year care.</p>
+          <div class="row"><a href="planting-quotes/decks/Bark-and-Branch-Planting-Extras-and-Tree-Protection.pdf" download>Download PDF</a><a href="planting-quotes/decks/Bark-and-Branch-Planting-Extras-and-Tree-Protection.pdf" target="_blank" rel="noopener">Open</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band warm">
+  <div class="wrap">
+    <div class="sec-eyebrow">On every quote</div>
+    <h2 class="sec-title">Terms</h2>
+    <div class="terms">
+      <div class="term"><h3>Deposit</h3><p>10% of the contract price or $1,000, whichever is less, on approval. It reserves the crane date. Balance due on completion, 5-day terms.</p></div>
+      <div class="term"><h3>Hard digging</h3><p>Rock or very hard soil is $87.36 per hour per person. We tell the client before we proceed.</p></div>
+      <div class="term"><h3>Watering</h3><p>Sprinklers must be working the week before planting, or the tree needs hand watering bi-weekly until established.</p></div>
+      <div class="term"><h3>Crane standby</h3><p>If the tree delivery is late, standby is billed at the crane company's hourly rate.</p></div>
+      <div class="term"><h3>Not included</h3><p>Excess soil export, tree inspection drains, staking or anchoring, irrigation to the tree, crane permits, no-parking and traffic control, unless selected as extras.</p></div>
+      <div class="term"><h3>Gas surcharge</h3><p>Figured from the mileage between Santa Ana 92705 and the job, and added on the final invoice.</p></div>
+      <div class="term"><h3>48" box weight</h3><p>Instant prices cover 48" box trees under 2,500 lb. Heavier trees are quoted.</p></div>
+      <div class="term"><h3>Single large tree</h3><p>One 48" box tree is $4,900 and one 60" box tree is $8,500 to cover mobilization, unless the rest of the job comes to $1,500 or more. Then the regular price applies.</p></div>
+      <div class="term"><h3>Job minimum</h3><p>Every job is at least $2,000. Smaller jobs show a minimum job charge to make up the difference.</p></div>
+      <div class="term"><h3>Over 36 feet</h3><p>Hand carry and crane reach past 36 feet from the street are priced by Bark &amp; Branch from the site map.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="f-logo"><img src="planting-quotes/tree-logo.png" alt="" width="28" height="28">Bark &amp; Branch</div>
+    <small>© 2026 Bark &amp; Branch Landscape · (657) 525-9737</small>
+  </div>
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+/* ---------- Price book (sell prices only) ---------- */
+const PRICE = {
+  trees: [ // per tree; tiers: 1-10, 11-20, 21+ of the same size
+    {id:'b24', label:'24" box / 30 gal', tiers:[497,455,425], wt:[150,800], exp:0.75, bf:0.50},
+    {id:'b30', label:'30" box', tiers:[945,870,815], wt:[800,1500], exp:1.00, bf:0.75},
+    {id:'b36', label:'36" box', tiers:[1465,1350,1260], wt:[1500,2500], exp:1.50, bf:1.00},
+    {id:'b48', label:'48" box', tiers:[4515,4155,3885], wt:[3000,6500], exp:3.25, bf:1.75, crane:true},
+    {id:'b60', label:'60" box', tiers:[7675,7060,6600], wt:[6500,10000], exp:5.75, bf:3.25, crane:true},
+  ],
+  containers: [
+    {id:'flat', label:'Mud flat (16 × 4")', unit:'flat', tiers:[56,52.5,46.75]},
+    {id:'g1', label:'1 gallon', unit:'ea', tiers:[12.25,11.25,10.5]},
+    {id:'g5', label:'5 gallon', unit:'ea', tiers:[38.5,35.5,33]},
+    {id:'g15', label:'15 gallon (incl. 10/15)', unit:'ea', tiers:[150.5,138.5,129.5]},
+  ],
+  crane: 700, minJob: 2000, single:{b48:4900, b60:8500}, singleOtherMin:1500, w48Limit: 2500,
+  origin:null, originZip:'92705', originName:'Santa Ana 92705', roadFactor:1.2,  // straight-line miles × 1.2 ≈ driving miles
+  freeCarryFt: 25, carryPerFt: 3.90, maxInstantFt: 36,
+  drain: 390, exportYd: 265, backfillYd: 380, arborist: 450, arborist6: 650, oversight: 1500, oversightAdd: 250,
+  minYd: 0.25,
+};
+const ZIPS = {"90001":[33.973,-118.248,"Los Angeles"],"90002":[33.95,-118.246,"Los Angeles"],"90003":[33.965,-118.273,"Los Angeles"],"90004":[34.076,-118.303,"Los Angeles"],"90005":[34.059,-118.301,"Los Angeles"],"90006":[34.049,-118.292,"Los Angeles"],"90007":[34.029,-118.287,"Los Angeles"],"90008":[34.012,-118.341,"Los Angeles"],"90009":[34.052,-118.244,"Los Angeles"],"90010":[34.061,-118.303,"Los Angeles"],"90011":[34.008,-118.258,"Los Angeles"],"90012":[34.061,-118.239,"Los Angeles"],"90013":[34.045,-118.243,"Los Angeles"],"90014":[34.044,-118.251,"Los Angeles"],"90015":[34.043,-118.272,"Los Angeles"],"90016":[34.03,-118.353,"Los Angeles"],"90017":[34.056,-118.267,"Los Angeles"],"90018":[34.029,-118.315,"Los Angeles"],"90019":[34.048,-118.334,"Los Angeles"],"90020":[34.066,-118.302,"Los Angeles"],"90021":[34.033,-118.245,"Los Angeles"],"90022":[34.025,-118.156,"Los Angeles"],"90023":[34.025,-118.198,"Los Angeles"],"90024":[34.064,-118.441,"Los Angeles"],"90025":[34.045,-118.449,"Los Angeles"],"90026":[34.077,-118.265,"Los Angeles"],"90027":[34.104,-118.293,"Los Angeles"],"90028":[34.1,-118.325,"Los Angeles"],"90029":[34.09,-118.294,"Los Angeles"],"90030":[34.052,-118.244,"Los Angeles"],"90031":[34.078,-118.211,"Los Angeles"],"90032":[34.082,-118.175,"Los Angeles"],"90033":[34.049,-118.208,"Los Angeles"],"90034":[34.029,-118.4,"Los Angeles"],"90035":[34.053,-118.381,"Los Angeles"],"90036":[34.07,-118.349,"Los Angeles"],"90037":[34.003,-118.286,"Los Angeles"],"90038":[34.09,-118.322,"Los Angeles"],"90039":[34.112,-118.259,"Los Angeles"],"90040":[33.991,-118.153,"Los Angeles"],"90041":[34.134,-118.208,"Los Angeles"],"90042":[34.114,-118.193,"Los Angeles"],"90043":[33.987,-118.332,"Los Angeles"],"90044":[33.955,-118.29,"Los Angeles"],"90045":[33.963,-118.394,"Los Angeles"],"90046":[34.107,-118.365,"Los Angeles"],"90047":[33.957,-118.307,"Los Angeles"],"90048":[34.074,-118.372,"Los Angeles"],"90049":[34.066,-118.474,"Los Angeles"],"90050":[34.052,-118.244,"Los Angeles"],"90051":[34.052,-118.244,"Los Angeles"],"90052":[34.052,-118.244,"Los Angeles"],"90053":[34.052,-118.244,"Los Angeles"],"90054":[34.052,-118.244,"Los Angeles"],"90055":[34.052,-118.244,"Los Angeles"],"90056":[33.985,-118.371,"Los Angeles"],"90057":[34.062,-118.276,"Los Angeles"],"90058":[33.999,-118.213,"Los Angeles"],"90059":[33.929,-118.246,"Los Angeles"],"90060":[34.052,-118.244,"Los Angeles"],"90061":[33.925,-118.272,"Los Angeles"],"90062":[34.003,-118.307,"Los Angeles"],"90063":[34.045,-118.186,"Los Angeles"],"90064":[34.035,-118.426,"Los Angeles"],"90065":[34.107,-118.227,"Los Angeles"],"90066":[34.003,-118.43,"Los Angeles"],"90067":[34.055,-118.409,"Los Angeles"],"90068":[34.116,-118.331,"Los Angeles"],"90069":[34.091,-118.379,"West Hollywood"],"90070":[34.052,-118.244,"Los Angeles"],"90071":[34.053,-118.255,"Los Angeles"],"90072":[34.052,-118.244,"Los Angeles"],"90073":[33.787,-118.299,"Los Angeles"],"90074":[34.052,-118.244,"Los Angeles"],"90075":[34.052,-118.244,"Los Angeles"],"90076":[34.052,-118.244,"Los Angeles"],"90077":[34.111,-118.45,"Los Angeles"],"90078":[34.052,-118.244,"Los Angeles"],"90079":[33.787,-118.299,"Los Angeles"],"90080":[34.052,-118.244,"Los Angeles"],"90081":[34.052,-118.244,"Los Angeles"],"90082":[34.052,-118.244,"Los Angeles"],"90083":[34.052,-118.244,"Los Angeles"],"90084":[34.052,-118.244,"Los Angeles"],"90086":[34.052,-118.244,"Los Angeles"],"90087":[34.052,-118.244,"Los Angeles"],"90088":[34.052,-118.244,"Los Angeles"],"90089":[33.787,-118.299,"Los Angeles"],"90090":[34.072,-118.242,"Dodgertown"],"90091":[34.052,-118.244,"Los Angeles"],"90093":[34.052,-118.244,"Los Angeles"],"90094":[33.973,-118.428,"Playa Vista"],"90095":[33.787,-118.299,"Los Angeles"],"90096":[34.052,-118.244,"Los Angeles"],"90099":[34.052,-118.244,"Los Angeles"],"90101":[33.99,-118.16,"Los Angeles"],"90102":[34.01,-118.19,"Brylane"],"90103":[33.99,-118.16,"Los Angeles"],"90189":[34.051,-118.256,"Los Angeles"],"90201":[33.965,-118.151,"Bell Gardens"],"90202":[33.977,-118.187,"Bell"],"90209":[34.074,-118.4,"Beverly Hills"],"90210":[34.09,-118.406,"Beverly Hills"],"90211":[34.065,-118.383,"Beverly Hills"],"90212":[34.062,-118.4,"Beverly Hills"],"90213":[34.074,-118.4,"Beverly Hills"],"90220":[33.875,-118.24,"Compton"],"90221":[33.88,-118.217,"Compton"],"90222":[33.91,-118.236,"Compton"],"90223":[33.896,-118.22,"Compton"],"90224":[33.787,-118.299,"Compton"],"90230":[33.995,-118.399,"Culver City"],"90231":[34.021,-118.397,"Culver City"],"90232":[34.017,-118.397,"Culver City"],"90233":[34.021,-118.397,"Culver City"],"90239":[33.94,-118.133,"Downey"],"90240":[33.958,-118.117,"Downey"],"90241":[33.942,-118.131,"Downey"],"90242":[33.922,-118.139,"Downey"],"90245":[33.924,-118.412,"El Segundo"],"90247":[33.892,-118.296,"Gardena"],"90248":[33.877,-118.284,"Gardena"],"90249":[33.9,-118.32,"Gardena"],"90250":[33.914,-118.349,"Hawthorne"],"90251":[33.916,-118.353,"Hawthorne"],"90254":[33.864,-118.395,"Hermosa Beach"],"90255":[33.977,-118.216,"Huntington Park"],"90260":[33.888,-118.351,"Lawndale"],"90261":[33.887,-118.353,"Lawndale"],"90262":[33.924,-118.201,"Lynwood"],"90263":[34.005,-118.81,"Malibu"],"90264":[34.005,-118.81,"Malibu"],"90265":[34.04,-118.735,"Malibu"],"90266":[33.89,-118.4,"Manhattan Beach"],"90267":[33.787,-118.299,"Manhattan Beach"],"90270":[33.989,-118.188,"Maywood"],"90272":[34.048,-118.526,"Pacific Palisades"],"90274":[33.767,-118.381,"Palos Verdes Peninsula"],"90275":[33.752,-118.367,"Rancho Palos Verdes"],"90277":[33.831,-118.383,"Redondo Beach"],"90278":[33.871,-118.371,"Redondo Beach"],"90280":[33.946,-118.201,"South Gate"],"90290":[34.108,-118.602,"Topanga"],"90291":[33.994,-118.463,"Venice"],"90292":[33.978,-118.453,"Marina Del Rey"],"90293":[33.958,-118.437,"Playa Del Rey"],"90294":[33.991,-118.46,"Venice"],"90295":[33.787,-118.299,"Marina Del Rey"],"90296":[33.787,-118.299,"Playa Del Rey"],"90301":[33.955,-118.356,"Inglewood"],"90302":[33.974,-118.355,"Inglewood"],"90303":[33.938,-118.332,"Inglewood"],"90304":[33.938,-118.359,"Inglewood"],"90305":[33.958,-118.326,"Inglewood"],"90306":[33.962,-118.353,"Inglewood"],"90307":[33.787,-118.299,"Inglewood"],"90308":[33.962,-118.353,"Inglewood"],"90309":[33.787,-118.299,"Inglewood"],"90310":[33.787,-118.299,"Inglewood"],"90311":[33.962,-118.353,"Inglewood"],"90312":[33.962,-118.353,"Inglewood"],"90313":[33.96,-118.35,"General Telephone"],"90397":[33.96,-118.35,"Inglewood"],"90398":[33.96,-118.35,"Inglewood"],"90401":[34.018,-118.491,"Santa Monica"],"90402":[34.035,-118.503,"Santa Monica"],"90403":[34.029,-118.492,"Santa Monica"],"90404":[34.027,-118.473,"Santa Monica"],"90405":[34.01,-118.472,"Santa Monica"],"90406":[34.02,-118.491,"Santa Monica"],"90407":[34.02,-118.491,"Santa Monica"],"90408":[34.02,-118.491,"Santa Monica"],"90409":[34.02,-118.491,"Santa Monica"],"90410":[34.02,-118.491,"Santa Monica"],"90411":[34.02,-118.491,"Santa Monica"],"90501":[33.827,-118.312,"Torrance"],"90502":[33.829,-118.292,"Torrance"],"90503":[33.84,-118.354,"Torrance"],"90504":[33.871,-118.329,"Torrance"],"90505":[33.811,-118.351,"Torrance"],"90506":[33.787,-118.299,"Torrance"],"90507":[33.787,-118.299,"Torrance"],"90508":[33.787,-118.299,"Torrance"],"90509":[33.787,-118.299,"Torrance"],"90510":[33.787,-118.299,"Torrance"],"90601":[34.001,-118.037,"Whittier"],"90602":[33.969,-118.034,"Whittier"],"90603":[33.943,-117.993,"Whittier"],"90604":[33.93,-118.012,"Whittier"],"90605":[33.941,-118.036,"Whittier"],"90606":[33.978,-118.066,"Whittier"],"90607":[33.979,-118.033,"Whittier"],"90608":[33.979,-118.033,"Whittier"],"90609":[33.979,-118.033,"Whittier"],"90610":[33.979,-118.033,"Whittier"],"90612":[33.96,-118.02,"Whittier"],"90620":[33.844,-118.008,"Buena Park"],"90621":[33.877,-117.989,"Buena Park"],"90622":[33.846,-118.003,"Buena Park"],"90623":[33.849,-118.04,"La Palma"],"90624":[33.858,-118.003,"Buena Park"],"90630":[33.818,-118.036,"Cypress"],"90631":[33.933,-117.949,"La Habra"],"90632":[33.914,-117.955,"La Habra"],"90633":[33.934,-117.945,"La Habra"],"90637":[33.917,-118.012,"La Mirada"],"90638":[33.907,-118.01,"La Mirada"],"90639":[33.906,-118.018,"La Mirada"],"90640":[34.013,-118.113,"Montebello"],"90650":[33.906,-118.082,"Norwalk"],"90651":[33.902,-118.082,"Norwalk"],"90652":[33.902,-118.082,"Norwalk"],"90659":[33.9,-118.07,"Norwalk"],"90660":[33.989,-118.088,"Pico Rivera"],"90661":[33.983,-118.097,"Pico Rivera"],"90662":[33.983,-118.097,"Pico Rivera"],"90670":[33.946,-118.084,"Santa Fe Springs"],"90671":[33.947,-118.085,"Santa Fe Springs"],"90680":[33.799,-117.996,"Stanton"],"90701":[33.865,-118.073,"Artesia"],"90702":[33.866,-118.083,"Artesia"],"90703":[33.867,-118.069,"Cerritos"],"90704":[33.332,-118.344,"Avalon"],"90706":[33.887,-118.126,"Bellflower"],"90707":[33.882,-118.117,"Bellflower"],"90710":[33.797,-118.299,"Harbor City"],"90711":[33.787,-118.299,"Lakewood"],"90712":[33.851,-118.146,"Lakewood"],"90713":[33.847,-118.112,"Lakewood"],"90714":[33.851,-118.134,"Lakewood"],"90715":[33.84,-118.077,"Lakewood"],"90716":[33.83,-118.073,"Hawaiian Gardens"],"90717":[33.794,-118.317,"Lomita"],"90720":[33.796,-118.065,"Los Alamitos"],"90721":[33.802,-118.069,"Los Alamitos"],"90723":[33.897,-118.163,"Paramount"],"90731":[33.734,-118.291,"San Pedro"],"90732":[33.742,-118.312,"San Pedro"],"90733":[33.787,-118.299,"San Pedro"],"90734":[33.787,-118.299,"San Pedro"],"90740":[33.76,-118.081,"Seal Beach"],"90742":[33.716,-118.069,"Sunset Beach"],"90743":[33.726,-118.083,"Surfside"],"90744":[33.785,-118.264,"Wilmington"],"90745":[33.823,-118.268,"Carson"],"90746":[33.858,-118.255,"Carson"],"90747":[33.867,-118.254,"Carson"],"90748":[33.78,-118.263,"Wilmington"],"90749":[33.787,-118.299,"Carson"],"90755":[33.803,-118.168,"Signal Hill"],"90801":[33.767,-118.189,"Long Beach"],"90802":[33.771,-118.182,"Long Beach"],"90803":[33.762,-118.134,"Long Beach"],"90804":[33.786,-118.136,"Long Beach"],"90805":[33.864,-118.18,"Long Beach"],"90806":[33.804,-118.188,"Long Beach"],"90807":[33.831,-118.181,"Long Beach"],"90808":[33.824,-118.11,"Long Beach"],"90809":[33.787,-118.299,"Long Beach"],"90810":[33.819,-118.233,"Long Beach"],"90813":[33.782,-118.183,"Long Beach"],"90814":[33.772,-118.148,"Long Beach"],"90815":[33.794,-118.119,"Long Beach"],"90822":[33.793,-118.164,"Long Beach"],"90831":[33.768,-118.199,"Long Beach"],"90832":[33.767,-118.189,"Long Beach"],"90833":[33.768,-118.199,"Long Beach"],"90834":[33.768,-118.199,"Long Beach"],"90835":[33.768,-118.199,"Long Beach"],"90840":[33.784,-118.116,"Long Beach"],"90842":[33.787,-118.299,"Long Beach"],"90844":[33.767,-118.189,"Long Beach"],"90845":[33.77,-118.18,"Buffums"],"90846":[33.825,-118.15,"Long Beach"],"90847":[33.787,-118.299,"Long Beach"],"90848":[33.787,-118.299,"Long Beach"],"90853":[33.787,-118.299,"Long Beach"],"90888":[33.77,-118.18,"Far"],"90895":[33.839,-118.22,"Carson"],"90899":[33.767,-118.189,"Long Beach"],"91001":[34.191,-118.139,"Altadena"],"91003":[34.19,-118.131,"Altadena"],"91006":[34.132,-118.026,"Arcadia"],"91007":[34.124,-118.052,"Arcadia"],"91008":[34.149,-117.964,"Duarte"],"91009":[34.139,-117.977,"Duarte"],"91010":[34.141,-117.957,"Duarte"],"91011":[34.222,-118.205,"La Canada Flintridge"],"91012":[34.199,-118.188,"La Canada Flintridge"],"91016":[34.144,-118.001,"Monrovia"],"91017":[34.148,-117.999,"Monrovia"],"91020":[34.211,-118.231,"Montrose"],"91021":[34.206,-118.224,"Montrose"],"91023":[34.226,-118.066,"Mount Wilson"],"91024":[34.165,-118.052,"Sierra Madre"],"91025":[34.162,-118.053,"Sierra Madre"],"91030":[34.111,-118.155,"South Pasadena"],"91031":[34.116,-118.15,"South Pasadena"],"91040":[34.262,-118.337,"Sunland"],"91041":[34.267,-118.302,"Sunland"],"91042":[34.254,-118.285,"Tujunga"],"91043":[34.252,-118.288,"Tujunga"],"91046":[34.211,-118.24,"Verdugo City"],"91066":[34.14,-118.035,"Arcadia"],"91077":[34.14,-118.035,"Arcadia"],"91101":[34.147,-118.139,"Pasadena"],"91102":[34.148,-118.144,"Pasadena"],"91103":[34.167,-118.155,"Pasadena"],"91104":[34.168,-118.126,"Pasadena"],"91105":[34.136,-118.164,"Pasadena"],"91106":[34.144,-118.127,"Pasadena"],"91107":[34.151,-118.089,"Pasadena"],"91108":[34.121,-118.112,"San Marino"],"91109":[34.148,-118.144,"Pasadena"],"91110":[34.148,-118.144,"Pasadena"],"91114":[34.148,-118.144,"Pasadena"],"91115":[34.148,-118.144,"Pasadena"],"91116":[34.148,-118.144,"Pasadena"],"91117":[34.148,-118.144,"Pasadena"],"91118":[34.121,-118.106,"San Marino"],"91121":[34.148,-118.144,"Pasadena"],"91123":[34.148,-118.144,"Pasadena"],"91124":[34.148,-118.144,"Pasadena"],"91125":[34.148,-118.144,"Pasadena"],"91126":[34.148,-118.144,"Pasadena"],"91129":[34.148,-118.144,"Pasadena"],"91131":[34.15,-118.15,"World Vision International"],"91182":[34.148,-118.144,"Pasadena"],"91184":[34.148,-118.144,"Pasadena"],"91185":[34.148,-118.144,"Pasadena"],"91188":[34.148,-118.144,"Pasadena"],"91189":[34.148,-118.144,"Pasadena"],"91191":[34.15,-118.15,"Pasadena"],"91199":[34.148,-118.144,"Pasadena"],"91201":[34.172,-118.29,"Glendale"],"91202":[34.165,-118.266,"Glendale"],"91203":[34.152,-118.264,"Glendale"],"91204":[34.138,-118.26,"Glendale"],"91205":[34.138,-118.243,"Glendale"],"91206":[34.156,-118.232,"Glendale"],"91207":[34.165,-118.245,"Glendale"],"91208":[34.192,-118.235,"Glendale"],"91209":[34.142,-118.255,"Glendale"],"91210":[34.142,-118.255,"Glendale"],"91214":[34.232,-118.246,"La Crescenta"],"91221":[34.142,-118.255,"Glendale"],"91222":[34.142,-118.255,"Glendale"],"91224":[34.224,-118.24,"La Crescenta"],"91225":[34.142,-118.255,"Glendale"],"91226":[34.142,-118.255,"Glendale"],"91301":[34.123,-118.757,"Agoura Hills"],"91302":[34.142,-118.664,"Calabasas"],"91303":[34.199,-118.598,"Canoga Park"],"91304":[34.22,-118.611,"Canoga Park"],"91305":[34.201,-118.598,"Canoga Park"],"91306":[34.209,-118.575,"Winnetka"],"91307":[34.196,-118.639,"West Hills"],"91308":[34.197,-118.644,"West Hills"],"91309":[34.201,-118.598,"Canoga Park"],"91310":[34.489,-118.623,"Castaic"],"91311":[34.258,-118.591,"Chatsworth"],"91313":[34.257,-118.601,"Chatsworth"],"91316":[34.166,-118.517,"Encino"],"91319":[34.184,-118.911,"Newbury Park"],"91320":[34.177,-118.936,"Newbury Park"],"91321":[34.38,-118.523,"Newhall"],"91322":[34.385,-118.531,"Newhall"],"91324":[34.237,-118.547,"Northridge"],"91325":[34.235,-118.519,"Northridge"],"91326":[34.262,-118.582,"Porter Ranch"],"91327":[34.228,-118.537,"Northridge"],"91328":[34.228,-118.537,"Northridge"],"91329":[34.228,-118.537,"Northridge"],"91330":[34.228,-118.537,"Northridge"],"91331":[34.256,-118.421,"Pacoima"],"91333":[34.263,-118.427,"Pacoima"],"91334":[34.263,-118.427,"Pacoima"],"91335":[34.201,-118.539,"Reseda"],"91337":[34.201,-118.537,"Reseda"],"91340":[34.288,-118.435,"San Fernando"],"91341":[34.282,-118.439,"San Fernando"],"91342":[34.305,-118.432,"Sylmar"],"91343":[34.237,-118.476,"North Hills"],"91344":[34.277,-118.499,"Granada Hills"],"91345":[34.262,-118.459,"Mission Hills"],"91346":[34.257,-118.467,"Mission Hills"],"91350":[34.434,-118.501,"Santa Clarita"],"91351":[34.426,-118.449,"Canyon Country"],"91352":[34.221,-118.37,"Sun Valley"],"91353":[34.218,-118.37,"Sun Valley"],"91354":[34.447,-118.537,"Valencia"],"91355":[34.398,-118.553,"Valencia"],"91356":[34.167,-118.541,"Tarzana"],"91357":[34.173,-118.554,"Tarzana"],"91358":[34.171,-118.838,"Thousand Oaks"],"91359":[34.146,-118.806,"Westlake Village"],"91360":[34.209,-118.874,"Thousand Oaks"],"91361":[34.147,-118.838,"Westlake Village"],"91362":[34.195,-118.823,"Thousand Oaks"],"91363":[34.14,-118.8,"Thousand Oaks"],"91364":[34.156,-118.6,"Woodland Hills"],"91365":[34.168,-118.606,"Woodland Hills"],"91367":[34.177,-118.616,"Woodland Hills"],"91371":[34.168,-118.606,"Woodland Hills"],"91372":[34.158,-118.638,"Calabasas"],"91376":[34.136,-118.775,"Agoura Hills"],"91377":[34.185,-118.767,"Oak Park"],"91380":[34.392,-118.543,"Santa Clarita"],"91381":[34.377,-118.613,"Stevenson Ranch"],"91382":[34.392,-118.543,"Santa Clarita"],"91383":[34.392,-118.543,"Santa Clarita"],"91384":[34.483,-118.625,"Castaic"],"91385":[34.444,-118.609,"Valencia"],"91386":[34.423,-118.472,"Canyon Country"],"91387":[34.413,-118.426,"Canyon Country"],"91388":[34.2,-118.47,"Pacific Tel"],"91390":[34.468,-118.526,"Santa Clarita"],"91392":[34.308,-118.449,"Sylmar"],"91393":[34.236,-118.485,"North Hills"],"91394":[34.265,-118.523,"Granada Hills"],"91395":[34.257,-118.467,"Mission Hills"],"91396":[34.213,-118.572,"Winnetka"],"91399":[34.16,-118.6,"Lockheed Corp"],"91401":[34.18,-118.432,"Van Nuys"],"91402":[34.226,-118.447,"Panorama City"],"91403":[34.151,-118.46,"Sherman Oaks"],"91404":[34.187,-118.449,"Van Nuys"],"91405":[34.2,-118.446,"Van Nuys"],"91406":[34.201,-118.487,"Van Nuys"],"91407":[34.187,-118.449,"Van Nuys"],"91408":[34.187,-118.449,"Van Nuys"],"91409":[34.187,-118.449,"Van Nuys"],"91410":[34.187,-118.449,"Van Nuys"],"91411":[34.178,-118.457,"Van Nuys"],"91412":[34.225,-118.45,"Panorama City"],"91413":[34.151,-118.449,"Sherman Oaks"],"91416":[34.159,-118.501,"Encino"],"91423":[34.153,-118.432,"Sherman Oaks"],"91426":[34.159,-118.501,"Encino"],"91436":[34.151,-118.488,"Encino"],"91470":[34.187,-118.449,"Van Nuys"],"91482":[34.187,-118.449,"Van Nuys"],"91495":[34.151,-118.449,"Sherman Oaks"],"91496":[34.187,-118.449,"Van Nuys"],"91497":[34.2,-118.47,"Southern California Gas Comp"],"91499":[34.187,-118.449,"Van Nuys"],"91501":[34.186,-118.301,"Burbank"],"91502":[34.175,-118.306,"Burbank"],"91503":[34.181,-118.309,"Burbank"],"91504":[34.2,-118.326,"Burbank"],"91505":[34.169,-118.344,"Burbank"],"91506":[34.172,-118.323,"Burbank"],"91507":[34.181,-118.309,"Burbank"],"91508":[34.181,-118.309,"Burbank"],"91510":[34.181,-118.309,"Burbank"],"91521":[34.181,-118.309,"Burbank"],"91522":[34.181,-118.309,"Burbank"],"91523":[34.181,-118.309,"Burbank"],"91526":[34.181,-118.309,"Burbank"],"91601":[34.169,-118.371,"North Hollywood"],"91602":[34.151,-118.366,"North Hollywood"],"91603":[34.172,-118.379,"North Hollywood"],"91604":[34.143,-118.391,"Studio City"],"91605":[34.206,-118.4,"North Hollywood"],"91606":[34.187,-118.386,"North Hollywood"],"91607":[34.167,-118.399,"Valley Village"],"91608":[34.138,-118.353,"Universal City"],"91609":[34.172,-118.379,"North Hollywood"],"91610":[33.787,-118.299,"Toluca Lake"],"91611":[34.172,-118.379,"North Hollywood"],"91612":[34.172,-118.379,"North Hollywood"],"91614":[34.149,-118.397,"Studio City"],"91615":[34.172,-118.379,"North Hollywood"],"91616":[34.172,-118.379,"North Hollywood"],"91617":[34.165,-118.397,"Valley Village"],"91618":[34.172,-118.379,"North Hollywood"],"91701":[34.138,-117.6,"Rancho Cucamonga"],"91702":[34.125,-117.903,"Azusa"],"91706":[34.096,-117.968,"Baldwin Park"],"91708":[33.954,-117.64,"Chino"],"91709":[33.98,-117.731,"Chino Hills"],"91710":[34.013,-117.684,"Chino"],"91711":[34.109,-117.718,"Claremont"],"91714":[34.02,-117.959,"City Of Industry"],"91715":[34.02,-117.959,"City Of Industry"],"91716":[34.02,-117.959,"City Of Industry"],"91722":[34.097,-117.906,"Covina"],"91723":[34.086,-117.884,"Covina"],"91724":[34.094,-117.856,"Covina"],"91729":[34.106,-117.593,"Rancho Cucamonga"],"91730":[34.107,-117.594,"Rancho Cucamonga"],"91731":[34.079,-118.037,"El Monte"],"91732":[34.071,-118.015,"El Monte"],"91733":[34.056,-118.044,"South El Monte"],"91734":[34.069,-118.028,"El Monte"],"91735":[34.069,-118.028,"El Monte"],"91737":[34.147,-117.58,"Rancho Cucamonga"],"91739":[34.17,-117.518,"Rancho Cucamonga"],"91740":[34.129,-117.855,"Glendora"],"91741":[34.154,-117.844,"Glendora"],"91743":[34.065,-117.586,"Guasti"],"91744":[34.029,-117.937,"La Puente"],"91745":[33.998,-117.965,"Hacienda Heights"],"91746":[34.044,-117.986,"La Puente"],"91747":[34.02,-117.95,"La Puente"],"91748":[33.982,-117.897,"Rowland Heights"],"91749":[34.02,-117.95,"La Puente"],"91750":[34.116,-117.771,"La Verne"],"91752":[33.994,-117.524,"Mira Loma"],"91754":[34.053,-118.127,"Monterey Park"],"91755":[34.048,-118.115,"Monterey Park"],"91756":[34.063,-118.123,"Monterey Park"],"91758":[34.063,-117.651,"Ontario"],"91759":[33.787,-118.299,"Mt Baldy"],"91761":[34.032,-117.619,"Ontario"],"91762":[34.058,-117.666,"Ontario"],"91763":[34.073,-117.699,"Montclair"],"91764":[34.076,-117.625,"Ontario"],"91765":[34.007,-117.81,"Diamond Bar"],"91766":[34.042,-117.757,"Pomona"],"91767":[34.081,-117.736,"Pomona"],"91768":[34.066,-117.776,"Pomona"],"91769":[34.055,-117.752,"Pomona"],"91770":[34.066,-118.085,"Rosemead"],"91771":[34.081,-118.073,"Rosemead"],"91772":[34.081,-118.073,"Rosemead"],"91773":[34.102,-117.817,"San Dimas"],"91775":[34.115,-118.086,"San Gabriel"],"91776":[34.089,-118.096,"San Gabriel"],"91778":[34.096,-118.106,"San Gabriel"],"91780":[34.102,-118.054,"Temple City"],"91784":[34.141,-117.658,"Upland"],"91785":[34.114,-117.658,"Upland"],"91786":[34.114,-117.658,"Upland"],"91788":[34.02,-117.865,"Walnut"],"91789":[34.018,-117.855,"Walnut"],"91790":[34.067,-117.937,"West Covina"],"91791":[34.065,-117.898,"West Covina"],"91792":[34.023,-117.897,"West Covina"],"91793":[34.069,-117.939,"West Covina"],"91795":[34.02,-117.85,"Walnut"],"91797":[34.08,-117.96,"Pomona"],"91798":[34.06,-117.61,"Ontario"],"91799":[34.05,-117.75,"Focus On The Family"],"91801":[34.091,-118.129,"Alhambra"],"91802":[34.095,-118.127,"Alhambra"],"91803":[34.075,-118.143,"Alhambra"],"91804":[34.095,-118.127,"Alhambra"],"91841":[34.09,-118.12,"Alhambra"],"91896":[34.095,-118.127,"Alhambra"],"91899":[34.095,-118.127,"Alhambra"],"91901":[32.828,-116.754,"Alpine"],"91902":[32.667,-117.022,"Bonita"],"91903":[32.835,-116.766,"Alpine"],"91905":[32.672,-116.32,"Boulevard"],"91906":[32.66,-116.49,"Campo"],"91908":[32.658,-117.03,"Bonita"],"91909":[32.64,-117.084,"Chula Vista"],"91910":[32.637,-117.068,"Chula Vista"],"91911":[32.608,-117.056,"Chula Vista"],"91912":[32.64,-117.084,"Chula Vista"],"91913":[32.651,-116.985,"Chula Vista"],"91914":[32.659,-116.965,"Chula Vista"],"91915":[32.632,-116.941,"Chula Vista"],"91916":[32.873,-116.603,"Descanso"],"91917":[32.615,-116.728,"Dulzura"],"91921":[32.64,-117.084,"Chula Vista"],"91931":[32.85,-116.558,"Guatay"],"91932":[32.578,-117.115,"Imperial Beach"],"91933":[32.584,-117.113,"Imperial Beach"],"91934":[32.625,-116.195,"Jacumba"],"91935":[32.716,-116.832,"Jamul"],"91941":[32.76,-117.011,"La Mesa"],"91942":[32.783,-117.019,"La Mesa"],"91943":[32.768,-117.023,"La Mesa"],"91944":[32.768,-117.023,"La Mesa"],"91945":[32.733,-117.033,"Lemon Grove"],"91946":[32.743,-117.031,"Lemon Grove"],"91947":[32.66,-117.07,"Lincoln Acres"],"91948":[32.868,-116.421,"Mount Laguna"],"91950":[32.675,-117.09,"National City"],"91951":[32.678,-117.099,"National City"],"91962":[32.835,-116.513,"Pine Valley"],"91963":[32.62,-116.604,"Potrero"],"91976":[32.745,-116.999,"Spring Valley"],"91977":[32.724,-116.998,"Spring Valley"],"91978":[32.733,-116.96,"Spring Valley"],"91979":[32.745,-116.999,"Spring Valley"],"91980":[32.589,-116.619,"Tecate"],"91987":[32.577,-116.627,"Tecate"],"91990":[32.6,-116.61,"Potrero"],"92003":[33.294,-117.19,"Bonsall"],"92004":[33.239,-116.351,"Borrego Springs"],"92007":[33.023,-117.275,"Cardiff By The Sea"],"92008":[33.16,-117.325,"Carlsbad"],"92009":[33.095,-117.262,"Carlsbad"],"92010":[33.164,-117.301,"Carlsbad"],"92011":[33.107,-117.294,"Carlsbad"],"92013":[33.158,-117.351,"Carlsbad"],"92014":[32.967,-117.249,"Del Mar"],"92018":[33.158,-117.351,"Carlsbad"],"92019":[32.778,-116.919,"El Cajon"],"92020":[32.793,-116.966,"El Cajon"],"92021":[32.818,-116.922,"El Cajon"],"92022":[32.795,-116.963,"El Cajon"],"92023":[33.036,-117.292,"Encinitas"],"92024":[33.053,-117.269,"Encinitas"],"92025":[33.11,-117.07,"Escondido"],"92026":[33.16,-117.098,"Escondido"],"92027":[33.139,-117.052,"Escondido"],"92028":[33.369,-117.229,"Fallbrook"],"92029":[33.09,-117.113,"Escondido"],"92030":[33.119,-117.086,"Escondido"],"92033":[33.119,-117.086,"Escondido"],"92036":[33.053,-116.566,"Julian"],"92037":[32.846,-117.252,"La Jolla"],"92038":[32.847,-117.274,"La Jolla"],"92039":[32.847,-117.274,"La Jolla"],"92040":[32.856,-116.92,"Lakeside"],"92046":[33.119,-117.086,"Escondido"],"92049":[33.196,-117.379,"Oceanside"],"92051":[33.196,-117.379,"Oceanside"],"92052":[33.196,-117.379,"Oceanside"],"92054":[33.207,-117.357,"Oceanside"],"92055":[33.243,-117.377,"Camp Pendleton"],"92056":[33.197,-117.283,"Oceanside"],"92057":[33.241,-117.302,"Oceanside"],"92058":[33.196,-117.379,"Oceanside"],"92059":[33.378,-117.072,"Pala"],"92060":[33.323,-116.879,"Palomar Mountain"],"92061":[33.306,-116.96,"Pauma Valley"],"92064":[32.976,-117.04,"Poway"],"92065":[33.029,-116.853,"Ramona"],"92066":[33.21,-116.517,"Ranchita"],"92067":[33.005,-117.216,"Rancho Santa Fe"],"92068":[33.232,-117.324,"San Luis Rey"],"92069":[33.144,-117.17,"San Marcos"],"92070":[33.148,-116.696,"Santa Ysabel"],"92071":[32.849,-116.986,"Santee"],"92072":[32.838,-116.974,"Santee"],"92074":[32.963,-117.036,"Poway"],"92075":[32.994,-117.26,"Solana Beach"],"92078":[33.119,-117.185,"San Marcos"],"92079":[33.143,-117.166,"San Marcos"],"92081":[33.164,-117.24,"Vista"],"92082":[33.249,-117.012,"Valley Center"],"92083":[33.198,-117.248,"Vista"],"92084":[33.213,-117.224,"Vista"],"92085":[33.2,-117.243,"Vista"],"92086":[33.31,-116.653,"Warner Springs"],"92088":[33.376,-117.251,"Fallbrook"],"92090":[32.79,-116.96,"El Cajon"],"92091":[32.962,-117.046,"Rancho Santa Fe"],"92092":[32.847,-117.274,"La Jolla"],"92093":[32.847,-117.274,"La Jolla"],"92096":[33.143,-117.166,"San Marcos"],"92101":[32.718,-117.159,"San Diego"],"92102":[32.714,-117.122,"San Diego"],"92103":[32.747,-117.164,"San Diego"],"92104":[32.745,-117.127,"San Diego"],"92105":[32.742,-117.095,"San Diego"],"92106":[32.727,-117.227,"San Diego"],"92107":[32.742,-117.243,"San Diego"],"92108":[32.778,-117.133,"San Diego"],"92109":[32.797,-117.24,"San Diego"],"92110":[32.764,-117.203,"San Diego"],"92111":[32.797,-117.171,"San Diego"],"92112":[32.715,-117.157,"San Diego"],"92113":[32.697,-117.115,"San Diego"],"92114":[32.706,-117.052,"San Diego"],"92115":[32.761,-117.072,"San Diego"],"92116":[32.762,-117.124,"San Diego"],"92117":[32.824,-117.197,"San Diego"],"92118":[32.681,-117.17,"Coronado"],"92119":[32.804,-117.026,"San Diego"],"92120":[32.796,-117.071,"San Diego"],"92121":[32.892,-117.204,"San Diego"],"92122":[32.858,-117.212,"San Diego"],"92123":[32.797,-117.139,"San Diego"],"92124":[32.82,-117.099,"San Diego"],"92126":[32.916,-117.14,"San Diego"],"92127":[33.028,-117.086,"San Diego"],"92128":[33.007,-117.069,"San Diego"],"92129":[32.965,-117.121,"San Diego"],"92130":[32.956,-117.225,"San Diego"],"92131":[32.912,-117.09,"San Diego"],"92132":[32.644,-117.138,"San Diego"],"92133":[32.72,-117.21,"San Diego"],"92134":[32.724,-117.147,"San Diego"],"92135":[32.715,-117.157,"San Diego"],"92136":[32.683,-117.122,"San Diego"],"92137":[32.854,-117.12,"San Diego"],"92138":[32.715,-117.157,"San Diego"],"92139":[32.681,-117.047,"San Diego"],"92140":[32.743,-117.2,"San Diego"],"92142":[32.715,-117.157,"San Diego"],"92143":[33.255,-116.566,"San Ysidro"],"92145":[32.889,-117.1,"San Diego"],"92147":[32.715,-117.157,"San Diego"],"92149":[32.715,-117.157,"San Diego"],"92150":[32.715,-117.157,"San Diego"],"92152":[32.715,-117.157,"San Diego"],"92153":[32.715,-117.157,"San Diego"],"92154":[32.575,-117.071,"San Diego"],"92155":[32.672,-117.166,"San Diego"],"92158":[32.715,-117.157,"San Diego"],"92159":[32.715,-117.157,"San Diego"],"92160":[32.715,-117.157,"San Diego"],"92161":[32.872,-117.229,"San Diego"],"92162":[32.71,-117.12,"San Diego"],"92163":[32.715,-117.157,"San Diego"],"92164":[32.74,-117.12,"San Diego"],"92165":[32.715,-117.157,"San Diego"],"92166":[32.715,-117.157,"San Diego"],"92167":[32.715,-117.157,"San Diego"],"92168":[32.715,-117.157,"San Diego"],"92169":[32.715,-117.157,"San Diego"],"92170":[32.715,-117.157,"San Diego"],"92171":[32.715,-117.157,"San Diego"],"92172":[32.715,-117.157,"San Diego"],"92173":[32.563,-117.043,"San Ysidro"],"92174":[32.715,-117.157,"San Diego"],"92175":[32.715,-117.157,"San Diego"],"92176":[32.715,-117.157,"San Diego"],"92177":[32.715,-117.157,"San Diego"],"92178":[32.686,-117.183,"Coronado"],"92179":[32.715,-117.157,"San Diego"],"92182":[32.775,-117.076,"San Diego"],"92184":[32.71,-117.16,"San Diego"],"92186":[32.715,-117.157,"San Diego"],"92187":[32.715,-117.157,"San Diego"],"92190":[32.715,-117.157,"San Diego"],"92191":[32.715,-117.157,"San Diego"],"92192":[32.715,-117.157,"San Diego"],"92193":[32.715,-117.157,"San Diego"],"92194":[32.8,-117.13,"San Diego"],"92195":[32.715,-117.157,"San Diego"],"92196":[32.715,-117.157,"San Diego"],"92197":[32.715,-117.157,"San Diego"],"92198":[32.715,-117.157,"San Diego"],"92199":[32.752,-117.192,"San Diego"],"92201":[33.721,-116.217,"Indio"],"92202":[33.753,-116.056,"Indio"],"92203":[33.753,-116.268,"Indio"],"92210":[33.716,-116.338,"Indian Wells"],"92211":[33.764,-116.34,"Palm Desert"],"92220":[33.928,-116.89,"Banning"],"92223":[33.95,-116.97,"Beaumont"],"92227":[32.979,-115.53,"Brawley"],"92230":[33.909,-116.774,"Cabazon"],"92231":[32.683,-115.503,"Calexico"],"92232":[32.679,-115.499,"Calexico"],"92233":[33.167,-115.511,"Calipatria"],"92234":[33.81,-116.466,"Cathedral City"],"92235":[33.78,-116.465,"Cathedral City"],"92236":[33.675,-116.177,"Coachella"],"92239":[33.809,-115.367,"Desert Center"],"92240":[33.953,-116.522,"Desert Hot Springs"],"92241":[33.876,-116.354,"Desert Hot Springs"],"92243":[32.789,-115.567,"El Centro"],"92244":[32.795,-115.693,"El Centro"],"92247":[33.674,-116.295,"La Quinta"],"92248":[33.674,-116.295,"La Quinta"],"92249":[32.722,-115.438,"Heber"],"92250":[32.81,-115.377,"Holtville"],"92251":[32.847,-115.573,"Imperial"],"92252":[34.15,-116.304,"Joshua Tree"],"92253":[33.669,-116.308,"La Quinta"],"92254":[33.545,-116.019,"Mecca"],"92255":[33.722,-116.377,"Palm Desert"],"92256":[34.061,-116.566,"Morongo Valley"],"92257":[33.378,-115.697,"Niland"],"92258":[33.923,-116.543,"North Palm Springs"],"92259":[32.739,-115.994,"Ocotillo"],"92260":[33.722,-116.377,"Palm Desert"],"92261":[33.66,-116.408,"Palm Desert"],"92262":[33.841,-116.535,"Palm Springs"],"92263":[33.761,-116.536,"Palm Springs"],"92264":[33.802,-116.517,"Palm Springs"],"92268":[34.189,-116.505,"Pioneertown"],"92270":[33.764,-116.422,"Rancho Mirage"],"92273":[32.794,-115.695,"Seeley"],"92274":[33.558,-116.157,"Thermal"],"92275":[33.309,-115.958,"Salton City"],"92276":[33.808,-116.371,"Thousand Palms"],"92277":[34.145,-116.06,"Twentynine Palms"],"92278":[34.238,-116.06,"Twentynine Palms"],"92281":[33.038,-115.591,"Westmorland"],"92282":[33.989,-116.657,"Whitewater"],"92284":[34.156,-116.431,"Yucca Valley"],"92285":[34.31,-116.524,"Landers"],"92286":[34.18,-116.35,"Yucca Valley"],"92292":[33.83,-116.54,"Palm Springs"],"92301":[34.584,-117.424,"Adelanto"],"92304":[34.558,-115.744,"Amboy"],"92305":[34.153,-116.948,"Angelus Oaks"],"92307":[34.529,-117.213,"Apple Valley"],"92308":[34.47,-117.193,"Apple Valley"],"92309":[35.361,-116.064,"Baker"],"92310":[35.263,-116.697,"Fort Irwin"],"92311":[34.891,-117.039,"Barstow"],"92312":[34.899,-117.023,"Barstow"],"92313":[34.031,-117.313,"Grand Terrace"],"92314":[34.261,-116.813,"Big Bear City"],"92315":[34.235,-116.905,"Big Bear Lake"],"92316":[34.066,-117.399,"Bloomington"],"92317":[34.211,-117.08,"Blue Jay"],"92318":[34.048,-117.231,"Bryn Mawr"],"92320":[33.995,-117.043,"Calimesa"],"92321":[34.255,-117.153,"Cedar Glen"],"92322":[34.254,-117.326,"Cedarpines Park"],"92324":[34.032,-117.287,"Colton"],"92325":[34.243,-117.281,"Crestline"],"92326":[34.24,-117.2,"Crest Park"],"92327":[34.867,-116.888,"Daggett"],"92329":[34.426,-117.572,"Phelan"],"92331":[34.092,-117.461,"Fontana"],"92332":[34.588,-115.577,"Essex"],"92333":[34.258,-116.951,"Fawnskin"],"92334":[34.092,-117.435,"Fontana"],"92335":[34.079,-117.455,"Fontana"],"92336":[34.117,-117.438,"Fontana"],"92337":[34.05,-117.471,"Fontana"],"92338":[34.721,-116.16,"Ludlow"],"92339":[34.094,-116.936,"Forest Falls"],"92340":[34.426,-117.301,"Hesperia"],"92341":[34.235,-117.066,"Green Valley Lake"],"92342":[34.75,-117.337,"Helendale"],"92344":[34.424,-117.407,"Hesperia"],"92345":[34.422,-117.302,"Hesperia"],"92346":[34.128,-117.209,"Highland"],"92347":[34.928,-117.181,"Hinkley"],"92350":[34.048,-117.261,"Loma Linda"],"92352":[34.261,-117.202,"Lake Arrowhead"],"92354":[34.053,-117.251,"Loma Linda"],"92356":[34.447,-116.919,"Lucerne Valley"],"92357":[34.048,-117.261,"Loma Linda"],"92358":[34.256,-117.519,"Lytle Creek"],"92359":[34.077,-117.113,"Mentone"],"92365":[34.885,-116.746,"Newberry Springs"],"92368":[34.618,-117.333,"Oro Grande"],"92369":[34.136,-117.224,"Patton"],"92371":[34.445,-117.52,"Phelan"],"92372":[34.443,-117.64,"Pinon Hills"],"92373":[34.04,-117.18,"Redlands"],"92374":[34.065,-117.167,"Redlands"],"92375":[34.056,-117.183,"Redlands"],"92376":[34.113,-117.377,"Rialto"],"92377":[34.156,-117.404,"Rialto"],"92378":[34.23,-117.225,"Rimforest"],"92382":[34.21,-117.111,"Running Springs"],"92385":[34.235,-117.179,"Skyforest"],"92386":[34.237,-116.828,"Sugarloaf"],"92391":[34.238,-117.235,"Twin Peaks"],"92392":[34.48,-117.408,"Victorville"],"92393":[34.536,-117.291,"Victorville"],"92394":[34.556,-117.353,"Victorville"],"92395":[34.502,-117.294,"Victorville"],"92397":[34.363,-117.625,"Wrightwood"],"92398":[34.905,-116.82,"Yermo"],"92399":[34.028,-117.049,"Yucaipa"],"92401":[34.111,-117.29,"San Bernardino"],"92402":[34.108,-117.29,"San Bernardino"],"92403":[34.108,-117.29,"San Bernardino"],"92404":[34.143,-117.261,"San Bernardino"],"92405":[34.145,-117.301,"San Bernardino"],"92406":[34.108,-117.29,"San Bernardino"],"92407":[34.217,-117.391,"San Bernardino"],"92408":[34.083,-117.271,"San Bernardino"],"92410":[34.107,-117.297,"San Bernardino"],"92411":[34.121,-117.317,"San Bernardino"],"92412":[34.08,-117.26,"San Bernardino"],"92413":[34.108,-117.29,"San Bernardino"],"92414":[34.18,-117.26,"San Bernardino"],"92415":[34.108,-117.29,"San Bernardino"],"92418":[34.108,-117.29,"San Bernardino"],"92423":[34.108,-117.29,"San Bernardino"],"92424":[34.14,-117.3,"San Bernardino"],"92427":[34.108,-117.29,"San Bernardino"],"92501":[33.992,-117.369,"Riverside"],"92502":[33.953,-117.396,"Riverside"],"92503":[33.921,-117.459,"Riverside"],"92504":[33.931,-117.412,"Riverside"],"92505":[33.923,-117.487,"Riverside"],"92506":[33.946,-117.376,"Riverside"],"92507":[33.976,-117.339,"Riverside"],"92508":[33.89,-117.304,"Riverside"],"92509":[34.003,-117.445,"Riverside"],"92513":[33.953,-117.396,"Riverside"],"92514":[33.953,-117.396,"Riverside"],"92515":[33.953,-117.396,"Riverside"],"92516":[33.953,-117.396,"Riverside"],"92517":[33.953,-117.396,"Riverside"],"92518":[33.953,-117.396,"March Air Reserve Base"],"92519":[33.953,-117.396,"Riverside"],"92521":[33.953,-117.396,"Riverside"],"92522":[33.953,-117.396,"Riverside"],"92530":[33.66,-117.349,"Lake Elsinore"],"92531":[33.668,-117.327,"Lake Elsinore"],"92532":[33.693,-117.303,"Lake Elsinore"],"92536":[33.447,-116.8,"Aguanga"],"92539":[33.569,-116.713,"Anza"],"92543":[33.742,-116.973,"Hemet"],"92544":[33.739,-116.924,"Hemet"],"92545":[33.74,-117.015,"Hemet"],"92546":[33.748,-116.973,"Hemet"],"92548":[33.745,-117.112,"Homeland"],"92549":[33.73,-116.711,"Idyllwild"],"92551":[33.881,-117.226,"Moreno Valley"],"92552":[33.938,-117.231,"Moreno Valley"],"92553":[33.916,-117.235,"Moreno Valley"],"92554":[33.938,-117.231,"Moreno Valley"],"92555":[33.938,-117.185,"Moreno Valley"],"92556":[33.938,-117.231,"Moreno Valley"],"92557":[33.955,-117.246,"Moreno Valley"],"92561":[33.704,-116.726,"Mountain Center"],"92562":[33.563,-117.274,"Murrieta"],"92563":[33.569,-117.178,"Murrieta"],"92564":[33.554,-117.214,"Murrieta"],"92567":[33.812,-117.105,"Nuevo"],"92570":[33.785,-117.317,"Perris"],"92571":[33.811,-117.218,"Perris"],"92572":[33.782,-117.229,"Perris"],"92581":[33.784,-116.959,"San Jacinto"],"92582":[33.788,-116.982,"San Jacinto"],"92583":[33.797,-116.932,"San Jacinto"],"92584":[33.665,-117.174,"Menifee"],"92585":[33.747,-117.172,"Sun City"],"92586":[33.704,-117.197,"Sun City"],"92587":[33.707,-117.245,"Sun City"],"92589":[33.494,-117.148,"Temecula"],"92590":[33.49,-117.182,"Temecula"],"92591":[33.522,-117.129,"Temecula"],"92592":[33.498,-117.096,"Temecula"],"92593":[33.494,-117.148,"Temecula"],"92595":[33.602,-117.264,"Wildomar"],"92596":[33.624,-117.088,"Winchester"],"92599":[33.782,-117.229,"Perris"],"92602":[33.742,-117.747,"Irvine"],"92603":[33.624,-117.794,"Irvine"],"92604":[33.69,-117.787,"Irvine"],"92605":[33.715,-118.008,"Huntington Beach"],"92606":[33.695,-117.822,"Irvine"],"92607":[33.527,-117.712,"Laguna Niguel"],"92609":[33.624,-117.691,"El Toro"],"92610":[33.675,-117.665,"Foothill Ranch"],"92612":[33.661,-117.826,"Irvine"],"92614":[33.683,-117.83,"Irvine"],"92615":[33.657,-117.97,"Huntington Beach"],"92616":[33.652,-117.836,"Irvine"],"92617":[33.642,-117.842,"Irvine"],"92618":[33.707,-117.705,"Irvine"],"92619":[33.671,-117.764,"Irvine"],"92620":[33.701,-117.756,"Irvine"],"92623":[33.694,-117.813,"Irvine"],"92624":[33.46,-117.663,"Capistrano Beach"],"92625":[33.602,-117.874,"Corona Del Mar"],"92626":[33.68,-117.909,"Costa Mesa"],"92627":[33.648,-117.915,"Costa Mesa"],"92628":[33.64,-117.916,"Costa Mesa"],"92629":[33.474,-117.696,"Dana Point"],"92630":[33.644,-117.687,"Lake Forest"],"92637":[33.61,-117.725,"Laguna Woods"],"92646":[33.665,-117.969,"Huntington Beach"],"92647":[33.721,-118.003,"Huntington Beach"],"92648":[33.677,-118.005,"Huntington Beach"],"92649":[33.718,-118.05,"Huntington Beach"],"92650":[33.679,-117.761,"East Irvine"],"92651":[33.543,-117.781,"Laguna Beach"],"92652":[33.543,-117.781,"Laguna Beach"],"92653":[33.592,-117.698,"Laguna Hills"],"92654":[33.604,-117.715,"Laguna Hills"],"92655":[33.745,-117.984,"Midway City"],"92656":[33.57,-117.709,"Aliso Viejo"],"92657":[33.594,-117.833,"Newport Coast"],"92658":[33.642,-117.863,"Newport Beach"],"92659":[33.622,-117.924,"Newport Beach"],"92660":[33.63,-117.868,"Newport Beach"],"92661":[33.605,-117.902,"Newport Beach"],"92662":[33.606,-117.893,"Newport Beach"],"92663":[33.621,-117.932,"Newport Beach"],"92672":[33.436,-117.623,"San Clemente"],"92673":[33.462,-117.638,"San Clemente"],"92674":[33.441,-117.621,"San Clemente"],"92675":[33.508,-117.656,"San Juan Capistrano"],"92676":[33.745,-117.615,"Silverado"],"92677":[33.514,-117.708,"Laguna Niguel"],"92678":[33.664,-117.59,"Trabuco Canyon"],"92679":[33.663,-117.59,"Trabuco Canyon"],"92683":[33.752,-117.994,"Westminster"],"92684":[33.763,-118.007,"Westminster"],"92685":[33.753,-117.995,"Westminster"],"92688":[33.651,-117.594,"Rancho Santa Margarita"],"92690":[33.612,-117.643,"Mission Viejo"],"92691":[33.613,-117.662,"Mission Viejo"],"92692":[33.614,-117.643,"Mission Viejo"],"92693":[33.498,-117.665,"San Juan Capistrano"],"92694":[33.547,-117.624,"Ladera Ranch"],"92697":[33.648,-117.839,"Irvine"],"92698":[33.669,-117.839,"Aliso Viejo"],"92701":[33.752,-117.854,"Santa Ana"],"92702":[33.736,-117.871,"Santa Ana"],"92703":[33.749,-117.907,"Santa Ana"],"92704":[33.725,-117.909,"Santa Ana"],"92705":[33.754,-117.792,"Santa Ana"],"92706":[33.769,-117.885,"Santa Ana"],"92707":[33.709,-117.87,"Santa Ana"],"92708":[33.71,-117.95,"Fountain Valley"],"92709":[33.67,-117.73,"El Toro Marine Corps Air Sta"],"92710":[33.7,-117.81,"Irvine"],"92711":[33.767,-117.804,"Santa Ana"],"92712":[33.75,-117.875,"Santa Ana"],"92725":[33.75,-117.86,"Santa Ana"],"92728":[33.714,-117.928,"Fountain Valley"],"92735":[33.719,-117.855,"Santa Ana"],"92780":[33.736,-117.823,"Tustin"],"92781":[33.737,-117.818,"Tustin"],"92782":[33.735,-117.787,"Tustin"],"92799":[33.721,-117.91,"Santa Ana"],"92801":[33.843,-117.955,"Anaheim"],"92802":[33.809,-117.923,"Anaheim"],"92803":[33.84,-117.939,"Anaheim"],"92804":[33.819,-117.973,"Anaheim"],"92805":[33.836,-117.909,"Anaheim"],"92806":[33.836,-117.868,"Anaheim"],"92807":[33.854,-117.786,"Anaheim"],"92808":[33.858,-117.751,"Anaheim"],"92809":[33.843,-117.939,"Anaheim"],"92811":[33.867,-117.831,"Atwood"],"92812":[33.817,-117.929,"Anaheim"],"92814":[33.817,-117.961,"Anaheim"],"92815":[33.832,-117.912,"Anaheim"],"92816":[33.84,-117.887,"Anaheim"],"92817":[33.851,-117.791,"Anaheim"],"92821":[33.929,-117.885,"Brea"],"92822":[33.919,-117.889,"Brea"],"92823":[33.923,-117.798,"Brea"],"92825":[33.836,-117.913,"Anaheim"],"92831":[33.887,-117.895,"Fullerton"],"92832":[33.868,-117.927,"Fullerton"],"92833":[33.877,-117.955,"Fullerton"],"92834":[33.877,-117.897,"Fullerton"],"92835":[33.899,-117.906,"Fullerton"],"92836":[33.876,-117.904,"Fullerton"],"92837":[33.87,-117.961,"Fullerton"],"92838":[33.893,-117.931,"Fullerton"],"92840":[33.787,-117.927,"Garden Grove"],"92841":[33.782,-117.977,"Garden Grove"],"92842":[33.778,-117.946,"Garden Grove"],"92843":[33.767,-117.929,"Garden Grove"],"92844":[33.766,-117.974,"Garden Grove"],"92845":[33.779,-118.027,"Garden Grove"],"92846":[33.788,-118.032,"Garden Grove"],"92850":[33.844,-117.956,"Anaheim"],"92856":[33.784,-117.844,"Orange"],"92857":[33.832,-117.849,"Orange"],"92859":[33.803,-117.787,"Orange"],"92860":[33.925,-117.552,"Norco"],"92861":[33.821,-117.81,"Villa Park"],"92862":[33.791,-117.714,"Orange"],"92863":[33.815,-117.827,"Orange"],"92864":[33.814,-117.831,"Orange"],"92865":[33.826,-117.851,"Orange"],"92866":[33.788,-117.842,"Orange"],"92867":[33.811,-117.849,"Orange"],"92868":[33.788,-117.878,"Orange"],"92869":[33.787,-117.793,"Orange"],"92870":[33.874,-117.854,"Placentia"],"92871":[33.883,-117.856,"Placentia"],"92877":[33.875,-117.566,"Corona"],"92878":[33.875,-117.566,"Corona"],"92879":[33.88,-117.535,"Corona"],"92880":[33.921,-117.61,"Corona"],"92881":[33.824,-117.52,"Corona"],"92882":[33.842,-117.604,"Corona"],"92883":[33.754,-117.474,"Corona"],"92885":[33.891,-117.822,"Yorba Linda"],"92886":[33.906,-117.787,"Yorba Linda"],"92887":[33.884,-117.73,"Yorba Linda"],"92899":[33.837,-117.871,"Anaheim"],"93001":[34.331,-119.358,"Ventura"],"93002":[34.278,-119.293,"Ventura"],"93003":[34.285,-119.222,"Ventura"],"93004":[34.279,-119.165,"Ventura"],"93005":[34.278,-119.293,"Ventura"],"93006":[34.278,-119.293,"Ventura"],"93007":[34.278,-119.293,"Ventura"],"93009":[34.356,-119.146,"Ventura"],"93010":[34.231,-119.046,"Camarillo"],"93011":[34.216,-119.038,"Camarillo"],"93012":[34.222,-118.987,"Camarillo"],"93013":[34.404,-119.518,"Carpinteria"],"93014":[34.399,-119.519,"Carpinteria"],"93015":[34.399,-118.918,"Fillmore"],"93016":[34.399,-118.918,"Fillmore"],"93020":[34.286,-118.882,"Moorpark"],"93021":[34.278,-118.877,"Moorpark"],"93022":[34.402,-119.298,"Oak View"],"93023":[34.445,-119.257,"Ojai"],"93024":[34.448,-119.243,"Ojai"],"93030":[34.214,-119.175,"Oxnard"],"93031":[34.032,-119.134,"Oxnard"],"93032":[34.197,-119.177,"Oxnard"],"93033":[34.169,-119.172,"Oxnard"],"93034":[34.032,-119.134,"Oxnard"],"93035":[34.182,-119.216,"Oxnard"],"93036":[34.235,-119.182,"Oxnard"],"93040":[34.435,-118.785,"Piru"],"93041":[34.163,-119.197,"Port Hueneme"],"93042":[34.113,-119.112,"Point Mugu Nawc"],"93043":[34.162,-119.207,"Port Hueneme Cbc Base"],"93044":[34.148,-119.195,"Port Hueneme"],"93060":[34.355,-119.071,"Santa Paula"],"93061":[34.354,-119.059,"Santa Paula"],"93062":[34.269,-118.781,"Simi Valley"],"93063":[34.305,-118.684,"Simi Valley"],"93064":[34.258,-118.711,"Brandeis"],"93065":[34.266,-118.765,"Simi Valley"],"93066":[34.28,-119.011,"Somis"],"93067":[34.421,-119.597,"Summerland"],"93093":[34.27,-118.71,"Simi Valley"],"93094":[34.269,-118.781,"Simi Valley"],"93099":[34.269,-118.781,"Simi Valley"],"93101":[34.42,-119.708,"Santa Barbara"],"93102":[34.421,-119.698,"Santa Barbara"],"93103":[34.429,-119.683,"Santa Barbara"],"93105":[34.437,-119.728,"Santa Barbara"],"93106":[34.433,-119.837,"Santa Barbara"],"93107":[34.422,-119.864,"Santa Barbara"],"93108":[34.438,-119.616,"Santa Barbara"],"93109":[34.404,-119.719,"Santa Barbara"],"93110":[34.442,-119.765,"Santa Barbara"],"93111":[34.445,-119.802,"Santa Barbara"],"93116":[34.436,-119.828,"Goleta"],"93117":[34.43,-119.861,"Goleta"],"93118":[34.436,-119.828,"Goleta"],"93120":[34.421,-119.698,"Santa Barbara"],"93121":[34.421,-119.698,"Santa Barbara"],"93130":[34.421,-119.698,"Santa Barbara"],"93140":[34.421,-119.698,"Santa Barbara"],"93150":[34.421,-119.698,"Santa Barbara"],"93160":[34.421,-119.698,"Santa Barbara"],"93190":[34.421,-119.698,"Santa Barbara"],"93199":[34.263,-119.849,"Goleta"],"93203":[35.197,-118.834,"Arvin"],"93205":[35.587,-118.485,"Bodfish"],"93206":[35.403,-119.466,"Buttonwillow"],"93220":[35.347,-118.872,"Edison"],"93222":[34.847,-119.157,"Pine Mountain Club"],"93224":[35.179,-119.541,"Fellows"],"93225":[34.827,-119.035,"Frazier Park"],"93226":[35.738,-118.717,"Glennville"],"93238":[35.755,-118.405,"Kernville"],"93240":[35.669,-118.457,"Lake Isabella"],"93241":[35.257,-118.912,"Lamont"],"93243":[34.882,-118.857,"Lebec"],"93251":[35.303,-119.637,"Mc Kittrick"],"93252":[35.059,-119.401,"Maricopa"],"93254":[34.997,-119.824,"New Cuyama"],"93255":[35.682,-118.096,"Onyx"],"93260":[35.813,-118.664,"Posey"],"93263":[35.497,-119.28,"Shafter"],"93268":[35.148,-119.456,"Taft"],"93276":[35.299,-119.358,"Tupman"],"93283":[35.639,-118.286,"Weldon"],"93285":[35.725,-118.456,"Wofford Heights"],"93287":[35.707,-118.844,"Woody"],"93301":[35.387,-119.017,"Bakersfield"],"93302":[35.373,-119.019,"Bakersfield"],"93303":[35.294,-118.905,"Bakersfield"],"93304":[35.34,-119.022,"Bakersfield"],"93305":[35.386,-118.986,"Bakersfield"],"93306":[35.387,-118.939,"Bakersfield"],"93307":[35.328,-118.984,"Bakersfield"],"93308":[35.424,-119.043,"Bakersfield"],"93309":[35.338,-119.063,"Bakersfield"],"93311":[35.304,-119.106,"Bakersfield"],"93312":[35.394,-119.121,"Bakersfield"],"93313":[35.297,-119.051,"Bakersfield"],"93314":[35.386,-119.17,"Bakersfield"],"93380":[35.294,-118.905,"Bakersfield"],"93381":[35.37,-119.01,"Bakersfield"],"93382":[35.25,-119,"Bakersfield"],"93383":[35.294,-118.905,"Bakersfield"],"93384":[35.373,-119.019,"Bakersfield"],"93385":[35.294,-118.905,"Bakersfield"],"93386":[35.294,-118.905,"Bakersfield"],"93387":[35.294,-118.905,"Bakersfield"],"93388":[35.294,-118.905,"Bakersfield"],"93389":[35.294,-118.905,"Bakersfield"],"93390":[35.294,-118.905,"Bakersfield"],"93427":[34.621,-120.192,"Buellton"],"93440":[34.746,-120.205,"Los Alamos"],"93441":[34.668,-120.115,"Los Olivos"],"93460":[34.624,-120.071,"Santa Ynez"],"93463":[34.649,-120.17,"Solvang"],"93464":[34.674,-120.112,"Solvang"],"93501":[35.048,-118.174,"Mojave"],"93502":[35.053,-118.174,"Mojave"],"93504":[35.187,-117.885,"California City"],"93505":[35.128,-117.965,"California City"],"93510":[34.483,-118.196,"Acton"],"93516":[35.004,-117.663,"Boron"],"93518":[35.37,-118.461,"Caliente"],"93519":[35.309,-117.968,"Cantil"],"93523":[34.926,-117.935,"Edwards"],"93524":[34.932,-117.907,"Edwards"],"93527":[35.64,-117.857,"Inyokern"],"93528":[35.371,-117.643,"Johannesburg"],"93531":[35.237,-118.608,"Keene"],"93532":[34.685,-118.544,"Lake Hughes"],"93534":[34.691,-118.149,"Lancaster"],"93535":[34.713,-117.878,"Lancaster"],"93536":[34.747,-118.369,"Lancaster"],"93539":[34.698,-118.137,"Lancaster"],"93542":[35.937,-117.907,"Little Lake"],"93543":[34.489,-117.971,"Littlerock"],"93544":[34.493,-117.754,"Llano"],"93550":[34.413,-118.092,"Palmdale"],"93551":[34.602,-118.231,"Palmdale"],"93552":[34.572,-118.023,"Palmdale"],"93553":[34.422,-117.906,"Pearblossom"],"93554":[35.387,-117.716,"Randsburg"],"93555":[35.623,-117.671,"Ridgecrest"],"93556":[35.623,-117.671,"Ridgecrest"],"93558":[35.348,-117.621,"Red Mountain"],"93560":[34.866,-118.341,"Rosamond"],"93561":[35.132,-118.449,"Tehachapi"],"93562":[35.748,-117.381,"Trona"],"93563":[34.397,-117.76,"Valyermo"],"93581":[35.132,-118.449,"Tehachapi"],"93584":[34.698,-118.137,"Lancaster"],"93586":[34.698,-118.137,"Lancaster"],"93590":[34.579,-118.117,"Palmdale"],"93591":[34.602,-117.812,"Palmdale"],"93592":[35.763,-117.373,"Trona"],"93596":[34.999,-117.65,"Boron"],"93599":[34.579,-118.117,"Palmdale"]};
+function milesFor(addr, override){
+  if(override>0) return {mi:Math.round(override), src:'entered'};
+  const m=String(addr||'').match(/\b(9\d{4})\b/g);
+  let z=null;
+  if(m){ for(const c of m.reverse()) if(ZIPS[c]){ z=c; break; } }
+  if(!z){ const a=String(addr||'').toLowerCase(); let best=null;
+    for(const [k,v] of Object.entries(ZIPS)){ const c=v[2].toLowerCase(); if(a.includes(c) && (!best || c.length>best[1].length)) best=[k,c]; }
+    if(best) z=best[0]; }
+  if(!z) return null;
+  const [la,lo,city]=ZIPS[z], [a1,o1]=PRICE.origin||ZIPS[PRICE.originZip], rad=x=>x*Math.PI/180;
+  const h=Math.sin(rad(la-a1)/2)**2+Math.cos(rad(a1))*Math.cos(rad(la))*Math.sin(rad(lo-o1)/2)**2;
+  const mi=2*3958.8*Math.asin(Math.sqrt(h))*PRICE.roadFactor;
+  return {mi:Math.max(1,Math.round(mi)), src:'zip', zip:z, city};
+}
+const tierIdx = n => n>=21 ? 2 : n>=11 ? 1 : 0;
+const money = (v, cents) => '$' + Number(v).toLocaleString('en-US',{minimumFractionDigits:cents?2:0,maximumFractionDigits:2});
+const m2 = v => '$' + Number(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const r2 = v => Math.round(v*100)/100;
+const unitPrice = (item,n) => item.tiers[tierIdx(n)];
+const customReason = Q => [Q.far?'over 36 ft':'', Q.heavy?(Q.w48pending?'48" weight not confirmed':'48" box 2,500 lb or more'):''].filter(Boolean).join(' · ');
+
+/* Pure pricing: state -> quote */
+function priceQuote(s){
+  const lines=[], extras=[];
+  let maxWt=0, maxWtLabel='';
+  let trees=0, boxTrees=0, needsCrane=false, contCount=0, expYd=0, bfYd=0;
+  for(const t of PRICE.trees){
+    const n=+s.trees[t.id]||0; if(!n) continue;
+    const each=unitPrice(t,n);
+    lines.push({k:'tree',id:t.id,label:`${n} × ${t.label} – set and plant`, amt:r2(n*each), qty:n, each});
+    trees+=n; boxTrees+=n; expYd+=n*t.exp; bfYd+=n*t.bf; if(t.crane) needsCrane=true;
+    const w = (t.id==='b48' && s.w48==='under') ? PRICE.w48Limit : t.wt[1];
+    if(w>maxWt){ maxWt=w; maxWtLabel=t.label; }
+  }
+  for(const c of PRICE.containers){
+    const n=+s.cont[c.id]||0; if(!n) continue;
+    const each=unitPrice(c,n);
+    lines.push({k:'cont',label:`${n} × ${c.label} – plant`, amt:r2(n*each), qty:n, each});
+    contCount+= c.id==='flat' ? n*16 : n;
+  }
+  // Single 48"/60" tree: mobilization price unless the rest of the job is $1,500 or more
+  for(const id of ['b48','b60']){
+    if((+s.trees[id]||0)!==1) continue;
+    const line=lines.find(l=>l.id===id);
+    const other=lines.filter(l=>l!==line).reduce((a,l)=>a+l.amt,0);
+    if(other<PRICE.singleOtherMin){ line.each=PRICE.single[id]; line.amt=PRICE.single[id]; line.label+=' (single tree, includes mobilization)'; line.single=true; }
+  }
+  const dist=Math.max(0,+s.distance||0);
+  const far = dist>PRICE.maxInstantFt;
+  const has48 = (+s.trees.b48||0)>0;
+  const heavy = has48 && s.w48!=='under';
+  const over = far || heavy;   // over = needs a custom quote
+  const carryFt = Math.max(0, Math.min(dist,PRICE.maxInstantFt)-PRICE.freeCarryFt);
+  const crane = s.crane || needsCrane;
+  if(boxTrees>0 && carryFt>0 && !over && !crane){
+    lines.push({k:'carry',label:`Hand carry ${r2(carryFt)} ft past the first 25 ft × ${boxTrees} tree${boxTrees>1?'s':''}`, amt:r2(carryFt*PRICE.carryPerFt*boxTrees)});
+  }
+  const subtotal = r2(lines.reduce((a,l)=>a+l.amt,0));
+  const equip = (crane && boxTrees>0 && !over) ? PRICE.crane : 0;
+  let standard = r2(subtotal+equip);
+  // extras
+  const ex=s.extras;
+  if(ex.drain && boxTrees) extras.push({k:'drain',label:`Tree inspection drain × ${boxTrees}`, amt:boxTrees*PRICE.drain});
+  const wantBf = ex.backfill;
+  if((ex.export||wantBf) && boxTrees){
+    const y=Math.max(PRICE.minYd, Math.ceil(expYd*4)/4);
+    extras.push({k:'export',label:`Soil export, est. ${y} yd @ $265`, amt:r2(y*PRICE.exportYd), yd:y});
+  }
+  if(wantBf && boxTrees){
+    const y=Math.max(PRICE.minYd, Math.ceil(bfYd*4)/4);
+    extras.push({k:'backfill',label:`Nutrient-rich soil backfill, est. ${y} yd @ $380`, amt:r2(y*PRICE.backfillYd), yd:y});
+  }
+  if(ex.arborist && boxTrees) extras.push({k:'arb',label:`Arborist inspection at 90 days (${boxTrees<=5?'1–5 trees':boxTrees+' trees'})`, amt: boxTrees<=5 ? PRICE.arborist : PRICE.arborist6});
+  if(ex.oversight && boxTrees) extras.push({k:'over',label:`Yearly tree oversight, quarterly inspections – ${boxTrees} tree${boxTrees>1?'s':''}`, amt:PRICE.oversight + (boxTrees-1)*PRICE.oversightAdd});
+  const extrasTotal=r2(extras.reduce((a,l)=>a+l.amt,0));
+  // job minimum applies to the whole job (planting + crane + extras)
+  const minAdj = (lines.length && !over) ? r2(Math.max(0, PRICE.minJob - (standard+extrasTotal))) : 0;
+  standard = r2(standard + minAdj);
+  const hasWork = lines.length>0;
+  let status='empty';
+  if(hasWork) status = over ? 'custom' : 'instant';
+  const mapRequired = hasWork && (far || (crane && boxTrees>0));
+  return {lines, extras, subtotal, equip, minAdj, standard, withExtras:r2(standard+extrasTotal), extrasTotal,
+    trees, boxTrees, contCount, crane: crane && boxTrees>0, maxWt, maxWtLabel, forcedCrane:needsCrane, over, far, heavy, has48, w48pending: has48 && !s.w48, dist, status, mapRequired,
+    deposit: r2(Math.min((standard+extrasTotal)*0.10, 1000))};
+}
+if (typeof module!=='undefined') module.exports={priceQuote,PRICE,unitPrice};
+</script>
+
+<script>
+/* ---------- UI ---------- */
+const $ = id => document.getElementById(id);
+const state = {w48:'', trees:{}, cont:{}, distance:0, crane:false,
+  extras:{drain:false, export:false, backfill:false, arborist:false, oversight:false}, map:null};
+
+function buildRows(){
+  const tb=$('treeTable').tBodies[0];
+  tb.innerHTML = PRICE.trees.map(t=>`<tr><td><span class="size">${t.label}</span><br><span class="tier">${PRICE.single[t.id]?`Single tree ${money(PRICE.single[t.id],1)} · `:''}${[['1–10',1],['11–20',11],['21+',21]].map(([k,n])=>`${k} ${money(unitPrice(t,n),1)}`).join(' · ')}</span><br><span class="tier wt">${t.id==='b48'?'Instant price: tree under 2,500 lb':`Approx. weight ${t.wt[0].toLocaleString()}–${t.wt[1].toLocaleString()} lb`}</span></td>
+    <td class="r"><span class="stepper"><button type="button" data-step="-1" data-t="trees" data-id="${t.id}" aria-label="One fewer ${t.label}">−</button><input type="number" min="0" step="1" id="q_${t.id}" data-t="trees" data-id="${t.id}" value="0" aria-label="${t.label} trees"><button type="button" data-step="1" data-t="trees" data-id="${t.id}" aria-label="One more ${t.label}">+</button></span></td>
+    <td class="r" id="e_${t.id}">${money(t.tiers[0])}</td><td class="r" id="l_${t.id}">–</td></tr>`).join('');
+  const cb=$('contTable').tBodies[0];
+  cb.innerHTML = PRICE.containers.map(c=>`<tr><td><span class="size">${c.label}</span><br><span class="tier">${[['1–10',1],['11–20',11],['21+',21]].map(([k,n])=>`${k} ${money(unitPrice(c,n),1)}`).join(' · ')}</span></td>
+    <td class="r"><span class="stepper"><button type="button" data-step="-1" data-t="cont" data-id="${c.id}" aria-label="One fewer ${c.label}">−</button><input type="number" min="0" step="1" id="q_${c.id}" data-t="cont" data-id="${c.id}" value="0" aria-label="${c.label} quantity"><button type="button" data-step="1" data-t="cont" data-id="${c.id}" aria-label="One more ${c.label}">+</button></span></td>
+    <td class="r" id="e_${c.id}">${money(c.tiers[0],1)}</td><td class="r" id="l_${c.id}">–</td></tr>`).join('');
+  const X=[
+    ['drain','Tree inspection drain','A pipe at the root ball so we can check and pull standing water.','$390 per tree'],
+    ['export','Soil export','Pit spoil hauled off site instead of spread around the planters.','$265 per yard'],
+    ['backfill','Nutrient-rich soil backfill','Amended soil around the root ball. Soil export comes with it.','$380 per yard'],
+    ['arborist','Arborist inspection at 90 days','Written report on pests and disease.','$450 for 1–5 trees · $650 for 6+'],
+    ['oversight','Yearly tree oversight','Quarterly inspections through the first year.','$1,500 first tree + $250 each additional'],
+  ];
+  $('extras').innerHTML = `<label class="chk premium"><input type="checkbox" id="x_all"><span><span class="t">Add all premium extras</span><br><span class="d">Checks every extra below. The final price updates to include them.</span></span></label>` + X.map(([k,t,d,p])=>`<label class="chk"><input type="checkbox" id="x_${k}" data-x="${k}"><span><span class="t">${t}</span><br><span class="d">${d}</span></span><span class="p">${p}</span></label>`).join('')
+    + `<div class="hint" id="exHint" style="margin-top:8px">Extras apply to box trees. For container beds, soil export and amended soil are priced per yard on site.</div>`;
+}
+
+function readInputs(){
+  for(const t of PRICE.trees) state.trees[t.id]=Math.max(0,Math.floor(+$('q_'+t.id).value||0));
+  for(const c of PRICE.containers) state.cont[c.id]=Math.max(0,Math.floor(+$('q_'+c.id).value||0));
+  state.distance=Math.max(0,+$('distance').value||0);
+  state.crane=$('crane').checked;
+  state.w48=$('w48').value;
+  for(const k in state.extras) state.extras[k]=$('x_'+k).checked;
+}
+
+let Q=null;
+function render(){
+  readInputs();
+  // backfill requires export
+  if(state.extras.backfill && !$('x_export').checked){ $('x_export').checked=true; state.extras.export=true; }
+  $('x_export').disabled = state.extras.backfill;
+  Q=priceQuote(state);
+  for(const t of PRICE.trees){const n=state.trees[t.id], ln=Q.lines.find(l=>l.id===t.id), e=ln?ln.each:unitPrice(t,n); $('e_'+t.id).textContent=m2(e); $('l_'+t.id).textContent=n?m2(n*e):'–';}
+  for(const c of PRICE.containers){const n=state.cont[c.id], e=unitPrice(c,n); $('e_'+c.id).textContent=m2(e); $('l_'+c.id).textContent=n?m2(n*e):'–';}
+  // crane
+  const cr=$('crane');
+  if(Q.forcedCrane){cr.checked=true;cr.disabled=true;} else cr.disabled=false;
+  $('cranePrice').textContent = Q.boxTrees ? (Q.over ? 'Quoted' : money(PRICE.crane)) : '';
+  const multi = Q.crane && Q.boxTrees>1;
+  $('distLabel').textContent = multi ? 'Distance from the street to the FURTHEST tree (feet)' : 'Distance from street (feet)';
+  // distance gauge
+  const d=state.distance, pct=Math.min(100,d/64*100);
+  $('pin').style.left=pct+'%';
+  $('siteStep').classList.toggle('over',Q.far);
+  // 48" weight
+  $('w48Box').hidden = !Q.has48;
+  $('w48Note').innerHTML = !Q.has48 ? '' : (state.w48==='under' ? `<div class="note ok">48" box under 2,500 lb: instant price.</div>` :
+    state.w48 ? `<div class="note stop"><b>48" box at 2,500 lb or more needs a custom quote.</b> Send it with the nursery tag weight and the site map.</div>` :
+    `<div class="note warn">Choose the 48" tree weight. Instant prices cover 48" box trees under 2,500 lb only.</div>`);
+  // mileage
+  const mi = milesFor($('address').value, +$('milesOverride').value||0); state.miles = mi;
+  $('mileNote').innerHTML = mi ? `<div class="note ok"><b>About ${mi.mi} mile${mi.mi===1?'':'s'} one way (${mi.mi*2} round trip) from Santa Ana 92705</b>${mi.src==='zip'?` to ${esc(mi.city)} ${mi.zip}`:' (entered)'}. Gas surcharge for the trip is added on the final invoice.</div>` :
+    ($('address').value.trim() ? `<div class="note warn">Add the ZIP code to the address, or enter the miles, so we can figure the gas surcharge.</div>` : '');
+  let dn='';
+  if(Q.far) dn=`<div class="note stop"><b>${d} ft is past our 36 ft instant-price limit.</b> Send it to us with the site map and we will price the carry or crane reach.</div>`;
+  else if(d>PRICE.freeCarryFt && Q.boxTrees && !Q.crane) dn=`<div class="note warn">First 25 ft of hand carry is included. The next ${r2(d-25)} ft adds ${m2(PRICE.carryPerFt)} per foot per tree.</div>`;
+  else if(d>0) dn=`<div class="note ok">Within reach. No carry charge.</div>`;
+  if(Q.crane && Q.boxTrees) dn += `<div class="note ${Q.far?'stop':'ok'}"><b>Crane pick:</b> heaviest tree ${esc(Q.maxWtLabel)} up to about ${Q.maxWt.toLocaleString()} lb, ${multi?'furthest tree':'set'} ${d||0} ft from the street.${multi?' With more than one tree, give the distance to the one furthest from the street.':''}</div>`;
+  $('distNote').innerHTML=dn;
+  $('mapReq').innerHTML = Q.mapRequired ? `<span class="req">Map required</span> for ${Q.far?'jobs past 36 ft':'crane jobs'}.` : 'Optional, but it helps us plan the day.';
+  // extras availability
+  ['drain','export','backfill','arborist','oversight'].forEach(k=>{ if(!Q.boxTrees){$('x_'+k).disabled=true;} else if(k!=='export'){$('x_'+k).disabled=false;} });
+  if(Q.boxTrees && !state.extras.backfill) $('x_export').disabled=false;
+  // ticket
+  $('tAddr').textContent = $('address').value.trim() || 'New planting job';
+  let st='';
+  if(Q.status==='instant') st = Q.mapRequired && !state.map ? `<span class="status warn">Priced · add the site map before sending</span>` : `<span class="status ok">Instant price</span>`;
+  if(Q.status==='custom') st=`<span class="status stop">Custom quote · ${customReason(Q)}</span>`;
+  $('tStatus').innerHTML=st;
+  const L=[];
+  if(!Q.lines.length) L.push(`<li class="x"><span>Add trees or containers to see the price.</span></li>`);
+  Q.lines.forEach(l=>L.push(`<li><span>${esc(l.label)}</span><span>${m2(l.amt)}</span></li>`));
+  if(Q.lines.length && (Q.equip||Q.over)){
+    L.push(`<li class="sub"><span>Planting subtotal</span><span>${m2(Q.subtotal)}</span></li>`);
+    if(Q.crane) L.push(`<li><span>Equipment – crane with operator</span><span>${Q.over?'Quoted':m2(Q.equip)}</span></li>`);
+    if(Q.crane) L.push(`<li class="x"><span>Crane pick: up to ~${Q.maxWt.toLocaleString()} lb at ${state.distance||0} ft${Q.boxTrees>1?' (furthest tree)':''}</span><span></span></li>`);
+  }
+  if(Q.minAdj) L.push(`<li><span>Minimum job charge ($2,000 minimum)</span><span>${m2(Q.minAdj)}</span></li>`);
+  if(Q.lines.length && state.miles) L.push(`<li class="x"><span>Gas surcharge: ${state.miles.mi} mi each way from Santa Ana 92705, added on the final invoice</span><span></span></li>`);
+  if(Q.extras.length){ L.push(`<li class="x"><span><b>Extras selected</b></span><span></span></li>`); Q.extras.forEach(l=>L.push(`<li class="x"><span>${esc(l.label)}</span><span>${m2(l.amt)}</span></li>`)); }
+  $('tLines').innerHTML=L.join('');
+  if(Q.over){ $('tStd').textContent='To quote'; $('tExt').textContent='To quote'; }
+  else { $('tStd').textContent=m2(Q.standard); $('tExt').textContent=m2(Q.withExtras); }
+  $('tExtK').textContent = Q.extras.length ? 'Final price with extras' : 'Final price';
+  const all=['drain','export','backfill','arborist','oversight'].every(k=>$('x_'+k).checked); $('x_all').checked=all; $('x_all').disabled=!Q.boxTrees;
+  $('tDeposit').textContent = (Q.status==='instant') ? `Deposit on approval: ${m2(Q.deposit)} (10% or $1,000, whichever is less).` : '';
+  $('send').textContent = Q.over ? 'Request a custom quote' : 'Send to Bark & Branch';
+  $('pdf').disabled = !Q.lines.length;
+}
+const esc = s => String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+buildRows();
+$('form').addEventListener('input', render);
+$('form').addEventListener('change', render);
+$('form').addEventListener('submit', e=>e.preventDefault());
+document.addEventListener('click', e=>{ if(e.target.id!=='x_all') return; const on=e.target.checked; ['drain','export','backfill','arborist','oversight'].forEach(k=>{$('x_'+k).checked=on;}); render(); }, true);
+document.addEventListener('click', e=>{
+  const b=e.target.closest('button[data-step]'); if(!b) return;
+  const inp=$('q_'+b.dataset.id); inp.value=Math.max(0,(+inp.value||0)+(+b.dataset.step)); render();
+});
+
+/* ---------- Site map image ---------- */
+const drop=$('drop'), file=$('mapFile');
+drop.addEventListener('click',()=>file.click());
+drop.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();file.click();}});
+drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('has');});
+drop.addEventListener('dragleave',()=>{ if(!state.map) drop.classList.remove('has');});
+drop.addEventListener('drop',e=>{e.preventDefault(); const f=e.dataTransfer.files[0]; if(f) takeImage(f);});
+file.addEventListener('change',()=>{ if(file.files[0]) takeImage(file.files[0]); });
+document.addEventListener('paste',e=>{ const it=[...(e.clipboardData?.items||[])].find(i=>i.type.startsWith('image/')); if(it) takeImage(it.getAsFile()); });
+
+async function takeImage(f){
+  if(!f.type.startsWith('image/')){ setMsg('That file is not an image. Use a screenshot (PNG or JPG).','err'); return; }
+  try{
+    const url=URL.createObjectURL(f);
+    const img=await new Promise((res,rej)=>{const i=new Image(); i.onload=()=>res(i); i.onerror=rej; i.src=url;});
+    // shrink until it fits comfortably in one saved record
+    let max=1400, q=0.8, data='';
+    for(let k=0;k<8;k++){
+      const sc=Math.min(1,max/Math.max(img.width,img.height));
+      const c=document.createElement('canvas'); c.width=Math.round(img.width*sc); c.height=Math.round(img.height*sc);
+      c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+      data=c.toDataURL('image/jpeg',q);
+      if(data.length<140000) break;
+      max=Math.round(max*0.85); q=Math.max(0.5,q-0.05);
+    }
+    URL.revokeObjectURL(url);
+    state.map={data, w:img.width, h:img.height, name:f.name||'site-map'};
+    $('dropInner').innerHTML=`<img src="${data}" alt="Site map you added"><b>Site map added.</b> Tap to replace.`;
+    drop.classList.add('has'); render();
+  }catch(err){ setMsg('Could not read that image. Try a PNG or JPG screenshot.','err'); }
+}
+
+function setMsg(t,cls){ const m=$('msg'); m.textContent=t; m.className='msg '+(cls||''); }
+
+/* ---------- Sending: Formspree emails it to Bark & Branch, where the Mac mini picks it up ---------- */
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mdeawqbe';
+const SEND_READY = !/REPLACE_WITH_FORM_ID/.test(FORMSPREE_ENDPOINT);
+const FALLBACK_EMAIL = 'palmer@barkandbranchlandscape.com';
+let sending = false, lastSent = null;
+
+function newRef(){
+  const now=new Date(), p=n=>String(n).padStart(2,'0');
+  const rnd=Math.random().toString(36).slice(2,4).toUpperCase().padEnd(2,'X');
+  return `BQ-${String(now.getFullYear()).slice(2)}${p(now.getMonth()+1)}${p(now.getDate())}-${p(now.getHours())}${p(now.getMinutes())}-${rnd}`;
+}
+async function sha16(s){
+  const buf=await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('').slice(0,16);
+}
+function b64url(bytes){
+  let bin=''; for(let i=0;i<bytes.length;i+=0x8000) bin+=String.fromCharCode.apply(null, bytes.subarray(i,i+0x8000));
+  return btoa(bin).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+// TAG.<first 16 hex of sha256>.<base64url>.END - the Mac mini checks the hash before trusting the block
+async function packBlock(tag, body){ return `${tag}.${await sha16(body)}.${body}.END`; }
+
+function snapshotQuote(ref){
+  const val=id=>$(id).value.trim();
+  return {v:1, ref, createdAt:new Date().toISOString(), client:val('client'), address:val('address'), broker:val('broker'),
+    brokerContact:val('brokerContact'), brokerPhone:val('brokerPhone'), brokerEmail:val('brokerEmail'), notes:val('notes'),
+    milesOneWay:state.miles?state.miles.mi:null, hasMap:!!state.map,
+    inputs:{trees:{...state.trees}, cont:{...state.cont}, distance:state.distance, crane:state.crane, w48:state.w48||'', extras:{...state.extras}},
+    quote:{status:Q.status, standard:Q.standard, withExtras:Q.withExtras, deposit:Q.deposit,
+      lines:Q.lines.map(l=>({label:l.label, amt:l.amt})), extras:Q.extras.map(l=>({label:l.label, amt:l.amt}))}};
+}
+function readableLines(){
+  const L=Q.lines.map(l=>`${l.label}: ${m2(l.amt)}`);
+  if(Q.equip) L.push(`Crane with operator: ${m2(Q.equip)}`);
+  if(Q.minAdj) L.push(`Minimum job charge: ${m2(Q.minAdj)}`);
+  Q.extras.forEach(l=>L.push(`${l.label}: ${m2(l.amt)}`));
+  if(!Q.over) L.push(`Final price: ${m2(Q.withExtras)}`);
+  return L.join('\n');
+}
+
+$('send').addEventListener('click', async()=>{
+  render();
+  if(sending) return;
+  if(!Q.lines.length){ setMsg('Add at least one tree or container first.','err'); return; }
+  if(!$('address').value.trim()){ setMsg('Add the job address so we know where it is.','err'); $('address').focus(); return; }
+  if(Q.has48 && !state.w48){ setMsg('Choose the 48" box tree weight first.','err'); $('w48').focus(); return; }
+  if(Q.mapRequired && !state.map){ setMsg(Q.far ? 'Add the site map. Jobs past 36 ft need it for pricing.' : 'Add the site map. Crane jobs need it to check the crane setup.','err'); drop.focus(); return; }
+  if(!SEND_READY){ setMsg(`Sending is not switched on yet. Download the quote PDF and email it to ${FALLBACK_EMAIL}.`,'err'); return; }
+  if(!(window.crypto && crypto.subtle)){ setMsg(`This browser cannot send the quote. Download the PDF and email it to ${FALLBACK_EMAIL}.`,'err'); return; }
+  const sig=JSON.stringify([$('address').value.trim(), state.trees, state.cont, state.distance, state.extras, !!state.map]);
+  if(lastSent && lastSent.sig===sig && !confirm(`This quote was already sent as ${lastSent.ref}. Send it again?`)) return;
+  sending=true; $('send').disabled=true; setMsg('Sending…');
+  const ref=newRef(), addr=$('address').value.trim(), em=$('brokerEmail').value.trim();
+  try{
+    const fd=new FormData();
+    fd.append('_subject', `Planting quote ${ref} - ${addr}`.slice(0,180));
+    if(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) fd.append('email', em);
+    fd.append('Quote', ref);
+    fd.append('Status', Q.over ? `Custom quote: ${customReason(Q)}` : `Instant price ${m2(Q.withExtras)}`);
+    fd.append('Job address', addr);
+    fd.append('Client', $('client').value.trim());
+    fd.append('Company', $('broker').value.trim());
+    fd.append('Contact', $('brokerContact').value.trim());
+    fd.append('Phone', $('brokerPhone').value.trim());
+    fd.append('Price lines', readableLines());
+    fd.append('Site notes', $('notes').value.trim());
+    fd.append('payload', await packBlock('BBQ1', b64url(new TextEncoder().encode(JSON.stringify(snapshotQuote(ref))))));
+    if(state.map) fd.append('site_map', await packBlock('BBMAP1', state.map.data.split(',')[1].replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')));
+    fd.append('_gotcha', $('hp').value);
+    const r=await fetch(FORMSPREE_ENDPOINT, {method:'POST', body:fd, headers:{'Accept':'application/json'}});
+    if(r.ok){
+      lastSent={sig, ref};
+      setMsg(Q.over ? `Request ${ref} sent. We will price it from the map and get back to you.` : `Quote ${ref} sent. We will confirm the planting date.`,'good');
+    } else if(r.status===429){
+      setMsg('Too many sends in the last minute. Wait a minute and press Send again.','err');
+    } else {
+      let d=''; try{ const j=await r.json(); d=(j.errors||[]).map(e=>e.message).join(' '); }catch(e){}
+      setMsg(`The quote did not send${d?': '+d:'.'} Press Send again, or download the PDF and email it to ${FALLBACK_EMAIL}.`,'err');
+    }
+  }catch(e){
+    setMsg('The quote did not send. Check your connection and press Send again.','err');
+  }finally{ sending=false; $('send').disabled=false; }
+});
+
+$('pdf').addEventListener('click', async()=>{
+  render(); if(!Q.lines.length) return;
+  if(!window.jspdf){ setMsg('The PDF maker did not load. Reload the page and try again.','err'); return; }
+  const {jsPDF}=window.jspdf; const doc=new jsPDF({unit:'pt',format:'letter'});
+  const W=612, M=48; let y=56;
+  const green=[45,80,22];
+  doc.setFont('helvetica','bold'); doc.setFontSize(18); doc.setTextColor(...green); doc.text('Bark & Branch Landscape',M,y);
+  doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(90);
+  doc.text('1253 E Imperial Hwy, Placentia, CA 92870 · (657) 525-9737 · CA Lic. #1119893 · Licensed & Insured',M,y+14);
+  y+=40; doc.setDrawColor(...green); doc.setLineWidth(1.5); doc.line(M,y,W-M,y); y+=24;
+  doc.setTextColor(20); doc.setFont('helvetica','bold'); doc.setFontSize(14);
+  doc.text(Q.over?'Planting quote request':'Planting quote',M,y);
+  doc.setFont('helvetica','normal'); doc.setFontSize(10);
+  const today=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  doc.text(today,W-M,y,{align:'right'}); y+=18;
+  const info=[['Client',$('client').value],['Job address',$('address').value],['Estimate provided by',[$('broker').value,$('brokerContact').value,$('brokerPhone').value,$('brokerEmail').value].filter(Boolean).join(' · ')],['Miles from Santa Ana 92705', state.miles? `About ${state.miles.mi} mi one way` : '—'],['Heaviest tree (approx.)', Q.maxWt? `${Q.maxWtLabel}, up to ${Q.maxWt.toLocaleString()} lb` : '—'],['Distance from street'+(Q.crane&&Q.boxTrees>1?' (furthest tree)':''),state.distance?state.distance+' ft':'—']];
+  info.forEach(([k,v])=>{doc.setTextColor(110);doc.text(k,M,y);doc.setTextColor(20);doc.text(String(v||'—'),M+130,y);y+=15;});
+  y+=10;
+  const row=(label,amt,bold)=>{ doc.setFont('helvetica',bold?'bold':'normal'); const t=doc.splitTextToSize(label,W-2*M-110); doc.text(t,M,y); doc.text(amt,W-M,y,{align:'right'}); y+=14*t.length+4; };
+  doc.setFillColor(...green); doc.rect(M,y-11,W-2*M,18,'F'); doc.setTextColor(255); doc.setFont('helvetica','bold'); doc.text('Description',M+6,y+2); doc.text('Price',W-M-6,y+2,{align:'right'}); y+=22; doc.setTextColor(20);
+  Q.lines.forEach(l=>row(l.label,m2(l.amt)));
+  if(Q.boxTrees) { doc.setFontSize(8.5); doc.setTextColor(100); const t=doc.splitTextToSize('Each tree: dig the planting pit, set the tree, remove the box, backfill with site soil, fertilize with Agriform planting tablets and Gro-Power Plus, treat with Moon Juice for transplant shock, water in, haul off box lumber and clean up. Excess soil is spread around the planters or left on site unless soil export is selected.',W-2*M); doc.text(t,M,y); y+=11*t.length+6; doc.setFontSize(10); doc.setTextColor(20); }
+  doc.setDrawColor(180); doc.setLineWidth(.5); doc.line(M,y-6,W-M,y-6);
+  if(Q.crane||Q.over){ row('Planting subtotal',m2(Q.subtotal),true); if(Q.crane) row('Equipment – crane with operator', Q.over?'To be quoted':m2(Q.equip)); }
+  if(Q.minAdj) row('Minimum job charge ($2,000 minimum)', m2(Q.minAdj));
+  doc.setFontSize(Q.extras.length?10:12); row(Q.extras.length?'Standard planting':'Final price', Q.over?'To be quoted':m2(Q.standard), true); doc.setFontSize(10);
+  if(Q.over){ doc.setTextColor(163,49,31); const why=[Q.far?`The planting spot is ${state.distance} ft from the street, past the 36 ft instant-price limit.`:'', Q.heavy?'A 48" box tree is 2,500 lb or more (or not confirmed).':''].filter(Boolean).join(' '); const t=doc.splitTextToSize(why+' Bark & Branch will price it from the site map and tree details.',W-2*M); doc.text(t,M,y); y+=13*t.length+4; doc.setTextColor(20); }
+  else { doc.setTextColor(90); doc.text(`Deposit on approval: ${m2(Q.deposit)} (10% of the contract price or $1,000, whichever is less). Balance due on completion, 5-day terms.`,M,y,{maxWidth:W-2*M}); y+=26; doc.setTextColor(20); }
+  if(Q.extras.length){ y+=6; doc.setFont('helvetica','bold'); doc.text('Premium extras included',M,y); y+=16; Q.extras.forEach(l=>row(l.label,m2(l.amt))); if(!Q.over){ doc.setFontSize(12); row('Final price with extras',m2(Q.withExtras),true); doc.setFontSize(10);} doc.setFontSize(8.5); doc.setTextColor(100); doc.text('Soil yards are typical for the box size; actual yards depend on soil type and are confirmed on site.',M,y); y+=14; doc.setFontSize(10); doc.setTextColor(20); }
+  y+=6; doc.setFontSize(8.5); doc.setTextColor(90);
+  const terms='Gas surcharge based on mileage from Santa Ana 92705 is added on the final invoice. Jobs have a $2,000 minimum. 48" box pricing applies to trees under 2,500 lb. Not included unless selected: excess soil export, tree inspection drains, staking or anchoring, irrigation to the tree, crane permits, no-parking and traffic control. Hard digging $87.36 per hour per person, client notified before proceeding. Sprinklers must be working the week before planting, or hand watering bi-weekly is needed until established. Crane standby billed at the crane company\'s hourly rate if the tree delivery is late. Client supplies the plants; quarterly inspections are available.';
+  const tt=doc.splitTextToSize(terms,W-2*M); if(y+11*tt.length>760){doc.addPage();y=56;} doc.text(tt,M,y); y+=11*tt.length+10;
+  const notes=$('notes').value.trim(); if(notes){ const nt=doc.splitTextToSize('Site notes: '+notes,W-2*M); doc.text(nt,M,y); y+=11*nt.length+10; }
+  if(state.map){ doc.addPage(); doc.setFontSize(12); doc.setTextColor(20); doc.setFont('helvetica','bold'); doc.text('Site map',M,56);
+    const maxW=W-2*M, maxH=792-120; const sc=Math.min(maxW/state.map.w, maxH/state.map.h); doc.addImage(state.map.data,'JPEG',M,72,state.map.w*sc,state.map.h*sc); }
+  const base=($('address').value.trim()||'Planting job').replace(/[^\w\s.-]/g,'').slice(0,60);
+  doc.save(`${base} - Planting ${Q.over?'Quote Request':'Quote'}.pdf`);
+});
+
+render();
+</script>
+
+</body>
+</html>
