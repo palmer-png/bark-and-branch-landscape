@@ -338,6 +338,8 @@ section{padding:6rem 3rem}
 .f-submit{background:var(--green-light);color:white;border:none;padding:1rem;border-radius:3px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:.92rem;letter-spacing:.04em;cursor:pointer;transition:all .2s}
 .f-submit:hover{background:var(--green);transform:translateY(-1px)}
 .f-note{font-size:.72rem;color:var(--muted);text-align:center}
+#quote .btn-secondary{color:var(--text-mid);border-color:var(--border)}
+#quote .btn-secondary:hover{border-color:var(--green);color:var(--green)}
 
 /* FOOTER */
 footer{background:var(--green-dark);padding:4rem 3rem 2rem}
@@ -386,13 +388,17 @@ footer{background:var(--green-dark);padding:4rem 3rem 2rem}
   .trust-bar{padding:.9rem 1.4rem}
   .services-grid,.process-row{grid-template-columns:1fr 1fr}
   .port-masonry{gap:.75rem}
-  .port-masonry .port-col{flex:1;min-width:calc(50% - .4rem)}
   .area-layout,.about-layout,.quote-layout{grid-template-columns:1fr;gap:2.5rem}
   .testi-grid{grid-template-columns:1fr}
   .hedge-grid{grid-template-columns:1fr}
   .hedge-hero{grid-column:auto}
   .footer-top{grid-template-columns:1fr 1fr}
   .f-row{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .port-masonry{flex-wrap:wrap}
+  .port-masonry .port-col{min-width:calc(50% - .4rem)}
+  .footer-top>div:first-child,.footer-top>.f-col:last-child{grid-column:1/-1}
 }
 </style>
 </head>
@@ -438,7 +444,6 @@ footer{background:var(--green-dark);padding:4rem 3rem 2rem}
     <p class="hero-sub">We build beautiful outdoor spaces for homeowners and businesses all across Orange County. Whether you need an Instant Hedge, a new patio or a full yard renovation, we make it happen.</p>
     <div class="hero-btns">
       <a href="#quote" class="btn-primary">Get a Free Quote →</a>
-      <a href="#ai" class="btn-secondary">Talk to our AI</a>
       <a href="#portfolio" class="btn-secondary">View Our Work</a>
     </div>
     <div class="hero-trust">
