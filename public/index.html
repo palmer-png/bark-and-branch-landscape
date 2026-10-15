@@ -398,6 +398,13 @@ footer{background:var(--green-dark);padding:4rem 3rem 2rem}
   .port-masonry{flex-wrap:wrap}
   .port-masonry .port-col{min-width:calc(50% - .4rem)}
   .footer-top>div:first-child,.footer-top>.f-col:last-child{grid-column:1/-1}
+  .ai-input-row input,.nl-form input,.f-group input,.f-group select,.f-group textarea{font-size:16px}
+  .ai-input-row input{min-width:0}
+  .f-group input,.f-group select,.f-group textarea{width:100%}
+  .qc-value a{overflow-wrap:anywhere}
+}
+@media(max-width:359px){
+  .services-grid,.process-row{grid-template-columns:1fr}
 }
 </style>
 </head>
