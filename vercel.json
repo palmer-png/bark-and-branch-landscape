@@ -5,7 +5,8 @@
   ],
   "redirects": [
     { "source": "/brokerestimatebuilder/", "destination": "/brokerestimatebuilder", "permanent": true },
-    { "source": "/planting-quotes.html", "destination": "/brokerestimatebuilder", "permanent": true }
+    { "source": "/planting-quotes.html", "destination": "/brokerestimatebuilder", "permanent": true },
+    { "source": "/bark-and-branch.html", "destination": "/", "permanent": true }
   ],
   "headers": [
     {
