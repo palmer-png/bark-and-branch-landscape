@@ -290,7 +290,7 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
     <div class="hero">
       <div class="hero-badge"><span class="blink"></span>Broker planting quotes</div>
       <h1>Price a <em>planting job.</em></h1>
-      <p class="hero-sub">Enter the trees and containers the client is supplying. Up to 36 feet from the center of the street you get a firm price right here. Farther than that is no problem: send it with the map and we come back with your price. Have a plant list? Add a photo of it and the quote fills itself in.</p>
+      <p class="hero-sub">Enter the trees and containers the client is supplying. You get a firm price right here. If the crane or a 30" box has to go farther than 36 feet from the center of the street, that's no problem: send it with the map and we come back with your price. Have a plant list? Add a photo of it and the quote fills itself in.</p>
     </div>
   </div>
 </header>
@@ -341,7 +341,7 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
 
       <div class="step">
         <h2><span class="n">04</span>Box trees</h2>
-        <p class="hint">Price per tree drops at 11 and at 21 trees of the same size. 24" box and 30 gallon are the same price, so enter them together. <b>24" box trees are hand carried, no charge up to 36 ft. 36" box and bigger need the crane ($700 with operator); for a 30" box it's your call.</b> 48" box trees must be under 2,500 lb for an instant price. Every tree gets the standard install: pit dug, tree set, Agriform tablets and Gro-Power Plus, Moon Juice for transplant shock, watered in, box lumber hauled off.</p>
+        <p class="hint">Price per tree drops at 11 and at 21 trees of the same size. 24" box and 30 gallon are the same price, so enter them together. <b>24" box trees are hand carried at no charge, however far it is. 36" box and bigger need the crane ($700 with operator); for a 30" box it's your call.</b> 48" box trees must be under 2,500 lb for an instant price. Every tree gets the standard install: pit dug, tree set, Agriform tablets and Gro-Power Plus, Moon Juice for transplant shock, watered in, box lumber hauled off.</p>
         <div class="tablebox"><table class="qty" id="treeTable">
           <thead><tr><th>Size</th><th class="r">Qty</th><th class="r">Each</th><th class="r">Line</th></tr></thead>
           <tbody></tbody>
@@ -407,7 +407,7 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
             </g>
             <g id="cvDone" opacity="0"><rect x="330" y="20" width="120" height="24" rx="12" fill="#4a7c2f"/><text x="390" y="36" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">Planting spot</text></g>
           </svg>
-          <figcaption>Measure along the ground from the <b>center of the street</b> to the <b>spot the tree goes in</b>. Up to 36 ft prices right here. Farther is no problem: send it over and we come back with the price.</figcaption>
+          <figcaption>Measure along the ground from the <b>center of the street</b> to the <b>spot the tree goes in</b>. Hand-carried 24" box trees price right here at any distance. With the crane or a 30" box, up to 36 ft prices right here; farther, send it over and we come back with the price.</figcaption>
         </figure>
         <div class="f" style="margin-top:1rem">
           <span class="flabel" id="distLabel">Distance from center of street (feet)</span>
@@ -497,8 +497,8 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
       <div class="term"><h3>48" box weight</h3><p>Instant prices cover 48" box trees under 2,500 lb. Heavier trees are quoted.</p></div>
       <div class="term"><h3>Single large tree</h3><p>One 48" box tree is $4,900 and one 60" box tree is $8,500 to cover mobilization, unless the rest of the job comes to $1,500 or more. Then the regular price applies.</p></div>
       <div class="term"><h3>Job minimum</h3><p>Every job is at least $2,000. Smaller jobs show a minimum job charge to make up the difference.</p></div>
-      <div class="term"><h3>Hand carry &amp; crane</h3><p>24" box trees are hand carried at no charge up to 36 ft from the center of the street; if stairs, a wall or no access stop a hand carry, the crane can be added. 36" box and bigger go in by crane: $700 with operator. For a 30" box it's the broker's call.</p></div>
-      <div class="term"><h3>Farther than 36 feet</h3><p>No problem. Send it with the site map: we get crane pricing from the crane company (or price the hand carry) and come back with the number.</p></div>
+      <div class="term"><h3>Hand carry &amp; crane</h3><p>24" box trees are hand carried at no charge, however far from the street; if stairs, a wall or no access stop a hand carry, the crane can be added. 36" box and bigger go in by crane: $700 with operator. For a 30" box it's the broker's call.</p></div>
+      <div class="term"><h3>Crane or 30" box past 36 feet</h3><p>No problem. Send it with the site map: we get crane pricing from the crane company (or price the hand carry of a 30" box) and come back with the number.</p></div>
     </div>
   </div>
 </section>
@@ -585,12 +585,15 @@ function priceQuote(s){
     if(other<PRICE.singleOtherMin){ line.each=PRICE.single[id]; line.amt=PRICE.single[id]; line.label+=' (single tree, includes mobilization)'; line.single=true; }
   }
   const dist=Math.max(0,+s.distance||0);
-  const far = dist>PRICE.maxInstantFt;
+  const crane = s.crane || needsCrane;
+  const has30 = (+s.trees.b30||0)>0;
+  // distance only matters for the crane's reach, or for a 30" box carried in by hand past 36 ft;
+  // 24" box trees and containers are hand carried at no charge however far it is
+  const far = dist>PRICE.maxInstantFt && ((crane && boxTrees>0) || has30);
   const has48 = (+s.trees.b48||0)>0;
   const heavy = has48 && s.w48!=='under';
   const over = far || heavy;   // over = needs a custom quote
   const carryFt = Math.max(0, Math.min(dist,PRICE.maxInstantFt)-PRICE.freeCarryFt);
-  const crane = s.crane || needsCrane;
   if(boxTrees>0 && carryFt>0 && !over && !crane){
     lines.push({k:'carry',label:`Hand carry ${r2(carryFt)} ft past the first 25 ft × ${boxTrees} tree${boxTrees>1?'s':''}`, amt:r2(carryFt*PRICE.carryPerFt*boxTrees)});
   }
@@ -624,7 +627,7 @@ function priceQuote(s){
   if(hasWork) status = over ? 'custom' : 'instant';
   const mapRequired = hasWork && (far || (crane && boxTrees>0));
   return {lines, extras, subtotal, equip, minAdj, standard, withExtras:r2(standard+extrasTotal), extrasTotal,
-    trees, boxTrees, contCount, crane: crane && boxTrees>0, maxWt, maxWtLabel, forcedCrane:needsCrane, over, far, heavy, has48, w48pending: has48 && !s.w48, dist, status, mapRequired,
+    trees, boxTrees, contCount, crane: crane && boxTrees>0, maxWt, maxWtLabel, forcedCrane:needsCrane, over, far, heavy, has30, has48, w48pending: has48 && !s.w48, dist, status, mapRequired,
     code: deal?code:'', codeLabel: deal?deal.label:'', codeTerms: deal?deal.terms:'', discount,
     deposit: r2(Math.min((standard+extrasTotal)*0.10, 1000))};
 }
@@ -709,7 +712,9 @@ function render(){
   let dn='';
   if(Q.far && Q.crane) dn=`<div class="note warn"><b>${d} ft: we'll get crane pricing for this one.</b> Send it with the site map. We call the crane company for the reach and come back with your price.</div>`;
   else if(Q.far) dn=`<div class="note warn"><b>${d} ft: we'll price the hand carry for this one.</b> No crane needed. Send it with the site map and we come back with your price.</div>`;
-  else if(Q.boxTrees && !Q.crane) dn=`<div class="note ok"><b>Hand carry: no charge up to 36 ft.</b> The trees are carried in by hand; 36" box and bigger need the crane.</div>`;
+  else if(Q.boxTrees && !Q.crane) dn = Q.has30
+    ? `<div class="note ok"><b>Hand carry: no charge up to 36 ft.</b> The 30" box goes in by hand; farther than 36 ft we price the hand carry. 36" box and bigger need the crane.</div>`
+    : `<div class="note ok"><b>Hand carry: no charge.</b> 24" box trees are carried in by hand at no charge, however far it is. 36" box and bigger need the crane.</div>`;
   else if(Q.crane && Q.boxTrees) dn=`<div class="note ok"><b>Crane with operator: ${money(PRICE.crane)}</b>, already in the price. Up to 36 ft the crane does the carrying, so there is no carry charge on top.</div>`;
   else if(d>0) dn=`<div class="note ok">Within reach. No carry charge.</div>`;
   if(Q.crane && Q.boxTrees) dn += `<div class="note ${Q.far?'warn':'ok'}"><b>Crane pick:</b> heaviest tree ${esc(Q.maxWtLabel)} up to about ${Q.maxWt.toLocaleString()} lb, ${multi?'furthest tree':'set'} ${d||0} ft from the street.${multi?' With more than one tree, give the distance to the one furthest from the street.':''}</div>`;
