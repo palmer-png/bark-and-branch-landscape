@@ -255,7 +255,7 @@ section{padding:6rem 3rem}
 #area .sec-sub{color:rgba(250,247,242,.6)}
 .area-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
 .area-map{border:1px solid rgba(110,168,50,.2);border-radius:6px;overflow:hidden}
-.area-map img{width:100%;display:block;filter:saturate(.8) brightness(.85)}
+.area-map img{width:100%;height:auto;display:block;filter:saturate(.8) brightness(.85)}
 .area-cols{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
 .ac-group h4{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green-light);margin-bottom:.75rem}
 .ac-group ul{list-style:none}
@@ -321,6 +321,15 @@ section{padding:6rem 3rem}
 .f-submit:hover{background:var(--green);transform:translateY(-1px)}
 .f-note{font-size:.72rem;color:var(--muted);text-align:center}
 .f-consent{font-size:.75rem;color:#66664f;line-height:1.55}
+[hidden]{display:none!important}
+.f-submit:disabled{opacity:.75;cursor:wait;transform:none}
+.f-error{font-size:.85rem;color:#a3311f;background:#f8e2dc;border-radius:4px;padding:.7rem .9rem;line-height:1.5}
+.f-error a{color:#a3311f;font-weight:600}
+.q-thanks{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:2.2rem;align-self:start;outline:none}
+.q-thanks h3{font-size:1.35rem;line-height:1.3;color:var(--green-dark);margin-bottom:.4rem}
+.q-thanks p{font-size:.95rem;color:var(--text-mid);line-height:1.7;margin-top:.6rem}
+.q-thanks a{color:var(--green-mid);font-weight:600}
+.q-thanks a,.f-error a,.q-thanks-phone{white-space:nowrap}
 #quote .btn-secondary{color:var(--text-mid);border-color:var(--border)}
 #quote .btn-secondary:hover{border-color:var(--green);color:var(--green)}
 
@@ -328,7 +337,7 @@ section{padding:6rem 3rem}
 footer{background:var(--green-dark);padding:4rem 3rem 2rem}
 .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
 .f-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.15rem;font-weight:700;color:var(--cream);display:flex;align-items:center;gap:.6rem;margin-bottom:.85rem;text-decoration:none}
-.f-logo img{height:30px;object-fit:contain}
+.f-logo img{height:30px;width:auto;object-fit:contain}
 .f-tagline{font-size:.83rem;color:rgba(250,247,242,.6);line-height:1.65;max-width:260px}
 .f-socials{display:flex;gap:.5rem;margin-top:1.2rem}
 .f-socials a{border:1px solid rgba(250,247,242,.15);color:rgba(250,247,242,.6);padding:.38rem .85rem;border-radius:3px;text-decoration:none;font-size:.75rem;font-weight:500;transition:all .2s}
@@ -404,7 +413,7 @@ footer{background:var(--green-dark);padding:4rem 3rem 2rem}
 <!-- NAV -->
 <nav id="nav">
   <a href="#home" class="nav-logo">
-    <img src="images/tree-logo.png" alt="Bark & Branch" onerror="this.style.display='none'"/>
+    <img src="images/tree-logo.png" alt="Bark & Branch" onerror="this.style.display='none'" width="144" height="144" />
     Bark & Branch
   </a>
   <ul class="nav-links">
@@ -423,7 +432,7 @@ footer{background:var(--green-dark);padding:4rem 3rem 2rem}
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-img">
-    <img src="images/hero-landscape.png" alt="Landscape"/>
+    <img src="images/hero-landscape.png" alt="Landscape" width="1343" height="895" />
     <div class="hero-img-fade"></div>
   </div>
   <div class="hero-content">
@@ -657,48 +666,48 @@ footer{background:var(--green-dark);padding:4rem 3rem 2rem}
     <!-- Column 1: landscape, portrait, landscape, landscape -->
     <div class="port-col" data-col="1">
       <div class="p-card" data-cat="hardscaping">
-        <img src="images/desert-pergola.png" alt="Hardscaping"/>
+        <img src="images/desert-pergola.jpg" alt="Hardscaping" width="900" height="675" loading="lazy" decoding="async" />
       </div>
       <div class="p-card" data-cat="full">
-        <img src="images/project-construction.jpg" alt="Estate build"/>
+        <img src="images/project-construction.jpg" alt="Estate build" width="900" height="1200" loading="lazy" decoding="async" />
       </div>
       <div class="p-card" data-cat="planting">
-        <img src="images/project-pool-planting.jpg" alt="Pool surround"/>
+        <img src="images/project-pool-planting.jpg" alt="Pool surround" width="900" height="675" loading="lazy" decoding="async" />
       </div>
       <div class="p-card" data-cat="full">
-        <img src="images/project-hedge-pool.jpg" alt="Backyard renovation"/>
+        <img src="images/project-hedge-pool.jpg" alt="Backyard renovation" width="900" height="675" loading="lazy" decoding="async" />
       </div>
     </div>
 
     <!-- Column 2: landscape, portrait, landscape, landscape -->
     <div class="port-col" data-col="2">
       <div class="p-card" data-cat="lighting">
-        <img src="images/hero-landscape.png" alt="Outdoor lighting"/>
+        <img src="images/hero-landscape.png" alt="Outdoor lighting" width="1343" height="895" loading="lazy" decoding="async" />
       </div>
       <div class="p-card" data-cat="full">
-        <img src="images/project-oceanfront.jpg" alt="Oceanfront estate"/>
+        <img src="images/project-oceanfront.jpg" alt="Oceanfront estate" width="900" height="1200" loading="lazy" decoding="async" />
       </div>
       <div class="p-card" data-cat="planting">
-        <img src="images/project-garden.jpg" alt="Garden design"/>
+        <img src="images/project-garden.jpg" alt="Garden design" width="900" height="675" loading="lazy" decoding="async" />
       </div>
       <div class="p-card" data-cat="full">
-        <img src="images/project-estate.jpg" alt="Estate project"/>
+        <img src="images/project-estate.jpg" alt="Estate project" width="900" height="1200" loading="lazy" decoding="async" />
       </div>
     </div>
 
     <!-- Column 3: landscape, landscape, portrait, landscape -->
     <div class="port-col" data-col="3">
       <div class="p-card" data-cat="full">
-        <img src="images/thermal-project.png" alt="Commercial project"/>
+        <img src="images/thermal-project.png" alt="Commercial project" width="750" height="489" loading="lazy" decoding="async" />
       </div>
       <div class="p-card" data-cat="hedge">
-        <img src="images/project-cypress-hedge.jpg" alt="Instant Hedge"/>
+        <img src="images/project-cypress-hedge.jpg" alt="Instant Hedge" width="900" height="657" loading="lazy" decoding="async" />
       </div>
       <div class="p-card" data-cat="planting">
-        <img src="images/project-drought.jpg" alt="Drought tolerant"/>
+        <img src="images/project-drought.jpg" alt="Drought tolerant" width="900" height="1200" loading="lazy" decoding="async" />
       </div>
       <div class="p-card" data-cat="full">
-        <img src="images/project-turf-pool.jpg" alt="Pool and turf"/>
+        <img src="images/project-turf-pool.jpg" alt="Pool and turf" width="900" height="675" loading="lazy" decoding="async" />
       </div>
     </div>
 
@@ -716,7 +725,7 @@ footer{background:var(--green-dark);padding:4rem 3rem 2rem}
   <p class="sec-sub">Proudly serving all of Orange County and surrounding areas with professional landscaping services.</p>
   <div class="area-layout">
     <div class="area-map">
-      <img src="images/orange-county-map.png" alt="Orange County Service Area"/>
+      <img src="images/orange-county-map.png" alt="Orange County Service Area" width="640" height="671" loading="lazy" decoding="async" />
     </div>
     <div>
       <div class="area-cols">
@@ -871,8 +880,14 @@ footer{background:var(--green-dark);padding:4rem 3rem 2rem}
       <div class="f-group"><label for="qMessage">Tell us about your project</label><textarea id="qMessage" name="message" placeholder="What are you looking to do? Size, timeline, budget range — anything helps."></textarea></div>
       <p class="f-consent">By sending this, you agree Bark &amp; Branch Landscape can call or text you about your project. Message and data rates may apply. Reply STOP anytime to stop texts. <a href="/privacy">Privacy policy</a></p>
       <button type="submit" class="f-submit">SEND MY QUOTE REQUEST →</button>
+      <p class="f-error" id="quoteError" role="alert" hidden>That did not go through. Please try again, or call or text Palmer at <a href="tel:6575259737">657-525-9737</a>.</p>
       <p class="f-note">Free estimates always · No spam</p>
     </form>
+    <div class="q-thanks" id="quoteThanks" role="status" tabindex="-1" hidden>
+      <h3>Thanks<span class="q-thanks-name"></span>. Your request is in.</h3>
+      <p>Palmer will call you at <strong class="q-thanks-phone"></strong> about your project.</p>
+      <p>If it is urgent, call or text him at <a href="tel:6575259737">657-525-9737</a>.</p>
+    </div>
   </div>
 </section>
 
@@ -881,7 +896,7 @@ footer{background:var(--green-dark);padding:4rem 3rem 2rem}
   <div class="footer-top">
     <div>
       <a href="#home" class="f-logo">
-        <img src="images/tree-logo.png" alt="Bark & Branch" onerror="this.style.display='none'"/>
+        <img src="images/tree-logo.png" alt="Bark & Branch" onerror="this.style.display='none'" width="144" height="144" loading="lazy" decoding="async" />
         Bark & Branch
       </a>
       <p class="f-tagline">Professional landscaping for Orange County. Committed to exceptional outdoor spaces.</p>
@@ -1160,14 +1175,46 @@ if (aiInput) {
 
 
 </script>
-<!-- Count quote-form sends and phone taps in Google Analytics -->
+<!-- Quote form sends in the background; count quote-form sends and phone taps in Google Analytics -->
 <script>
   (function () {
-    if (typeof gtag !== 'function') return;
+    var hasGtag = typeof gtag === 'function';
     var f = document.getElementById('quoteForm');
-    if (f) f.addEventListener('submit', function () {
-      gtag('event', 'generate_lead', { form_name: 'quote' });
-    });
+    if (f && window.fetch && window.FormData) {
+      // Added 2026-10-16: the visitor stays on this page and sees a thank-you instead of
+      // Formspree's own page, and the lead is counted only after Formspree accepts it.
+      var btn = f.querySelector('.f-submit'), err = document.getElementById('quoteError'),
+          thanks = document.getElementById('quoteThanks'), label = btn.textContent;
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (btn.disabled) return;
+        btn.disabled = true;
+        btn.textContent = 'SENDING...';
+        err.hidden = true;
+        var data = new FormData(f);
+        fetch(f.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } })
+          .then(function (r) {
+            if (!r.ok) throw new Error('Formspree ' + r.status);
+            if (hasGtag) gtag('event', 'generate_lead', { form_name: 'quote' });
+            var name = String(data.get('firstName') || '').trim();
+            thanks.querySelector('.q-thanks-name').textContent = name ? ', ' + name : '';
+            thanks.querySelector('.q-thanks-phone').textContent = String(data.get('phone') || '').trim();
+            f.hidden = true;
+            thanks.hidden = false;
+            thanks.focus();
+          })
+          .catch(function () {
+            btn.disabled = false;
+            btn.textContent = label;
+            err.hidden = false;
+          });
+      });
+    } else if (f && hasGtag) {
+      f.addEventListener('submit', function () {
+        gtag('event', 'generate_lead', { form_name: 'quote' });
+      });
+    }
+    if (!hasGtag) return;
     document.querySelectorAll('a[href^="tel:"]').forEach(function (a) {
       if (a.closest('#drainage-assessment')) return;
       a.addEventListener('click', function () {
