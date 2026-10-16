@@ -1,12 +1,14 @@
 {
   "rewrites": [
     { "source": "/brokerestimatebuilder", "destination": "/brokerestimatebuilder.html" },
-    { "source": "/broker-login", "destination": "/broker-login.html" }
+    { "source": "/broker-login", "destination": "/broker-login.html" },
+    { "source": "/privacy", "destination": "/privacy.html" }
   ],
   "redirects": [
     { "source": "/brokerestimatebuilder/", "destination": "/brokerestimatebuilder", "permanent": true },
     { "source": "/planting-quotes.html", "destination": "/brokerestimatebuilder", "permanent": true },
-    { "source": "/bark-and-branch.html", "destination": "/", "permanent": true }
+    { "source": "/bark-and-branch.html", "destination": "/", "permanent": true },
+    { "source": "/privacy/", "destination": "/privacy", "permanent": true }
   ],
   "headers": [
     {
