@@ -274,6 +274,11 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
   .ptable .sz{display:none}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* STEP 01 REMEMBERED: one line with an Edit link instead of four boxes */
+.saved{display:flex;flex-wrap:wrap;align-items:baseline;gap:.3rem .9rem;font-size:.95rem;color:var(--text-mid);overflow-wrap:anywhere}
+.saved b{color:var(--text)}
+.linkbtn{background:none;border:0;padding:.3rem 0;color:var(--green);font:inherit;font-size:.85rem;font-weight:700;text-decoration:underline;cursor:pointer}
+
 /* STEP 04 POINTS */
 ul.hint.points{padding-left:1.1rem}
 ul.hint.points li{margin-bottom:.3rem}
@@ -341,14 +346,17 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
   <div class="grid">
     <form id="form" autocomplete="off">
       <input type="text" name="_gotcha" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
-      <div class="step">
+      <div class="step" id="companyStep">
         <h2><span class="n">01</span>Your company</h2>
-        <p class="hint">The company providing this estimate. It prints on the quote.</p>
+        <div class="saved" id="companySaved" hidden><span id="companyLine"></span><button type="button" class="linkbtn" id="companyEdit">Edit</button></div>
+        <div id="companyFields">
+        <p class="hint">The company providing this estimate. It prints on the quote. This phone or computer remembers it for next time.</p>
         <div class="fields two">
           <label class="f">Company name<input type="text" id="broker" placeholder="Company providing the estimate"></label>
           <label class="f">Contact name<input type="text" id="brokerContact" placeholder="Who to call"></label>
           <label class="f">Company phone<input type="tel" id="brokerPhone" placeholder="Best number"></label>
           <label class="f">Company email<input type="email" id="brokerEmail" placeholder="name@company.com"></label>
+        </div>
         </div>
       </div>
 
@@ -358,7 +366,7 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
         <div class="fields">
           <label class="f">Homeowner name<input type="text" id="client" placeholder="Signs the proposal"></label>
           <label class="f">Job address<input type="text" id="address" placeholder="Street, city, ZIP"></label>
-          <label class="f">Miles from Santa Ana 92705 (one way)<input type="number" id="milesOverride" min="0" step="1" placeholder="Figured from the ZIP"></label>
+          <label class="f" id="milesRow" hidden>Miles from Santa Ana 92705 (one way)<input type="number" id="milesOverride" min="0" step="1" placeholder="Figured from the ZIP"></label>
         </div>
         <div id="mileNote"></div>
       </div>
@@ -505,8 +513,9 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
         <div class="fine" id="tDeposit"></div>
         <div class="actions">
           <button class="btn" type="button" id="send">Send to Bark &amp; Branch</button>
-          <button class="btn ghost" type="button" id="pdf">Download quote PDF</button>
+          <button class="btn ghost" type="button" id="pdf">Save a copy for me</button>
           <div class="msg" id="msg"></div>
+          <button class="btn ghost" type="button" id="nextQuote" hidden>Start the next quote</button>
         </div>
         <p class="fine">Client supplies the plants. Prices are installation only.</p>
       </div>
@@ -762,6 +771,8 @@ function render(){
     `<div class="note warn">Choose the 48" tree weight. Instant prices cover 48" box trees under 2,500 lb only.</div>`);
   // mileage
   const mi = milesFor($('address').value, +$('milesOverride').value||0); state.miles = mi;
+  // the miles box only shows when the address gives no ZIP we know, or miles were typed
+  $('milesRow').hidden = !(+$('milesOverride').value>0 || ($('address').value.trim() && !milesFor($('address').value,0)));
   $('mileNote').innerHTML = mi ? `<div class="note ok"><b>About ${mi.mi} mile${mi.mi===1?'':'s'} one way (${mi.mi*2} round trip) from Santa Ana 92705</b>${mi.src==='zip'?` to ${esc(mi.city)} ${mi.zip}`:' (entered)'}. Gas surcharge for the trip is added on the final invoice.</div>` :
     ($('address').value.trim() ? `<div class="note warn">Add the ZIP code to the address, or enter the miles, so we can figure the gas surcharge.</div>` : '');
   // how the trees get in: one status line above the drawing, slider and map (always shown; the map is required on crane jobs)
@@ -909,8 +920,8 @@ $('send').addEventListener('click', async()=>{
   if(!$('address').value.trim()){ setMsg('Add the job address so we know where it is.','err'); $('address').focus(); return; }
   if(Q.has48 && !state.w48){ setMsg('Choose the 48" box tree weight first.','err'); $('w48').focus(); return; }
   if(Q.mapRequired && !state.map){ setMsg(Q.far ? (Q.crane ? 'Add the site map. We need it to get the crane pricing.' : 'Add the site map. We need it to price the hand carry.') : 'Add the site map. Crane jobs need it to check the crane setup.','err'); drop.focus(); return; }
-  if(!SEND_READY){ setMsg(`Sending is not switched on yet. Download the quote PDF and email it to ${FALLBACK_EMAIL}.`,'err'); return; }
-  if(!(window.crypto && crypto.subtle)){ setMsg(`This browser cannot send the quote. Download the PDF and email it to ${FALLBACK_EMAIL}.`,'err'); return; }
+  if(!SEND_READY){ setMsg(`Sending is not switched on yet. Press "Save a copy for me" and email it to ${FALLBACK_EMAIL}.`,'err'); return; }
+  if(!(window.crypto && crypto.subtle)){ setMsg(`This browser cannot send the quote. Press "Save a copy for me" and email it to ${FALLBACK_EMAIL}.`,'err'); return; }
   const sig=JSON.stringify([$('address').value.trim(), state.trees, state.cont, state.distance, state.extras, !!state.map]);
   if(lastSent && lastSent.sig===sig && !confirm(`This quote was already sent as ${lastSent.ref}. Send it again?`)) return;
   sending=true; $('send').disabled=true; setMsg('Sending…');
@@ -934,13 +945,13 @@ $('send').addEventListener('click', async()=>{
     fd.append('_gotcha', $('hp').value);
     const r=await fetch(FORMSPREE_ENDPOINT, {method:'POST', body:fd, headers:{'Accept':'application/json'}});
     if(r.ok){
-      lastSent={sig, ref};
+      lastSent={sig, ref}; $('nextQuote').hidden=false;
       setMsg(Q.over ? `Request ${ref} sent. We'll get the pricing ${Q.far&&Q.crane?'from the crane company ':''}and get back to you.` : `Quote ${ref} sent. We will confirm the planting date.`,'good');
     } else if(r.status===429){
       setMsg('Too many sends in the last minute. Wait a minute and press Send again.','err');
     } else {
       let d=''; try{ const j=await r.json(); d=(j.errors||[]).map(e=>e.message).join(' '); }catch(e){}
-      setMsg(`The quote did not send${d?': '+d:'.'} Press Send again, or download the PDF and email it to ${FALLBACK_EMAIL}.`,'err');
+      setMsg(`The quote did not send${d?': '+d:'.'} Press Send again, or press "Save a copy for me" and email it to ${FALLBACK_EMAIL}.`,'err');
     }
   }catch(e){
     setMsg('The quote did not send. Check your connection and press Send again.','err');
@@ -1130,6 +1141,38 @@ listDrop.addEventListener('dragover',e=>{ e.preventDefault(); listDrop.classList
 listDrop.addEventListener('dragleave',()=>listDrop.classList.remove('has'));
 listDrop.addEventListener('drop',e=>{ e.preventDefault(); e.stopPropagation(); listDrop.classList.remove('has'); readListPhoto(e.dataTransfer.files[0]); });
 listFile.addEventListener('change',()=>{ readListPhoto(listFile.files[0]); listFile.value=''; });
+
+/* ---------- Step 01 remembered on this phone or computer (its own browser only), so the broker types it once ---------- */
+const CO_KEY='bb_broker_v1', CO_FIELDS=['broker','brokerContact','brokerPhone','brokerEmail','code'];
+function coLoad(){ try{ return JSON.parse(localStorage.getItem(CO_KEY)||'null'); }catch(e){ return null; } }
+function coSave(){ try{ const o={}; CO_FIELDS.forEach(id=>{ o[id]=$(id).value.trim(); }); localStorage.setItem(CO_KEY, JSON.stringify(o)); }catch(e){} }
+function coShow(folded){
+  const v=id=>$(id).value.trim();
+  $('companyLine').innerHTML=[v('brokerContact'), v('broker'), v('brokerEmail')].filter(Boolean).map((s,i)=>i===1?`<b>${esc(s)}</b>`:esc(s)).join(' · ');
+  $('companySaved').hidden=!folded; $('companyFields').hidden=folded;
+}
+CO_FIELDS.forEach(id=>$(id).addEventListener('input', coSave));
+$('companyEdit').addEventListener('click', ()=>{ coShow(false); $('broker').focus(); });
+(()=>{ const o=coLoad(); if(!o) return;
+  CO_FIELDS.forEach(id=>{ if(o[id] && !$(id).value) $(id).value=o[id]; });
+  if(o.broker && o.brokerEmail) coShow(true);
+})();
+
+/* ---------- Start the next quote: clears the job, keeps the company and code ---------- */
+$('nextQuote').addEventListener('click', ()=>{
+  ['client','address','milesOverride','notes','listText'].forEach(id=>{ $(id).value=''; });
+  for(const t of PRICE.trees) $('q_'+t.id).value=0;
+  for(const c of PRICE.containers) $('q_'+c.id).value=0;
+  $('distance').value=0; $('w48').value=''; $('craneOverride').checked=false;
+  const cr=$('crane'); cr.checked=false; delete cr.dataset.auto;
+  for(const k in state.extras){ const x=$('x_'+k); x.checked=false; delete x.dataset.auto; }
+  state.map=null; $('mapFile').value=''; drop.classList.remove('has');
+  $('dropInner').innerHTML='<b>Add the site map</b><br>Screenshot of Google Maps with the measured line. Drop it here or tap to choose.';
+  listUndo=null; listSummary=''; $('listUndo').hidden=true; $('listOut').innerHTML='';
+  lastSent=null; setMsg(''); $('nextQuote').hidden=true;
+  render();
+  $('client').closest('.step').scrollIntoView({behavior:'smooth', block:'start'});
+});
 
 render();
 </script>
