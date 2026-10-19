@@ -765,14 +765,13 @@ function render(){
   const mi = milesFor($('address').value, +$('milesOverride').value||0); state.miles = mi;
   $('mileNote').innerHTML = mi ? `<div class="note ok"><b>About ${mi.mi} mile${mi.mi===1?'':'s'} one way (${mi.mi*2} round trip) from Santa Ana 92705</b>${mi.src==='zip'?` to ${esc(mi.city)} ${mi.zip}`:' (entered)'}. Gas surcharge for the trip is added on the final invoice.</div>` :
     ($('address').value.trim() ? `<div class="note warn">Add the ZIP code to the address, or enter the miles, so we can figure the gas surcharge.</div>` : '');
-  // how the trees get in: one status line; the distance, drawing and map only show on crane jobs
+  // how the trees get in: one status line above the drawing, slider and map (always shown; the map is required on crane jobs)
   const bigTree = PRICE.trees.filter(t=>t.crane && state.trees[t.id]>0).map(t=>t.label.split(' /')[0]).pop();
   $('craneStatus').innerHTML = !Q.boxTrees
     ? `<p class="hint" style="margin:0">No box trees on this quote. Container plants are carried in by hand at no charge.</p>`
     : Q.crane
       ? `<div class="note ok"><b>Crane with operator: ${money(PRICE.crane)}</b>, already in the price. ${bigTree ? `30" box and bigger always go in by crane.` : `Added for stairs, a wall or no access.`}</div>`
       : `<div class="note ok"><b>Hand carry: no charge.</b> 24" box trees are carried in by hand, however far from the street.</div>`;
-  $('craneOnly').hidden = !(Q.crane && Q.boxTrees);
   let dn='';
   if(Q.far && Q.crane) dn=`<div class="note warn"><b>${d} ft: we'll get crane pricing for this one.</b> Send it with the site map. We call the crane company for the reach and come back with your price.</div>`;
   if(Q.crane && Q.boxTrees) dn +=`<div class="note ${Q.far?'warn':'ok'}"><b>Crane pick:</b> heaviest tree ${esc(Q.maxWtLabel)} up to about ${Q.maxWt.toLocaleString()} lb, ${multi?'furthest tree':'set'} ${d||0} ft from the street.${multi?' With more than one tree, give the distance to the one furthest from the street.':''}</div>`;
@@ -1025,10 +1024,12 @@ $('distRange').addEventListener('input', ()=>{ $('distance').value=posToFt($('di
   }
   const still=window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(still){ frame(7500); return; }
-  let on=true, t0=performance.now();
-  if('IntersectionObserver' in window) new IntersectionObserver(es=>{ on=es[0].isIntersecting; if(on) requestAnimationFrame(loop); }).observe(svg);
-  function loop(now){ frame(now-t0); if(on) requestAnimationFrame(loop); }
-  frame(7500); requestAnimationFrame(loop);
+  let on=true, running=false, t0=performance.now();
+  // one loop at a time: pause while off screen, pick up again when it comes back
+  const start=()=>{ if(on && !running){ running=true; requestAnimationFrame(loop); } };
+  if('IntersectionObserver' in window) new IntersectionObserver(es=>{ on=es[0].isIntersecting; start(); }).observe(svg);
+  function loop(now){ running=false; frame(now-t0); if(on){ running=true; requestAnimationFrame(loop); } }
+  frame(7500); start();
   window.craneFrame=frame;
 })();
 
