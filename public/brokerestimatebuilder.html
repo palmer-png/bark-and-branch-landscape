@@ -558,7 +558,6 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
       <div class="term"><h3>Not included</h3><p>Excess soil export, tree inspection drains, staking or anchoring, irrigation to the tree, crane permits, no-parking and traffic control, unless selected as extras.</p></div>
       <div class="term"><h3>Gas surcharge</h3><p>Figured from the mileage between Santa Ana 92705 and the job, and added on the final invoice.</p></div>
       <div class="term"><h3>48" box weight</h3><p>Instant prices cover 48" box trees under 2,500 lb. Heavier trees are quoted.</p></div>
-      <div class="term"><h3>Single large tree</h3><p>One 48" box tree is $4,900 and one 60" box tree is $8,500 to cover mobilization, unless the rest of the job comes to $1,500 or more. Then the regular price applies.</p></div>
       <div class="term"><h3>Job-size discount</h3><p>The more plants on one job, the more comes off the plant prices: about 1% on $5,000 of plants, 2.3% on $10,000, 4.5% on $20,000, up to 8.2% from about $38,500. It does not apply to the crane, extras or the job minimum.</p></div>
       <div class="term"><h3>Job minimum</h3><p>Every job is at least $2,000. Smaller jobs show a minimum job charge to make up the difference.</p></div>
       <div class="term"><h3>Hand carry &amp; crane</h3><p>24" box trees are hand carried at no charge, however far from the street; if stairs, a wall or no access stop a hand carry, the crane can be added. 30" box and bigger go in by crane: $700 with operator.</p></div>
@@ -595,7 +594,7 @@ const PRICE = {
   ],
   // job-size discount on plants (Palmer 2026-10-21): grows with the plant total, up to 8.24% from $38,461.54 of plants
   sizeDisc: {a:0.22, b:0.15, endAt:38461.54},
-  crane: 700, minJob: 2000, single:{b48:4900, b60:8500}, singleOtherMin:1500, w48Limit: 2500,
+  crane: 700, minJob: 2000, w48Limit: 2500,
   origin:null, originZip:'92705', originName:'Santa Ana 92705', roadFactor:1.2,  // straight-line miles × 1.2 ≈ driving miles
   freeCarryFt: 36, carryPerFt: 3.90, maxInstantFt: 36,   // hand carried free to 36 ft; 30" box and up always go by crane (Palmer 2026-10-19), a 24" box only with the "crane needed anyway" override
   drain: 390, exportYd: 265, backfillYd: 380, arborist: 450, arborist6: 650, oversight: 1500, oversightAdd: 250,
@@ -647,13 +646,6 @@ function priceQuote(s){
     lines.push({k:'cont',label:`${n} × ${c.label} – plant`, amt:r2(n*each), qty:n, each});
     contCount+= c.id==='flat' ? n*16 : n;
   }
-  // Single 48"/60" tree: mobilization price unless the rest of the job is $1,500 or more
-  for(const id of ['b48','b60']){
-    if((+s.trees[id]||0)!==1) continue;
-    const line=lines.find(l=>l.id===id);
-    const other=lines.filter(l=>l!==line).reduce((a,l)=>a+l.amt,0);
-    if(other<PRICE.singleOtherMin){ line.each=PRICE.single[id]; line.amt=PRICE.single[id]; line.label+=' (single tree, includes mobilization)'; line.single=true; }
-  }
   const dist=Math.max(0,+s.distance||0);
   const crane = s.crane || needsCrane;
   const has30 = (+s.trees.b30||0)>0;
@@ -667,8 +659,7 @@ function priceQuote(s){
   if(boxTrees>0 && carryFt>0 && !over && !crane){
     lines.push({k:'carry',label:`Hand carry ${r2(carryFt)} ft past the first 25 ft × ${boxTrees} tree${boxTrees>1?'s':''}`, amt:r2(carryFt*PRICE.carryPerFt*boxTrees)});
   }
-  // the single 48"/60" tree price is a fixed mobilization price, so it stays out of the discount
-  const plantList = r2(lines.filter(l=>(l.k==='tree'||l.k==='cont') && !l.single).reduce((a,l)=>a+l.amt,0));
+  const plantList = r2(lines.filter(l=>l.k==='tree'||l.k==='cont').reduce((a,l)=>a+l.amt,0));
   const sizePct = (plantList>0 && !over) ? sizeDiscountPct(plantList) : 0;
   const sizeDiscount = r2(plantList*sizePct);
   const subtotal = r2(lines.reduce((a,l)=>a+l.amt,0) - sizeDiscount);
@@ -716,7 +707,7 @@ const state = {w48:'', trees:{}, cont:{}, distance:0, crane:false, code:'',
 
 function buildRows(){
   const tb=$('treeTable').tBodies[0];
-  tb.innerHTML = PRICE.trees.map(t=>`<tr><td><span class="size">${t.label}</span><br><span class="tier">${money(t.price,1)} each${PRICE.single[t.id]?` · one tree alone ${money(PRICE.single[t.id],1)}`:''}</span><br><span class="tier wt">${t.id==='b48'?'Instant price: tree under 2,500 lb':`Approx. weight ${t.wt[0].toLocaleString()}–${t.wt[1].toLocaleString()} lb`}</span></td>
+  tb.innerHTML = PRICE.trees.map(t=>`<tr><td><span class="size">${t.label}</span><br><span class="tier">${money(t.price,1)} each</span><br><span class="tier wt">${t.id==='b48'?'Instant price: tree under 2,500 lb':`Approx. weight ${t.wt[0].toLocaleString()}–${t.wt[1].toLocaleString()} lb`}</span></td>
     <td class="r"><span class="stepper"><button type="button" data-step="-1" data-t="trees" data-id="${t.id}" aria-label="One fewer ${t.label}">−</button><input type="number" min="0" step="1" id="q_${t.id}" data-t="trees" data-id="${t.id}" value="0" aria-label="${t.label} trees"><button type="button" data-step="1" data-t="trees" data-id="${t.id}" aria-label="One more ${t.label}">+</button></span></td>
     <td class="r" id="e_${t.id}">${money(t.price,1)}</td><td class="r" id="l_${t.id}">–</td></tr>`).join('');
   const cb=$('contTable').tBodies[0];
