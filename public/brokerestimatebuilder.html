@@ -283,6 +283,25 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
 #craneOnly{transition:opacity .25s}
 #craneOnly.blank{opacity:.35;filter:grayscale(1);pointer-events:none;user-select:none}
 
+/* RECENT QUOTES, DRAFT NOTE, MAPS BUTTON, FOLDED EXTRAS */
+details.recent > summary{cursor:pointer;font-size:1rem;list-style-position:inside}
+details.recent #recentCount{color:var(--muted);font-weight:400}
+.recent-list{list-style:none;margin:.4rem 0 0;padding:0}
+.recent-list li{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.4rem .8rem;padding:.65rem 0;border-top:1px solid var(--border);font-size:.86rem}
+.recent-list li b{color:var(--text)}
+.recent-list .when{color:var(--muted)}
+#draftNote{margin:0 0 .8rem}
+a.mapsbtn{display:inline-block;margin:0 0 .9rem;padding:.6rem 1rem;border:1.5px solid var(--btn);border-radius:3px;color:var(--green-ink);
+  background:var(--green-pale);font-weight:700;font-size:.85rem;text-decoration:none}
+a.mapsbtn:hover{background:var(--btn);color:var(--btn-text)}
+a.mapsbtn.off{border-color:var(--border);background:transparent;color:var(--muted);pointer-events:none}
+#extrasBox > summary{list-style:none;cursor:pointer}
+#extrasBox > summary::-webkit-details-marker{display:none}
+#extrasBox > summary h2{margin-bottom:.15rem}
+#extrasBox .opt{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-left:.4rem}
+#extrasBox .sumhint{display:block;font-size:.83rem;color:var(--green);font-weight:600}
+#extrasBox[open] .sumhint{display:none}
+
 /* STEP 04 POINTS */
 ul.hint.points{padding-left:1.1rem}
 ul.hint.points li{margin-bottom:.3rem}
@@ -350,6 +369,11 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
   <div class="grid">
     <form id="form" autocomplete="off">
       <input type="text" name="_gotcha" id="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px">
+      <details class="step recent" id="recentBox" hidden>
+        <summary><b>My recent quotes</b> <span id="recentCount"></span></summary>
+        <p class="hint">Kept on this phone or computer only. Copy one to start a new quote from it.</p>
+        <ul class="recent-list" id="recentList"></ul>
+      </details>
       <div class="step" id="companyStep">
         <h2><span class="n">01</span>Your company</h2>
         <div class="saved" id="companySaved" hidden><span id="companyLine"></span><button type="button" class="linkbtn" id="companyEdit">Edit</button></div>
@@ -366,6 +390,7 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
 
       <div class="step">
         <h2><span class="n">02</span>Job</h2>
+        <div id="draftNote" hidden></div>
         <p class="hint">Who the planting is for and where. The homeowner is the one who signs the proposal. Include the ZIP code so we can figure the mileage from Santa Ana 92705.</p>
         <div class="fields">
           <label class="f">Homeowner name<input type="text" id="client" placeholder="Signs the proposal"></label>
@@ -426,7 +451,8 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
         <div id="craneStatus"></div>
         <label class="chk" id="craneOverrideRow" hidden><input type="checkbox" id="craneOverride"><span><span class="t">Stairs, a wall or no access?</span><br><span class="d">Tick this and the 24" box trees go in by crane instead ($700 with operator).</span></span></label>
         <div id="craneOnly">
-        <p class="hint" style="margin-top:1rem">Measure on Google Maps: right-click the <b>center of the street</b> in front of the house, choose <b>Measure distance</b>, then click the spot the tree goes in.</p>
+        <p class="hint" style="margin-top:1rem">Measure on Google Maps from the <b>center of the street</b> in front of the house to the spot the tree goes in. <b>Computer:</b> right-click the street, choose <b>Measure distance</b>, click the spot. <b>Phone:</b> touch and hold the street to drop a pin, tap <b>Measure distance</b>, then move the map to the spot.</p>
+        <a class="mapsbtn" id="openMaps" href="https://www.google.com/maps" target="_blank" rel="noopener">Open the job address in Google Maps</a>
 <figure class="craneviz" id="craneViz">
           <svg viewBox="0 0 560 244" role="img" aria-labelledby="cvT">
             <title id="cvT">A crane truck parked in the street lifts a box tree over a garden wall and sets it in the planting hole. The distance is measured along the ground from the center of the street to the hole: 29 feet.</title>
@@ -496,10 +522,12 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
         <label class="f" style="margin-top:12px">Site notes (gate width, slope, stairs, where the truck can park)<textarea id="notes"></textarea></label>
       </div>
 
-      <div class="step">
-        <h2><span class="n">07</span>Planting extras</h2>
-        <p class="hint">This is what separates our install from a nursery drop-off. Soil yards are typical for the box size; the real number depends on the soil and is confirmed on site.</p>
-        <div id="extras"></div>
+      <div class="step" id="extrasStep">
+        <details id="extrasBox">
+          <summary><h2><span class="n">07</span>Planting extras <span class="opt">optional</span></h2><span class="sumhint">Drains, soil, arborist and oversight. Tap to add.</span></summary>
+          <p class="hint" style="margin-top:.8rem">This is what separates our install from a nursery drop-off. Soil yards are typical for the box size; the real number depends on the soil and is confirmed on site.</p>
+          <div id="extras"></div>
+        </details>
       </div>
     </form>
 
@@ -783,6 +811,11 @@ function render(){
   // how the trees get in: one status line above the drawing, slider and map (always shown; the map is required on crane jobs)
   // the crane part stays dimmed and locked until there is a box tree on the quote
   $('craneOnly').classList.toggle('blank', !Q.boxTrees);
+  const addr=$('address').value.trim(), mb=$('openMaps');
+  mb.href = addr ? 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(addr) : 'https://www.google.com/maps';
+  mb.classList.toggle('off', !addr); mb.textContent = addr ? 'Open the job address in Google Maps' : 'Add the job address in step 02 to open it in Google Maps';
+  if(Object.values(state.extras).some(Boolean)) $('extrasBox').open=true;
+  if(typeof scheduleDraft==='function') scheduleDraft();
   $('craneOnly').setAttribute('aria-disabled', Q.boxTrees ? 'false' : 'true');
   $('distRange').disabled = $('distance').disabled = !Q.boxTrees;
   $('drop').tabIndex = Q.boxTrees ? 0 : -1;
@@ -957,7 +990,7 @@ $('send').addEventListener('click', async()=>{
     fd.append('_gotcha', $('hp').value);
     const r=await fetch(FORMSPREE_ENDPOINT, {method:'POST', body:fd, headers:{'Accept':'application/json'}});
     if(r.ok){
-      lastSent={sig, ref}; $('nextQuote').hidden=false;
+      lastSent={sig, ref}; $('nextQuote').hidden=false; addRecent(ref); dropDraft(); draftPaused=true; $('draftNote').hidden=true;
       setMsg(Q.over ? `Request ${ref} sent. We'll get the pricing ${Q.far&&Q.crane?'from the crane company ':''}and get back to you.` : `Quote ${ref} sent. We will confirm the planting date.`,'good');
     } else if(r.status===429){
       setMsg('Too many sends in the last minute. Wait a minute and press Send again.','err');
@@ -1171,19 +1204,92 @@ $('companyEdit').addEventListener('click', ()=>{ coShow(false); $('broker').focu
   if(o.broker && o.brokerEmail) coShow(true);
 })();
 
+/* ---------- The job on the page: read it, put it back, clear it (company and code are kept) ---------- */
+const JOB_FIELDS=['client','address','milesOverride','notes','listText','distance','w48'];
+function getJob(withMap){
+  const j={f:{}, q:{}, x:{}, ov:$('craneOverride').checked};
+  JOB_FIELDS.forEach(id=>{ j.f[id]=$(id).value; });
+  [...PRICE.trees, ...PRICE.containers].forEach(t=>{ j.q[t.id]=+$('q_'+t.id).value||0; });
+  for(const k in state.extras) j.x[k]=$('x_'+k).checked;
+  if(withMap && state.map) j.map=state.map;
+  return j;
+}
+function hasJob(j){ return !!(j.f.address||j.f.client||j.f.notes||Object.values(j.q).some(n=>n>0)); }
+function showMap(m){
+  state.map=m||null; drop.classList.toggle('has', !!m);
+  $('dropInner').innerHTML = m ? `<img src="${m.data}" alt="Site map you added"><b>Site map added.</b> Tap to replace.`
+    : '<b>Add the site map</b><br>Screenshot of Google Maps with the measured line. Drop it here or tap to choose.';
+}
+function applyJob(j){
+  JOB_FIELDS.forEach(id=>{ if(j.f && id in j.f) $(id).value=j.f[id]; });
+  [...PRICE.trees, ...PRICE.containers].forEach(t=>{ $('q_'+t.id).value=(j.q&&j.q[t.id])||0; });
+  $('craneOverride').checked=!!j.ov;
+  const cr=$('crane'); cr.checked=false; delete cr.dataset.auto;
+  for(const k in state.extras){ const x=$('x_'+k); x.checked=!!(j.x&&j.x[k]); delete x.dataset.auto; }
+  showMap(j.map);
+}
+function clearJob(){
+  applyJob({f:Object.fromEntries(JOB_FIELDS.map(id=>[id, id==='distance'?'0':''])), q:{}, x:{}, ov:false});
+  $('mapFile').value='';
+  listUndo=null; listSummary=''; $('listUndo').hidden=true; $('listOut').innerHTML='';
+  lastSent=null; setMsg(''); $('nextQuote').hidden=true; $('draftNote').hidden=true;
+}
+const stamp=t=>new Date(t).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+
+/* ---------- Unfinished quote: saved on this device as it is typed, brought back on the next visit ---------- */
+const DRAFT_KEY='bb_draft_v1', DRAFT_DAYS=14;
+var draftReady=false, draftPaused=false, draftTimer=null;  // var: render() can run before this line
+function saveDraft(){
+  try{
+    const j=getJob(true);
+    if(hasJob(j)) localStorage.setItem(DRAFT_KEY, JSON.stringify({at:Date.now(), job:j}));
+    else localStorage.removeItem(DRAFT_KEY);
+  }catch(e){ try{ const j=getJob(false); localStorage.setItem(DRAFT_KEY, JSON.stringify({at:Date.now(), job:j})); }catch(e2){} }
+}
+function scheduleDraft(){ if(!draftReady || draftPaused) return; clearTimeout(draftTimer); draftTimer=setTimeout(saveDraft, 400); }
+function dropDraft(){ try{ localStorage.removeItem(DRAFT_KEY); }catch(e){} }
+['input','change','click'].forEach(ev=>$('form').addEventListener(ev, ()=>{ draftPaused=false; scheduleDraft(); }));
+$('form').addEventListener('click', e=>{ if(e.target.id==='draftClear'){ e.preventDefault(); clearJob(); dropDraft(); render(); } });
+(()=>{
+  let d=null; try{ d=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null'); }catch(e){}
+  if(d && d.job && hasJob(d.job) && Date.now()-d.at < DRAFT_DAYS*86400000){
+    applyJob(d.job); render();
+    $('draftNote').innerHTML=`<div class="note ok"><b>We brought back the quote you were working on</b> (saved ${esc(stamp(d.at))}). <button type="button" class="linkbtn" id="draftClear">Start over</button></div>`;
+    $('draftNote').hidden=false;
+  } else dropDraft();
+  draftReady=true;
+})();
+
+/* ---------- My recent quotes: the last 10 sent from this device, to copy into a new quote ---------- */
+const RECENT_KEY='bb_recent_v1';
+function loadRecent(){ try{ return JSON.parse(localStorage.getItem(RECENT_KEY)||'[]'); }catch(e){ return []; } }
+function addRecent(ref){
+  const list=loadRecent().filter(r=>r.ref!==ref);
+  list.unshift({ref, at:Date.now(), address:$('address').value.trim(), client:$('client').value.trim(),
+    price: Q.over ? 'To quote' : m2(Q.withExtras), job:getJob(false)});
+  try{ localStorage.setItem(RECENT_KEY, JSON.stringify(list.slice(0,10))); }catch(e){}
+  renderRecent();
+}
+function renderRecent(){
+  const list=loadRecent();
+  $('recentBox').hidden=!list.length;
+  $('recentCount').textContent = list.length ? `(${list.length})` : '';
+  $('recentList').innerHTML=list.map(r=>`<li><span><b>${esc(r.address||'No address')}</b> · ${esc(r.price)}<br><span class="when">${esc(r.ref)} · ${esc(stamp(r.at))}${r.client?' · '+esc(r.client):''}</span></span>`+
+    `<button type="button" class="linkbtn" data-copy="${esc(r.ref)}">Copy into a new quote</button></li>`).join('');
+}
+$('recentList').addEventListener('click', e=>{
+  const b=e.target.closest('[data-copy]'); if(!b) return;
+  const r=loadRecent().find(x=>x.ref===b.dataset.copy); if(!r) return;
+  clearJob(); applyJob(r.job); render(); draftPaused=false; saveDraft();
+  $('draftNote').innerHTML=`<div class="note ok"><b>Copied from ${esc(r.ref)}.</b> Change what you need, add the site map if it's a crane job, and send it as a new quote. <button type="button" class="linkbtn" id="draftClear">Start over</button></div>`;
+  $('draftNote').hidden=false; $('recentBox').open=false;
+  $('client').closest('.step').scrollIntoView({behavior:'smooth', block:'start'});
+});
+renderRecent();
+
 /* ---------- Start the next quote: clears the job, keeps the company and code ---------- */
 $('nextQuote').addEventListener('click', ()=>{
-  ['client','address','milesOverride','notes','listText'].forEach(id=>{ $(id).value=''; });
-  for(const t of PRICE.trees) $('q_'+t.id).value=0;
-  for(const c of PRICE.containers) $('q_'+c.id).value=0;
-  $('distance').value=0; $('w48').value=''; $('craneOverride').checked=false;
-  const cr=$('crane'); cr.checked=false; delete cr.dataset.auto;
-  for(const k in state.extras){ const x=$('x_'+k); x.checked=false; delete x.dataset.auto; }
-  state.map=null; $('mapFile').value=''; drop.classList.remove('has');
-  $('dropInner').innerHTML='<b>Add the site map</b><br>Screenshot of Google Maps with the measured line. Drop it here or tap to choose.';
-  listUndo=null; listSummary=''; $('listUndo').hidden=true; $('listOut').innerHTML='';
-  lastSent=null; setMsg(''); $('nextQuote').hidden=true;
-  render();
+  clearJob(); dropDraft(); render();
   $('client').closest('.step').scrollIntoView({behavior:'smooth', block:'start'});
 });
 
