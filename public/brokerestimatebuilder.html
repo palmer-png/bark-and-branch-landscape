@@ -437,7 +437,7 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
 
       <div class="step">
         <h2><span class="n">5</span>Container plants</h2>
-        <p class="hint">Mud flats are 16 four-inch plants. Plants sold as 10/15 gallon go in the 15 gallon row. Each price includes the planting area, tablets and Gro-Power, Moon Juice, and taking away the empty plastic containers.</p>
+        <p class="hint">A flat is 16 4" plants. Plants sold as 10/15 gallon go in the 15 gallon row. Each price includes the planting area, tablets and Gro-Power, Moon Juice, and taking away the empty plastic containers.</p>
         <div class="tablebox"><table class="qty" id="contTable">
           <thead><tr><th>Size</th><th class="r">Qty</th><th class="r">Each</th><th class="r">Line</th></tr></thead>
           <tbody></tbody>
@@ -619,7 +619,7 @@ const PRICE = {
     {id:'b60', label:'60" box', price:4286, floor:3750, wt:[6500,10000], exp:5.75, bf:3.25, crane:true},
   ],
   containers: [
-    {id:'flat', label:'Mud flat (16 × 4")', unit:'flat', price:47.25, floor:41.25},
+    {id:'flat', label:'Flat (16 4")', unit:'flat', price:47.25, floor:41.25},
     {id:'g1', label:'1 gallon', unit:'ea', price:10, floor:8.125},
     {id:'g5', label:'5 gallon', unit:'ea', price:33, floor:27.5},
     {id:'g15', label:'15 gallon (incl. 10/15)', unit:'ea', price:110, floor:93.75},
@@ -1134,7 +1134,7 @@ function readPlantList(text){
   if(four) q.cont.flat=(q.cont.flat||0)+Math.ceil(four/16);
   return {rows, q, four, plants, listTotal};
 }
-const ROW_LABEL = id => id==='four' ? 'Mud flats (4")' : id==='flat' ? 'Mud flats' : ((PRICE.trees.find(t=>t.id===id)||PRICE.containers.find(c=>c.id===id)||{}).label||'');
+const ROW_LABEL = id => id==='four' ? 'Flats (4")' : id==='flat' ? 'Flats' : ((PRICE.trees.find(t=>t.id===id)||PRICE.containers.find(c=>c.id===id)||{}).label||'');
 let listUndo=null, listSummary='';
 function fillFromList(fromPhoto){
   const text=$('listText').value; if(!text.trim()){ $('listOut').innerHTML='<div class="note warn">Add a photo of the list or paste it first.</div>'; return; }
@@ -1150,7 +1150,7 @@ function fillFromList(fromPhoto){
   if(R.listTotal!=null) notes += R.listTotal===R.plants ? `<div class="note ok"><b>All ${R.plants} plants read.</b> Matches the list's total of ${R.listTotal}.</div>` :
     `<div class="note warn"><b>The list says ${R.listTotal} plants, ${R.plants} were read.</b> Check the rows${bad.length?' marked in red':''} and fix the text above, then press Fill again.</div>`;
   else notes += `<div class="note ok"><b>${R.plants} plant${R.plants===1?'':'s'} read.</b> Check the counts against the list.</div>`;
-  if(R.four) notes += `<div class="note ok">${R.four} four-inch plants = ${Math.ceil(R.four/16)} mud flat${Math.ceil(R.four/16)===1?'':'s'} (16 to a flat${R.four%16?', rounded up':''}).</div>`;
+  if(R.four) notes += `<div class="note ok">${R.four} 4" plants = ${Math.ceil(R.four/16)} flat${Math.ceil(R.four/16)===1?'':'s'} (16 to a flat${R.four%16?', rounded up':''}).</div>`;
   if(bad.length) notes += `<div class="note stop"><b>${bad.length} line${bad.length===1?' was':'s were'} not added</b> (in red). Add ${bad.length===1?'it':'them'} by hand below, or fix the text and press Fill again.</div>`;
   if((R.q.trees.b48||0)>0) notes += `<div class="note warn">There is a 48" box tree: choose its weight under Box trees.</div>`;
   $('listOut').innerHTML = `<table class="ptable"><thead><tr><th>Plant</th><th class="sz">Size read</th><th>Goes in</th><th class="n">Qty</th></tr></thead><tbody>${tr}<tr class="ptot"><td colspan="2">Plants read</td><td class="sz"></td><td class="n">${R.plants}</td></tr></tbody></table>` + notes;
