@@ -590,7 +590,7 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
       <div class="term"><h3>Not included</h3><p>Excess soil export, tree inspection drains, staking or anchoring, irrigation to the tree, crane permits, no-parking and traffic control, unless selected as extras.</p></div>
       <div class="term"><h3>Gas surcharge</h3><p>Figured from the mileage between Santa Ana 92705 and the job, and added on the final invoice.</p></div>
       <div class="term"><h3>48" box weight</h3><p>Instant prices cover 48" box trees under 2,500 lb. Heavier trees are quoted.</p></div>
-      <div class="term"><h3>Job-size discount</h3><p>The more plants on one job, the more comes off the plant prices: about 1% on $5,000 of plants, 2.3% on $10,000, 4.5% on $20,000, up to 8.2% from about $38,500. It does not apply to the crane, extras or the job minimum.</p></div>
+      <div class="term"><h3>Job-size discount</h3><p>The more plants on one job, the more comes off the plant prices: about 1% on $5,000 of plants, 2% on $10,000, 3.9% on $20,000, 9.1% on $50,000, up to 12.5% from about $71,500. It does not apply to the crane, extras or the job minimum.</p></div>
       <div class="term"><h3>Job minimum</h3><p>Every job is at least $2,000. Smaller jobs show a minimum job charge to make up the difference.</p></div>
       <div class="term"><h3>Hand carry &amp; crane</h3><p>24" box trees are hand carried at no charge, however far from the street; if stairs, a wall or no access stop a hand carry, the crane can be added. 30" box and bigger go in by crane: $700 with operator.</p></div>
       <div class="term"><h3>Crane past 36 feet</h3><p>No problem. Send it with the site map: we get crane pricing from the crane company and come back with the number.</p></div>
@@ -612,20 +612,21 @@ details.termsbox > summary .open{display:none;margin-left:.6rem;font-size:.85rem
 /* ---------- Price book (sell prices only) ---------- */
 const PRICE = {
   trees: [ // per tree, small-job (list) price; bigger jobs get the job-size discount below
-    {id:'b24', label:'24" box / 30 gal', price:238, wt:[150,800], exp:0.75, bf:0.50},
-    {id:'b30', label:'30" box', price:706, wt:[800,1500], exp:1.00, bf:0.75, crane:true},
-    {id:'b36', label:'36" box', price:936, wt:[1500,2500], exp:1.50, bf:1.00, crane:true},
-    {id:'b48', label:'48" box', price:2180, wt:[3000,6500], exp:3.25, bf:1.75, crane:true},
-    {id:'b60', label:'60" box', price:3847, wt:[6500,10000], exp:5.75, bf:3.25, crane:true},
+    {id:'b24', label:'24" box / 30 gal', price:265, wt:[150,800], exp:0.75, bf:0.50},
+    {id:'b30', label:'30" box', price:786, wt:[800,1500], exp:1.00, bf:0.75, crane:true},
+    {id:'b36', label:'36" box', price:1043, wt:[1500,2500], exp:1.50, bf:1.00, crane:true},
+    {id:'b48', label:'48" box', price:2429, wt:[3000,6500], exp:3.25, bf:1.75, crane:true},
+    {id:'b60', label:'60" box', price:4286, wt:[6500,10000], exp:5.75, bf:3.25, crane:true},
   ],
   containers: [
-    {id:'flat', label:'Mud flat (16 × 4")', unit:'flat', price:42.5},
-    {id:'g1', label:'1 gallon', unit:'ea', price:8.5},
-    {id:'g5', label:'5 gallon', unit:'ea', price:28.25},
-    {id:'g15', label:'15 gallon (incl. 10/15)', unit:'ea', price:96.25},
+    {id:'flat', label:'Mud flat (16 × 4")', unit:'flat', price:47.25},
+    {id:'g1', label:'1 gallon', unit:'ea', price:9.5},
+    {id:'g5', label:'5 gallon', unit:'ea', price:31.5},
+    {id:'g15', label:'15 gallon (incl. 10/15)', unit:'ea', price:107.25},
   ],
-  // job-size discount on plants (Palmer 2026-10-21): grows with the plant total, up to 8.24% from $38,461.54 of plants
-  sizeDisc: {a:0.22, b:0.15, endAt:38461.54},
+  // job-size discount on plants (Palmer 2026-10-21): 30% profit on small jobs down to 20% at $50,000 of our cost;
+  // in list dollars that is up to 12.5% off from $71,428.57 of plants
+  sizeDisc: {a:0.30, b:0.20, endAt:71428.57},
   crane: 700, minJob: 2000, w48Limit: 2500,
   origin:null, originZip:'92705', originName:'Santa Ana 92705', roadFactor:1.2,  // straight-line miles × 1.2 ≈ driving miles
   freeCarryFt: 36, carryPerFt: 3.90, maxInstantFt: 36,   // hand carried free to 36 ft; 30" box and up always go by crane (Palmer 2026-10-19), a 24" box only with the "crane needed anyway" override
