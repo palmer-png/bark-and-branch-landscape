@@ -813,7 +813,7 @@ function render(){
   $('craneOnly').classList.toggle('blank', !Q.boxTrees);
   const addr=$('address').value.trim(), mb=$('openMaps');
   mb.href = addr ? 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(addr) : 'https://www.google.com/maps';
-  mb.classList.toggle('off', !addr); mb.textContent = addr ? 'Open the job address in Google Maps' : 'Add the job address in step 02 to open it in Google Maps';
+  mb.classList.toggle('off', !addr); mb.textContent = addr ? 'Open the job address in Google Maps' : 'Add the job address in step 2 to open it in Google Maps';
   if(Object.values(state.extras).some(Boolean)) $('extrasBox').open=true;
   if(typeof scheduleDraft==='function') scheduleDraft();
   $('craneOnly').setAttribute('aria-disabled', Q.boxTrees ? 'false' : 'true');
@@ -821,7 +821,7 @@ function render(){
   $('drop').tabIndex = Q.boxTrees ? 0 : -1;
   const bigTree = PRICE.trees.filter(t=>t.crane && state.trees[t.id]>0).map(t=>t.label.split(' /')[0]).pop();
   $('craneStatus').innerHTML = !Q.boxTrees
-    ? `<div class="note warn"><b>Add box trees in step 04 first.</b> The distance and site map below open up once there is a box tree on the quote. Container plants are carried in by hand at no charge.</div>`
+    ? `<div class="note warn"><b>Add box trees in step 4 first.</b> The distance and site map below open up once there is a box tree on the quote. Container plants are carried in by hand at no charge.</div>`
     : Q.crane
       ? `<div class="note ok"><b>Crane with operator: ${money(PRICE.crane)}</b>, already in the price. ${bigTree ? `30" box and bigger always go in by crane.` : `Added for stairs, a wall or no access.`}</div>`
       : `<div class="note ok"><b>Hand carry: no charge.</b> 24" box trees are carried in by hand, however far from the street.</div>`;
