@@ -279,6 +279,10 @@ button.btn.small{padding:.65rem 1.1rem;font-size:.78rem}
 .saved b{color:var(--text)}
 .linkbtn{background:none;border:0;padding:.3rem 0;color:var(--green);font:inherit;font-size:.85rem;font-weight:700;text-decoration:underline;cursor:pointer}
 
+/* STEP 06 LOCKED: no box trees yet, so the crane part is dimmed and cannot be used */
+#craneOnly{transition:opacity .25s}
+#craneOnly.blank{opacity:.35;filter:grayscale(1);pointer-events:none;user-select:none}
+
 /* STEP 04 POINTS */
 ul.hint.points{padding-left:1.1rem}
 ul.hint.points li{margin-bottom:.3rem}
@@ -777,9 +781,14 @@ function render(){
   $('mileNote').innerHTML = mi ? `<div class="note ok"><b>About ${mi.mi} mile${mi.mi===1?'':'s'} one way (${mi.mi*2} round trip) from Santa Ana 92705</b>${mi.src==='zip'?` to ${esc(mi.city)} ${mi.zip}`:' (entered)'}. Gas surcharge for the trip is added on the final invoice.</div>` :
     ($('address').value.trim() ? `<div class="note warn">Add the ZIP code to the address, or enter the miles, so we can figure the gas surcharge.</div>` : '');
   // how the trees get in: one status line above the drawing, slider and map (always shown; the map is required on crane jobs)
+  // the crane part stays dimmed and locked until there is a box tree on the quote
+  $('craneOnly').classList.toggle('blank', !Q.boxTrees);
+  $('craneOnly').setAttribute('aria-disabled', Q.boxTrees ? 'false' : 'true');
+  $('distRange').disabled = $('distance').disabled = !Q.boxTrees;
+  $('drop').tabIndex = Q.boxTrees ? 0 : -1;
   const bigTree = PRICE.trees.filter(t=>t.crane && state.trees[t.id]>0).map(t=>t.label.split(' /')[0]).pop();
   $('craneStatus').innerHTML = !Q.boxTrees
-    ? `<p class="hint" style="margin:0">No box trees on this quote. Container plants are carried in by hand at no charge.</p>`
+    ? `<div class="note warn"><b>Add box trees in step 04 first.</b> The distance and site map below open up once there is a box tree on the quote. Container plants are carried in by hand at no charge.</div>`
     : Q.crane
       ? `<div class="note ok"><b>Crane with operator: ${money(PRICE.crane)}</b>, already in the price. ${bigTree ? `30" box and bigger always go in by crane.` : `Added for stairs, a wall or no access.`}</div>`
       : `<div class="note ok"><b>Hand carry: no charge.</b> 24" box trees are carried in by hand, however far from the street.</div>`;
